@@ -1,0 +1,45 @@
+.filters-container {
+    border: 0px solid black;
+    width: 90%;
+    margin: auto;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+
+}
+
+.filters-pad {
+    border: 1px solid black;
+    flex: 1 1 auto;
+    width: 25%;
+}
+
+.filters {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    flex: 1 1 auto;
+    width: 50%;
+}
+
+.filter {
+    border: 0px solid black;
+    flex: 1 1 auto;
+}
+
+.sort-elem {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: center;
+    flex: 1 1 auto;
+    width: 25%;
+}

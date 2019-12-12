@@ -1,9 +1,12 @@
 import React from 'react';
+import './gallery.scss'
+import GalleryFilters from '../gallery-filters/gallery-filters'
 
 const Gallery = () => {
     return (
         <div className="gallery-container">
-            <p>The Gallery</p>
+            <GalleryFilters />
+            <p>Gallery items...</p>
         </div>
     );
 }
