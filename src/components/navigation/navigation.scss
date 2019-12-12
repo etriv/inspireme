@@ -1,0 +1,56 @@
+.header {
+  height: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 50px 25px 50px;
+  margin-bottom: 25px;
+  margin-top: 25px;
+  
+  .logo {
+    border: 0px solid red;
+    width: 20%;
+    height: 100%;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+
+  }
+
+  .menu {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  
+    .menu-item {
+      color: black;
+      text-align: center;
+      padding: 10px 15px;
+      margin-left: 20px;
+      text-decoration: none;
+      cursor: pointer;
+
+    }
+  
+    .menu-item:hover {
+      color: gray;
+    }
+  
+    .menu-item.marked {
+      font-weight: bold;
+      border-radius: 5px;
+      border: 1px solid black;
+    }
+  
+    /* Hide the link that should open and close the topnav
+    on small screens */
+    .icon {
+      display: none;
+    }
+  }
+}
+
+
+
