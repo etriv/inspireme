@@ -12,34 +12,35 @@
 }
 
 .filters-pad {
-    border: 1px solid black;
-    flex: 1 1 auto;
-    width: 25%;
+    // border: 1px solid black;
+    flex: 1 1 25%;
+    // width: 25%;
 }
 
 .filters {
-    border: 1px solid black;
+    // border: 1px solid black;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     align-content: center;
-    flex: 1 1 auto;
-    width: 50%;
+    flex: 2 1 50%;
+    // width: 50%;
 }
 
 .filter {
-    border: 0px solid black;
-    flex: 1 1 auto;
+    // border: 1px solid black;
+    // flex: 1 1 auto;
+    margin: 10px;
 }
 
 .sort-elem {
-    border: 1px solid black;
+    // border: 1px solid black;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
     align-content: center;
-    flex: 1 1 auto;
-    width: 25%;
+    flex: 1 1 25%;
+    // width: 25%;
 }

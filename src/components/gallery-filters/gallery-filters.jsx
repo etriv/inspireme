@@ -5,7 +5,7 @@ const GalleryFilters = () => {
     return (
         <div className="filters-container">
             <div className="filters-pad">
-                A
+                
             </div>
             <div className="filters">
                 <span className="filter on">All</span>
@@ -14,11 +14,12 @@ const GalleryFilters = () => {
                 <span className="filter">Pages</span>
             </div>
             <div className="sort-elem">
-                <span>Sort by:&nbsp;</span>
+                <span>Sort:&nbsp;</span>
                 <select>
-                    <option value="volvo">Rating</option>
-                    <option value="saab">Date (newest)</option>
-                    <option value="opel">Date (oldest)</option>
+                    <option value="rating-high">Rating (highest)</option>
+                    <option value="rating-low">Rating (lowest)</option>
+                    <option value="date-new">Date (newest)</option>
+                    <option value="date-old">Date (oldest)</option>
                 </select>
             </div>
         </div>
