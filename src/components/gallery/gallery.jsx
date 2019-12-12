@@ -2,7 +2,7 @@ import React from 'react';
 
 const Gallery = () => {
     return (
-        <div class="gallery-container">
+        <div className="gallery-container">
             <p>The Gallery</p>
         </div>
     );
