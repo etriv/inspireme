@@ -14,7 +14,7 @@ const GalleryFilters = () => {
                 <span className="filter">Pages</span>
             </div>
             <div className="sort-elem">
-                <span>Sort:&nbsp;</span>
+                <span className="sort">Sort:&nbsp;</span>
                 <select>
                     <option value="rating-high">Rating (highest)</option>
                     <option value="rating-low">Rating (lowest)</option>

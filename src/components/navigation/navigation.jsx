@@ -4,7 +4,7 @@ import './navigation.scss'
 const Navigation = () => {
     return (
         <div className="header">
-            <div className="logo"><span role="img" aria-label="bulb">💡&nbsp;</span>INSPIRE ME</div>
+            <div className="logo"><span role="img" aria-label="bulb">💡&nbsp;</span>InspireMe</div>
             <nav className="menu">
                 <span className="menu-item marked">Sign In</span>
                 <span className="menu-item">About</span>

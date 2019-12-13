@@ -1,6 +1,6 @@
 .filters-container {
     border: 0px solid black;
-    width: 90%;
+    width: 96%;
     margin: auto;
     margin-top: 15px;
     display: flex;
@@ -12,13 +12,13 @@
 }
 
 .filters-pad {
-    // border: 1px solid black;
+    //border: 1px solid black;
     flex: 1 1 25%;
     // width: 25%;
 }
 
 .filters {
-    // border: 1px solid black;
+    //border: 1px solid black;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -29,13 +29,14 @@
 }
 
 .filter {
-    // border: 1px solid black;
+    //border: 1px solid black;
     // flex: 1 1 auto;
-    margin: 10px;
+    // width: 5rem;
+    margin: 1rem;
 }
 
 .sort-elem {
-    // border: 1px solid black;
+    //border: 1px solid black;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -43,4 +44,8 @@
     align-content: center;
     flex: 1 1 25%;
     // width: 25%;
+}
+
+.sort {
+    margin-left: 2rem;
 }
