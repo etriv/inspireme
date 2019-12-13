@@ -8,13 +8,12 @@
     justify-content: space-between;
     align-items: center;
     align-content: center;
-
 }
 
 .filters-pad {
     //border: 1px solid black;
-    flex: 1 1 25%;
-    // width: 25%;
+    flex: 1 1 33%;
+    width: 20rem;
 }
 
 .filters {
@@ -24,7 +23,7 @@
     justify-content: center;
     align-items: center;
     align-content: center;
-    flex: 2 1 50%;
+    flex: 2 1 34%;
     // width: 50%;
 }
 
@@ -42,7 +41,9 @@
     justify-content: flex-end;
     align-items: center;
     align-content: center;
-    flex: 1 1 25%;
+    flex: 1 1 33%;
+    overflow: hidden;
+    // white-space: nowrap;
     // width: 25%;
 }
 

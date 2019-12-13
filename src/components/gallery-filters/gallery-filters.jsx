@@ -4,9 +4,7 @@ import './gallery-filters.scss'
 const GalleryFilters = () => {
     return (
         <div className="filters-container">
-            <div className="filters-pad">
-                
-            </div>
+            <div className="filters-pad"></div>
             <div className="filters">
                 <span className="filter on">All</span>
                 <span className="filter">Videos</span>
