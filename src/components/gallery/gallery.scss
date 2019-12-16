@@ -1,3 +1,30 @@
 .gallery-container {
-    border: 1px dotted blue;
+    border: 0px dotted blue;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    
 }
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    //align-content: center;
+}
+.card-container {
+    cursor: pointer;
+    min-width: 280px;
+    max-width: 600px;
+    margin: 0.8rem;
+    flex: 1 1 31%;
+}
+
+// @media only screen and (max-width: 918px) {
+//     .gallery-item {
+//         flex: 1 1 31%;
+//     } 
+// }
