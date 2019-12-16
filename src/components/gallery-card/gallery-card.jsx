@@ -2,11 +2,15 @@ import React from 'react';
 import './gallery-card.scss'
 
 const GalleryCard = (props) => {
-    console.log(props);
+    //console.log(props);
     return (
         <div className="card">
-            <a href={props.source} target="_blank" rel="noopener noreferrer">
-                <img className="card-image" src={props.image} alt="" />
+            <a className="card-link" href={props.source} target="_blank" rel="noopener noreferrer">
+                <div className="card-image"
+                style={{
+                    backgroundImage: `url(${props.image})`
+                }}
+                alt="" />
             </a>
             <div className="card-desc">
                 <h4><b>{props.title}</b></h4>

@@ -1,27 +1,45 @@
 .card {
     /* Add shadows to create the "card" effect */
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.3);
     transition: 0.3s;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     align-content: flex-start;
-
+    height: 100%;
 }
   
 /* On mouse-over, add a deeper shadow */
 .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.3);
 }
 
 /* Add some padding inside the card-desc */
 .card-desc {
+    //border: 1px dotted blue;
     padding: 2px 16px;
+    height: 30%;
+    overflow: hidden;
+    //flex: 1 1 auto;
 }
   
+.card-link {
+    //border: 1px dotted red;
+    width: 100%;
+    height: 70%;
+    border-radius: 5px 5px 0 0;
+}
+
 /* Add rounded corners to the top left and the top right corner of the image */
 .card-image {
+    //border: 1px dotted purple;
     width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: top center;
+    background-color: #fff;
+    background-repeat: no-repeat;
     border-radius: 5px 5px 0 0;
 }

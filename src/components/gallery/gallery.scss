@@ -19,12 +19,14 @@
     cursor: pointer;
     min-width: 280px;
     max-width: 600px;
+    height: 350px;
     margin: 0.8rem;
     flex: 1 1 31%;
+    
 }
 
-// @media only screen and (max-width: 918px) {
-//     .gallery-item {
-//         flex: 1 1 31%;
-//     } 
-// }
+@media only screen and (max-width: 800px) {
+    .card-container {
+        height: 280px;
+    } 
+}
