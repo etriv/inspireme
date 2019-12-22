@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import './App.scss';
-import Navigation from './components/navigation/navigation'
-import SearchArea from './components/search-area/search-area'
-import Gallery from './components/gallery/gallery'
+import { Switch, Route } from 'react-router-dom';
+import HomePage from './pages/homepage/homepage';
+import SignInPage from './pages/sign-in/sign-in-page';
+import AboutPage from './pages/about/about-page';
 
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navigation />
-        <SearchArea />
-        <Gallery />
+        <Switch>
+          <Route exact path='/' component={HomePage} />
+          <Route path='/sign-in' component={SignInPage} />
+          <Route path='/about' component={AboutPage} />
+        </Switch>
       </div>
     );
   }

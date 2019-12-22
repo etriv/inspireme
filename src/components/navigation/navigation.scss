@@ -12,8 +12,12 @@
     padding: 12px 24px;
     display: flex;
     align-items: center;
-    cursor: pointer;
     flex: 1 1 25%;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
   }
 
   .menu {
