@@ -13,8 +13,7 @@ const GalleryCard = (props) => {
                 alt="" />
             </a>
             <div className="card-desc">
-                <h4><b>{props.title}</b></h4>
-                <p>{props.text}</p>
+                <p className="title">{props.title}</p>
             </div>
         </div>
     );

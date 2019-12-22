@@ -1,6 +1,6 @@
 .card {
     /* Add shadows to create the "card" effect */
-    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.4);
     transition: 0.3s;
     border-radius: 5px;
     display: flex;
@@ -13,7 +13,7 @@
   
 /* On mouse-over, add a deeper shadow */
 .card:hover {
-    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 15px 25px 0 rgba(0,0,0,0.4);
 }
 
 /* Add some padding inside the card-desc */
@@ -22,9 +22,24 @@
     padding: 2px 16px;
     height: 30%;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
     //flex: 1 1 auto;
 }
-  
+
+.title {
+    //border: 1px dotted red;
+    margin: 0rem 1rem 0rem 1rem;
+    line-height: 2rem;
+    max-height: 4rem;
+    overflow: hidden;
+    text-align: center;
+    font-weight: bold;
+}
+
 .card-link {
     //border: 1px dotted red;
     width: 100%;

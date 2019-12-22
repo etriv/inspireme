@@ -25,8 +25,14 @@
     
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1400px) {
     .card-container {
         height: 280px;
+    } 
+}
+
+@media only screen and (max-width: 850px) {
+    .card-container {
+        height: 220px;
     } 
 }
