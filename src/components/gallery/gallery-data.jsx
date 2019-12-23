@@ -11,7 +11,8 @@ const galleryData = [
         type: "video",
         likes: 5,
         dateAdded: "1/12/19",
-        userId: 1
+        userId: 1,
+        tags: "dance,dancing,move,moving,movement"
     },
     {
         id: 2,
@@ -22,7 +23,8 @@ const galleryData = [
         type: "video",
         likes: 7,
         dateAdded: "3/12/19",
-        userId: 1
+        userId: 1,
+        tags: "dance,dancing"
     },
     {
         id: 3,
@@ -34,7 +36,8 @@ const galleryData = [
         type: "video",
         likes: 3,
         dateAdded: "5/12/19",
-        userId: 1
+        userId: 1,
+        tags: "dance,dancing,penguin"
     },
     {
         id: 4,
@@ -45,7 +48,8 @@ const galleryData = [
         type: "video",
         likes: 17,
         dateAdded: "10/12/19",
-        userId: 1
+        userId: 1,
+        tags: "dance,dancing"
     },
     {
         id: 5,
@@ -56,7 +60,8 @@ const galleryData = [
         type: "video",
         likes: 13,
         dateAdded: "13/12/19",
-        userId: 1
+        userId: 1,
+        tags: "dance,dancing"
     },
     {
         id: 6,
@@ -67,7 +72,8 @@ const galleryData = [
         type: "video",
         likes: 15,
         dateAdded: "13/12/19",
-        userId: 1
+        userId: 1,
+        tags: "dance,dancing"
     },
     {
         id: 7,
@@ -78,7 +84,8 @@ const galleryData = [
         type: "video",
         likes: 8,
         dateAdded: "14/12/19",
-        userId: 1
+        userId: 1,
+        tags: "dance,dancing"
     },
     {
         id: 8,
@@ -89,7 +96,8 @@ const galleryData = [
         type: "video",
         likes: 2,
         dateAdded: "14/12/19",
-        userId: 1
+        userId: 1,
+        tags: "dance,dancing"
     }
 ]
 
