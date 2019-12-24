@@ -10,6 +10,19 @@
     align-content: flex-start;
     height: 100%;
 }
+
+.card-content {
+    //border: 1px dotted red;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    align-content: flex-start;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+}
   
 /* On mouse-over, add a deeper shadow */
 .card:hover {
