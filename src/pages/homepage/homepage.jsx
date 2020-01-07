@@ -31,16 +31,31 @@ class HomePage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            inspirations: []
+            inspirations: [],
+            search_area: '',
+            ins_type: ''
         };
 
         this.updateInspirations = this.updateInspirations.bind(this);
+        this.handleInspirationsTypeChange = this.handleInspirationsTypeChange.bind(this);
+        this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     }
 
     updateInspirations(tags = '', type = '') {
-        console.log('Updateing inspirations...', 'tags:', tags, 'type:', type);
+        // TODO: Use the type that is saved in the state. Connect it's value with the Gallery's (using event)
+        console.log('Updateing inspirations...', 'tags:', tags, 'type:', this.state.ins_type);
         getInspirationsFromDB(tags, type)
-            .then(data => this.setState({inspirations: data}));
+            .then(data => this.setState({ inspirations: data }));
+    }
+
+    handleSearchSubmit(new_tags = '') {
+        this.setState({ tags: new_tags });
+        this.updateInspirations(new_tags, this.state.ins_type);
+    }
+
+    handleInspirationsTypeChange(new_type = '') {
+        this.setState({ type: new_type });
+        this.updateInspirations(this.state.search_area, new_type);
     }
 
     render() {
@@ -48,8 +63,11 @@ class HomePage extends React.Component {
         return (
             <div className="home-page">
                 <Navigation />
-                <SearchArea inspireOnClick={this.updateInspirations} />
-                <Gallery items={this.state.inspirations} />
+                <SearchArea
+                    inspireOnClick={this.handleSearchSubmit} />
+                <Gallery
+                    items={this.state.inspirations}
+                    onFilterChange={this.handleInspirationsTypeChange} />
             </div>
         );
     }

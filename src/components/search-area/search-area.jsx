@@ -21,7 +21,7 @@ class SearchArea extends React.Component {
     handleKeyUp(event) {
         // If ENTER is being pressed, initiate fetching of inspirations
         if (event.keyCode === 13) {
-            this.props.inspireOnClick(this.state.search_field, '');
+            this.props.inspireOnClick(this.state.search_field);
         }
     }
 
@@ -33,7 +33,7 @@ class SearchArea extends React.Component {
                     onChange={this.onSearchBoxChange}
                     onKeyUp={this.handleKeyUp} />
                 <button className="button"
-                    onClick={this.props.inspireOnClick.bind(this, this.state.search_field, '')}>
+                    onClick={this.props.inspireOnClick.bind(this, this.state.search_field)}>
                     Inspire</button>
             </div>
         );

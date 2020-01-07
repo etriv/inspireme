@@ -9,7 +9,7 @@ class Gallery extends Component {
         // console.log('Gallery items: ', this.props.items);
         return (
             <div className="gallery-container">
-                <GalleryFilters />
+                <GalleryFilters onFilterChange={this.props.onFilterChange} />
                 <div className="cards-container">
                 {
                     this.props.items.map((item) => {
