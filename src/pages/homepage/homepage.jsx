@@ -41,21 +41,25 @@ class HomePage extends React.Component {
         this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     }
 
-    updateInspirations(tags = '', type = '') {
+    updateInspirations() {
         // TODO: Use the type that is saved in the state. Connect it's value with the Gallery's (using event)
-        console.log('Updateing inspirations...', 'tags:', tags, 'type:', this.state.ins_type);
-        getInspirationsFromDB(tags, type)
+        console.log('Updateing inspirations...', 'tags:', this.state.tags, 'type:', this.state.ins_type);
+        getInspirationsFromDB(this.state.tags, this.state.ins_type)
             .then(data => this.setState({ inspirations: data }));
     }
 
     handleSearchSubmit(new_tags = '') {
-        this.setState({ tags: new_tags });
-        this.updateInspirations(new_tags, this.state.ins_type);
+        new_tags = new_tags.split(' ').join('');
+        this.setState({ tags: new_tags }, () => {
+            this.updateInspirations(new_tags, this.state.ins_type);
+        });
     }
 
     handleInspirationsTypeChange(new_type = '') {
-        this.setState({ type: new_type });
-        this.updateInspirations(this.state.search_area, new_type);
+        new_type = (new_type === 'all') ? '' : new_type;
+        this.setState({ ins_type: new_type }, () => {
+            this.updateInspirations(this.state.search_area, new_type);
+        });
     }
 
     render() {

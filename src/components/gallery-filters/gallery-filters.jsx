@@ -5,20 +5,38 @@ class GalleryFilters extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            current_option: 0,
+            current_filter: 'all',
         };
+
+        this.onFilterClick = this.onFilterClick.bind(this);
     }
 
-    // TODO: Think of how to make component more generic. And do it.
+    onFilterClick(event) {
+        console.log('Current filter: ', event.target.id);
+        this.setState({ current_filter: event.target.id});
+
+        // Change visuals to match the selected option
+        document.getElementById(this.state.current_filter)
+            .classList.remove('on');
+        event.target.classList.add('on');
+
+        // Update HomePage's about filter change
+        this.props.onFilterChange(event.target.id);
+    }
+
     render() {
         return (
             <div className="filters-container">
                 <div className="filters-pad"></div>
                 <div className="filters">
-                    <span className="filter on">All</span>
-                    <span className="filter">Videos</span>
-                    <span className="filter">Images</span>
-                    <span className="filter">Pages</span>
+                    <span id="all" className="filter on" 
+                        onClick={this.onFilterClick}>All</span>
+                    <span id="video" className="filter" 
+                        onClick={this.onFilterClick}>Videos</span>
+                    <span id="image" className="filter" 
+                        onClick={this.onFilterClick}>Images</span>
+                    <span id="page" className="filter" 
+                        onClick={this.onFilterClick}>Pages</span>
                 </div>
                 <div className="sort-elem">
                     <span className="sort">Sort:&nbsp;</span>
@@ -33,5 +51,5 @@ class GalleryFilters extends React.Component {
         );
     }
 }
-
+// TODO: Think of how to make component more generic. And do it.
 export default GalleryFilters;
