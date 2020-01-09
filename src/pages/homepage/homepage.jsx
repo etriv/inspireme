@@ -10,13 +10,14 @@ class HomePage extends React.Component {
         super(props);
         this.state = {
             inspirations: [],
-            search_area: '',
+            tags: '',
             ins_type: ''
         };
 
         this.updateInspirations = this.updateInspirations.bind(this);
         this.handleInspirationsTypeChange = this.handleInspirationsTypeChange.bind(this);
         this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+        this.handleSearchBoxChange = this.handleSearchBoxChange.bind(this);
     }
 
     updateInspirations() {
@@ -26,8 +27,8 @@ class HomePage extends React.Component {
             .then(data => this.setState({ inspirations: data }));
     }
 
-    handleSearchSubmit(new_tags = '') {
-        new_tags = new_tags.split(' ').join('');
+    handleSearchSubmit(search_box = '') {
+        const new_tags = search_box.split(' ').join('');
         this.setState({ tags: new_tags }, () => {
             this.updateInspirations(new_tags, this.state.ins_type);
         });
@@ -40,12 +41,18 @@ class HomePage extends React.Component {
         });
     }
 
+    handleSearchBoxChange(new_tags = '') {
+        new_tags = new_tags.split(' ').join('');
+        this.setState({ tags: new_tags });
+    }
+
     render() {
         console.log('Homepage inspirations: ', this.state.inspirations);
         return (
             <div className="home-page">
                 <Navigation />
                 <SearchArea
+                    onSearchBoxChange={this.handleSearchBoxChange}
                     inspireOnClick={this.handleSearchSubmit} />
                 <Gallery
                     items={this.state.inspirations}

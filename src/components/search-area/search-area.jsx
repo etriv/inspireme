@@ -14,7 +14,9 @@ class SearchArea extends React.Component {
 
     onSearchBoxChange(event) {
         this.setState({ search_field: event.target.value }, () => {
-            // console.log(this.state.search_field);
+            // Feature: getting inspirations related to the text in the search field
+            // upon changing the TYPE of the presented inspirations.
+            // this.props.onSearchBoxChange(this.state.search_field);
         });
     }
 
