@@ -1,5 +1,5 @@
 .gallery-container {
-    border: 0px dotted blue;
+    //border: 1px dotted blue;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -9,10 +9,12 @@
     
 }
 .cards-container {
+    //border: 1px dotted purple;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    width: 100%;
     //align-content: center;
 }
 .card-container {
@@ -25,14 +27,18 @@
     
 }
 
-@media only screen and (max-width: 1400px) {
+@media only screen and (max-width: 1250px) {
     .card-container {
-        height: 280px;
+        flex: 1 1 45%;
+        margin: 0.7rem;
+        height: 300px;
     } 
 }
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 700px) {
     .card-container {
-        height: 220px;
+        flex: 1 1 95%;
+        margin: 0.6rem;
+        height: 250px;
     } 
 }
