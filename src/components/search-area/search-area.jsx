@@ -1,11 +1,15 @@
 import React from 'react';
-import './search-area.scss'
+import './search-area.scss';
+import {main_colors4 as main_colors} from '../../modules/main-colors';
 
 class SearchArea extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             search_field: '',
+            bg_images: [
+                './images/watercolour-1325656_1920.jpg'
+            ]
         };
         
         this.onSearchBoxChange = this.onSearchBoxChange.bind(this);
@@ -28,8 +32,18 @@ class SearchArea extends React.Component {
     }
 
     render() {
+        const area_style = {
+            backgroundImage: `url(${this.state.bg_images[0]})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center',
+            // backgroundColor: '#b2dffb',
+            backgroundColor: main_colors.c4,
+            backgroundRepeat: 'no-repeat',
+            height: '67vh'
+        }
+
         return (
-            <div className="search-area-container">
+            <div className="search-area-container" style={area_style}>
                 <p className="inspire-text">Inspire me to:</p>
                 <input name="search-text" className="search-box" type="text" placeholder="✎"
                     onChange={this.onSearchBoxChange}
