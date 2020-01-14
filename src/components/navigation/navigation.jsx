@@ -17,14 +17,14 @@ const MarkedLink = styled(Link)`
     border-radius: 20px;
     border: 0px solid black;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    transition: opacity 0.2s;
+    transition: filter 0.2s;
 	:hover {
-        opacity: 0.9;
+        filter: brightness(105%);
 		cursor: pointer;
     }
     :active {
-        opacity: 0.7;
-        transition: opacity 0s;
+        filter: brightness(110%);
+        transition: filter 0s;
       }
 `;
 
