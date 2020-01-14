@@ -2,8 +2,8 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin-bottom: 15px;
+  margin-top: 15px;
   
   .logo {
     border: 0px solid red;
@@ -13,11 +13,9 @@
     display: flex;
     align-items: center;
     flex: 1 1 25%;
-  }
-
-  a {
     text-decoration: none;
     color: black;
+    text-decoration: none;
   }
 
   .menu {
@@ -28,10 +26,10 @@
     justify-content: flex-end;
     flex: 3 1 75%;
     overflow: visible;
+    font-weight: 500;
   
     .menu-item {
       color: black;
-      font-weight: 500;
       text-align: center;
       padding: 12px 24px;
       margin-left: 15px;
@@ -45,7 +43,7 @@
     }
   
     .menu-item:hover {
-      color: gray;
+      opacity: 0.9;
     }
   
     .menu-item.marked {
@@ -62,5 +60,32 @@
   }
 }
 
+/* Ripple effect */
+.ripple {
+  background-position: center;
+  transition: background 0.8s;
+}
+.ripple:hover {
+  background: #47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
+}
+.ripple:active {
+  background-color: #6eb9f7;
+  background-size: 100%;
+  transition: background 0s;
+}
+
+/* Button style for ripple example */
+.buttonx {
+  border: none;
+  border-radius: 2px;
+  padding: 12px 18px;
+  font-size: 16px;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: white;
+  background-color: #2196f3;
+  box-shadow: 0 0 4px #999;
+  outline: none;
+}
 
 

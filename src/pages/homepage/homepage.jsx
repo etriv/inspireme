@@ -1,7 +1,6 @@
 import React from 'react';
 import './homepage.scss';
 import * as dbFuncs from '../../modules/db-manager';
-import Navigation from '../../components/navigation/navigation';
 import SearchArea from '../../components/search-area/search-area';
 import Gallery from '../../components/gallery/gallery';
 
@@ -50,7 +49,6 @@ class HomePage extends React.Component {
         console.log('Homepage inspirations: ', this.state.inspirations);
         return (
             <div className="home-page">
-                <Navigation />
                 <SearchArea
                     onSearchBoxChange={this.handleSearchBoxChange}
                     inspireOnClick={this.handleSearchSubmit} />
