@@ -25,6 +25,20 @@ const InspireText = styled.p`
     text-shadow: 4px 4px 4px ${main_colors.c2};
 `;
 
+const ClickableButton = styled.button`
+    color: ${main_colors.c3};
+    background-color: ${main_colors.c1};
+    transition: filter 0.2s;
+    :hover {
+        filter: brightness(105%);
+        cursor: pointer;
+    }
+    :active {
+        filter: brightness(115%);
+        transition: filter 0s;
+    }
+`;
+
 class SearchArea extends React.Component {
     constructor(props) {
         super(props);
@@ -59,9 +73,9 @@ class SearchArea extends React.Component {
                     placeholder="✎"
                     onChange={this.onSearchBoxChange}
                     onKeyUp={this.handleKeyUp} />
-                <button className="button"
+                <ClickableButton className="button"
                     onClick={this.props.inspireOnClick.bind(this, this.state.search_field)}>
-                    INSPIRE</button>
+                    INSPIRE</ClickableButton>
             </SearchContainer>
         );
     }
