@@ -1,5 +1,5 @@
 .search-area-container {
-    // border: 1px solid black;
+    //border: 1px solid black;
     border-radius: 30px;
     width: 100%;
     margin: auto;
@@ -10,21 +10,29 @@
     align-content: center;
 }
 
-.inspire-text {
-    font-weight: bold;
-    
-}
+// .inspire-text {
+//     // font-family: 'Open Sans', sans-serif;
+//     // font-family: 'Gelasio', sans;
+//     // font-weight: 400;
+//     // font-size: 3rem;
+// }
 
 .search-box {
     border: 1px solid black;
-    padding: 5px;
-    border-radius: 5px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    margin-top: 10px;
+    margin-bottom: 20px;
 
     &:focus {
         outline: 0;
+        content: "";
     }
 }
 
+$btn-bg-color: #f0134d;
 .button {
     display: inline-block;
     padding: 12px 24px;
@@ -33,24 +41,27 @@
     text-align: center;
     text-decoration: none;
     outline: none;
-    color: #fff;
-    background-color: gray;
+    color: #f5f0e3;
+    background-color: $btn-bg-color;
     border: none;
-    border-radius: 10px;
-    box-shadow: 0 5px rgb(192, 192, 192);;
-    margin-top: 15px;
+    border-radius: 4px;
+    // box-shadow: 0 5px #f0134d;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    // margin-top: 15px;
     margin-bottom: 20px;
     opacity: 1;
     transition: opacity 0.2s;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    transition: background-color 0.2s;
 }
   
 .button:hover {
-      background-color: gray;
-      opacity: 0.8;
+    background-color: lighten($btn-bg-color, 5%);
+    cursor: pointer;
 }
   
 .button:active {
-    background-color: gray;
-    box-shadow: 0 3px rgb(192, 192, 192);
-    transform: translateY(2px);
+    background-color: lighten($btn-bg-color, 10%);
+    transition: background-color 0s;
 }

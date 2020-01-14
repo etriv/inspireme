@@ -1,15 +1,35 @@
 import React from 'react';
 import './search-area.scss';
+import styled from 'styled-components';
 import {main_colors4 as main_colors} from '../../modules/main-colors';
+
+const SearchContainer = styled.div`
+    background-image: url("./images/watercolour-1325656_1920.jpg");
+    background-size: cover;
+    background-position: center center;
+    // background-color: #b2dffb;
+    background-color: ${main_colors.c4};
+    background-repeat: no-repeat;
+    height: 67vh;
+`;
+
+const InspireText = styled.p`
+    color: ${main_colors.c3};
+    font-family: 'Gelasio', sans;
+    font-weight: 400;
+    font-size: 5rem;
+    margin: 0px;
+    text-align: center;
+    letter-spacing: 4px;
+    word-spacing: 4px;
+    text-shadow: 4px 4px 4px ${main_colors.c2};
+`;
 
 class SearchArea extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            search_field: '',
-            bg_images: [
-                './images/watercolour-1325656_1920.jpg'
-            ]
+            search_field: ''
         };
         
         this.onSearchBoxChange = this.onSearchBoxChange.bind(this);
@@ -32,26 +52,17 @@ class SearchArea extends React.Component {
     }
 
     render() {
-        const area_style = {
-            backgroundImage: `url(${this.state.bg_images[0]})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center center',
-            // backgroundColor: '#b2dffb',
-            backgroundColor: main_colors.c4,
-            backgroundRepeat: 'no-repeat',
-            height: '67vh'
-        }
-
         return (
-            <div className="search-area-container" style={area_style}>
-                <p className="inspire-text">Inspire me to:</p>
-                <input name="search-text" className="search-box" type="text" placeholder="✎"
+            <SearchContainer className="search-area-container">
+                <InspireText>Inspire me to:</InspireText>
+                <input name="search-text" className="search-box" type="text"
+                    placeholder="✎"
                     onChange={this.onSearchBoxChange}
                     onKeyUp={this.handleKeyUp} />
                 <button className="button"
                     onClick={this.props.inspireOnClick.bind(this, this.state.search_field)}>
-                    Inspire</button>
-            </div>
+                    INSPIRE</button>
+            </SearchContainer>
         );
     }
 }

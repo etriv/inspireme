@@ -27,7 +27,7 @@ class HomePage extends React.Component {
     }
 
     handleSearchSubmit(search_box = '') {
-        const new_tags = search_box.split(' ').join('');
+        const new_tags = search_box.split(' ').join('').toLowerCase();
         this.setState({ tags: new_tags }, () => {
             this.updateInspirations(new_tags, this.state.ins_type);
         });
@@ -41,7 +41,7 @@ class HomePage extends React.Component {
     }
 
     handleSearchBoxChange(new_tags = '') {
-        new_tags = new_tags.split(' ').join('');
+        new_tags = new_tags.split(' ').join('').toLowerCase();
         this.setState({ tags: new_tags });
     }
 
