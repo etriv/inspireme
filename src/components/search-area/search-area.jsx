@@ -28,9 +28,9 @@ const InspireText = styled.p`
 const ClickableButton = styled.button`
     color: ${main_colors.c3};
     background-color: ${main_colors.c1};
-    transition: filter 0.2s;
+    transition: filter 0.3s;
     :hover {
-        filter: brightness(105%);
+        filter: brightness(103%);
         cursor: pointer;
     }
     :active {
