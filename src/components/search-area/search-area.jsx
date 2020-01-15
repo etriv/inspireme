@@ -1,40 +1,41 @@
 import React from 'react';
 import './search-area.scss';
 import styled from 'styled-components';
-import {main_colors4 as main_colors, shadeHexColor} from '../../modules/main-colors';
+import {main_colors5 as main_colors, shadeHexColor} from '../../modules/main-colors';
 
 const SearchContainer = styled.div`
-    background-image: url("./images/watercolour-1325656_1920.jpg");
+    background-image: url("./images/watercolour-1325656_19202.jpg");
     background-size: cover;
     background-position: center center;
     // background-color: #b2dffb;
-    background-color: ${main_colors.c4};
+    background-color: ${main_colors.c2};
     background-repeat: no-repeat;
-    height: 67vh;
+    height: 100%;
 `;
 
 const InspireText = styled.p`
     color: ${main_colors.c3};
-    font-family: 'Gelasio', sans;
-    font-weight: 400;
+    font-family: 'Lora', sans;
+    font-weight: 500;
     font-size: 5rem;
     margin: 0px;
     text-align: center;
-    letter-spacing: 4px;
+    // letter-spacing: 4px;
     word-spacing: 4px;
-    text-shadow: 4px 4px 4px ${main_colors.c2};
+    text-shadow: 2px 2px 1px ${main_colors.c4};
 `;
 
+const btn_color = main_colors.c4;
 const ClickableButton = styled.button`
-    color: ${main_colors.c3};
-    background-color: ${main_colors.c1};
-    transition: background-color 0.2s;
+    color: ${'white'};
+    background-color: ${btn_color};
+    transition: background-color 0.3s;
     :hover {
-        background-color: ${shadeHexColor(main_colors.c1, 0.1)};
+        background-color: ${shadeHexColor(btn_color, 0.1)};
         cursor: pointer;
     }
     :active {
-        background-color: ${shadeHexColor(main_colors.c1, 0.2)};
+        background-color: ${shadeHexColor(btn_color, 0.2)};
         transition: filter 0s;
     }
 `;
@@ -68,9 +69,9 @@ class SearchArea extends React.Component {
     render() {
         return (
             <SearchContainer className="search-area-container">
-                <InspireText>Inspire me to:</InspireText>
+                <InspireText>Get inspired</InspireText>
                 <input name="search-text" className="search-box" type="text"
-                    placeholder="✎"
+                    placeholder="✎..."
                     onChange={this.onSearchBoxChange}
                     onKeyUp={this.handleKeyUp} />
                 <ClickableButton className="button"
