@@ -1,7 +1,7 @@
 import React from 'react';
 import './search-area.scss';
 import styled from 'styled-components';
-import {main_colors4 as main_colors} from '../../modules/main-colors';
+import {main_colors4 as main_colors, shadeHexColor} from '../../modules/main-colors';
 
 const SearchContainer = styled.div`
     background-image: url("./images/watercolour-1325656_1920.jpg");
@@ -28,13 +28,13 @@ const InspireText = styled.p`
 const ClickableButton = styled.button`
     color: ${main_colors.c3};
     background-color: ${main_colors.c1};
-    transition: filter 0.3s;
+    transition: background-color 0.2s;
     :hover {
-        filter: brightness(103%);
+        background-color: ${shadeHexColor(main_colors.c1, 0.1)};
         cursor: pointer;
     }
     :active {
-        filter: brightness(115%);
+        background-color: ${shadeHexColor(main_colors.c1, 0.2)};
         transition: filter 0s;
     }
 `;

@@ -2,7 +2,7 @@ import React from 'react';
 import './navigation.scss';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { main_colors4 as main_colors } from '../../modules/main-colors';
+import { main_colors4 as main_colors, shadeHexColor } from '../../modules/main-colors';
 
 const MarkedLink = styled(Link)`
     text-decoration: none;    
@@ -18,13 +18,14 @@ const MarkedLink = styled(Link)`
     border: 0px solid black;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     transition: filter 0.2s;
+    transition: background-color 0.2s;
 	:hover {
-        filter: brightness(105%);
+        background-color: ${shadeHexColor(main_colors.c4, 0.1)};
 		cursor: pointer;
     }
     :active {
-        filter: brightness(110%);
-        transition: filter 0s;
+        background-color: ${shadeHexColor(main_colors.c4, 0.2)};
+        transition: background-color 0s;
       }
 `;
 
