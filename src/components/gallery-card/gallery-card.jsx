@@ -26,7 +26,7 @@ const border_top = {
 
 // ########## COMPONENT ########## //
 const GalleryCard = (props) => {
-    console.log('Card props:', props);
+    // console.log('Card props:', props);
     return (
         <div className="card">
             <div className="card-content">

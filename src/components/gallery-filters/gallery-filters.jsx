@@ -1,5 +1,11 @@
 import React from 'react';
 import './gallery-filters.scss'
+// import { main_colors5 as main_colors } from '../../modules/main-colors';
+
+const filter_style = {
+    color: 'black',
+    //backgroundColor: main_colors.c2
+}
 
 class GalleryFilters extends React.Component {
     constructor(props) {
@@ -13,6 +19,7 @@ class GalleryFilters extends React.Component {
 
     onFilterClick(event) {
         console.log('Current filter: ', event.target.id);
+        console.log(event.target.style);
         this.setState({ current_filter: event.target.id});
 
         // Change visuals to match the selected option
@@ -29,13 +36,13 @@ class GalleryFilters extends React.Component {
             <div className="filters-container">
                 <div className="filters-pad"></div>
                 <div className="filters">
-                    <span id="all" className="filter on" 
+                    <span id="all" className="filter on" style={filter_style}
                         onClick={this.onFilterClick}>All</span>
-                    <span id="video" className="filter" 
+                    <span id="video" className="filter" style={filter_style}
                         onClick={this.onFilterClick}>Videos</span>
-                    <span id="image" className="filter" 
+                    <span id="image" className="filter" style={filter_style}
                         onClick={this.onFilterClick}>Images</span>
-                    <span id="page" className="filter" 
+                    <span id="page" className="filter last" style={filter_style}
                         onClick={this.onFilterClick}>Pages</span>
                 </div>
                 <div className="sort-elem">

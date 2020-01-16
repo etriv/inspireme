@@ -10,7 +10,8 @@ class HomePage extends React.Component {
         this.state = {
             inspirations: [],
             tags: '',
-            ins_type: ''
+            ins_type: 'all',
+            display_gallery: false
         };
 
         this.updateInspirations = this.updateInspirations.bind(this);
@@ -22,8 +23,14 @@ class HomePage extends React.Component {
     updateInspirations() {
         // TODO: Use the type that is saved in the state. Connect it's value with the Gallery's (using event)
         console.log('Updateing inspirations...', 'tags:', this.state.tags, 'type:', this.state.ins_type);
-        dbFuncs.getInspirationsFromDB(this.state.tags, this.state.ins_type)
-            .then(data => this.setState({ inspirations: data }));
+        const type = this.state.ins_type !== 'all' ? this.state.ins_type : '';
+        dbFuncs.getInspirationsFromDB(this.state.tags, type)
+            .then(data => this.setState({ inspirations: data }, () => {
+                this.state.inspirations.length > 0 ?
+                    this.setState({display_gallery: true})
+                    : this.setState({display_gallery: true}); // this.setState({display_gallery: false});
+                    // TODO: When there is nothing to show, hide gallery - only with better filtering algorithem
+            }));
     }
 
     handleSearchSubmit(search_box = '') {
@@ -52,9 +59,11 @@ class HomePage extends React.Component {
                 <SearchArea
                     onSearchBoxChange={this.handleSearchBoxChange}
                     inspireOnClick={this.handleSearchSubmit} />
-                <Gallery
-                    items={this.state.inspirations}
-                    onFilterChange={this.handleInspirationsTypeChange} />
+                {this.state.display_gallery ?
+                    <Gallery
+                        items={this.state.inspirations}
+                        onFilterChange={this.handleInspirationsTypeChange} />
+                    : <div />}
             </div>
         );
     }

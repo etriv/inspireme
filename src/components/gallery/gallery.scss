@@ -18,17 +18,19 @@
     //align-content: center;
 }
 .card-container {
+    //border: 1px dotted blue;
     min-width: 280px;
-    max-width: 600px;
+    //width: 20px;
+    //max-width: 31%;
     height: 350px;
     margin: 0.8rem;
-    flex: 1 1 31%;
+    flex: 0 0 31%;
     
 }
 
 @media only screen and (max-width: 1250px) {
     .card-container {
-        flex: 1 1 45%;
+        flex: 0 1 46%;
         margin: 0.7rem;
         height: 300px;
     } 
@@ -36,8 +38,8 @@
 
 @media only screen and (max-width: 700px) {
     .card-container {
-        flex: 1 1 95%;
+        flex: 0 1 95%;
         margin: 0.6rem;
-        height: 250px;
+        height: 260px;
     } 
 }

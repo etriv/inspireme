@@ -24,7 +24,7 @@ const MarkedLink = styled(Link)`
 		cursor: pointer;
     }
     :active {
-        background-color: ${shadeHexColor(marked_color, 0.2)};
+        background-color: ${shadeHexColor(marked_color, 0.25)};
         transition: background-color 0s;
       }
 `;
