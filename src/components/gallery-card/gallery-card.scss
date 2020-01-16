@@ -19,7 +19,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    align-content: flex-start;
+    align-content: center;
     height: 100%;
     width: 100%;
     text-decoration: none;
@@ -31,28 +31,45 @@
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
-/* Add some padding inside the card-desc */
 .card-desc {
     //border: 1px dotted blue;
-    padding: 2px 16px;
+
+    width: 100%;
+    padding: 0.5rem;
     height: 30%;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     align-content: center;
     //flex: 1 1 auto;
 }
 
+.title-info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: center;
+    width: 100%;
+}
+
 .title {
     //border: 1px dotted red;
-    margin: 0rem 1rem 0rem 1rem;
-    line-height: 2rem;
-    max-height: 4rem;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0rem;
+    //line-height: 2rem;
+    //width: 94%;
     overflow: hidden;
-    text-align: center;
-    font-weight: bold;
+    text-align: left;
+    // white-space: nowrap;
+    min-height: 1.5rem;
+    max-height: 1.5rem;
+    align-self: flex-start;
+    //flex: 1 0 6rem;
 }
 
 .card-link {
