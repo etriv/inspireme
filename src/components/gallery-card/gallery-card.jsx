@@ -38,7 +38,7 @@ const GalleryCard = (props) => {
                 <div className="card-desc" style={border_top}>
                     <div className="title-info-container">
                         <p className="title">{props.title}</p>
-                        <CardInfo>By: <u>Muppet</u> on 01/06/2020</CardInfo>
+                        <CardInfo>By: <u>{props.user_name}</u> on {props.added.split('T')[0]}</CardInfo>
                     </div>
                     <CardFooter>
                         <span role="img" aria-label="star">⭐</span>({props.likes})

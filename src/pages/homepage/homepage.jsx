@@ -11,6 +11,7 @@ class HomePage extends React.Component {
             inspirations: [],
             tags: '',
             ins_type: 'all',
+            sort_by: 'rating_desc',
             display_gallery: false
         };
 
