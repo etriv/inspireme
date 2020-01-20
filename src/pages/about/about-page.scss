@@ -1,0 +1,22 @@
+.cat {
+    //border: 1px dotted red;
+    max-height: 900px;
+    height: 70vh;
+    margin: 0px;
+
+    @media only screen and (max-width: 1200px) {
+        // transform: scale(0.9, 0.9);
+        width: 400px;
+        height: auto;
+    }
+
+    @media only screen and (max-width: 650px) {
+        // transform: scale(0.6, 0.6);
+        width: 300px;
+        height: auto;
+    }
+}
+
+.about-page {
+    //border: 1px dotted purple;
+}

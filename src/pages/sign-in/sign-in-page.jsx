@@ -1,11 +1,12 @@
 import React from 'react';
 import './sign-in-page.scss';
+import BoxContainer from '../../components/box-container/box-container';
 
 const SignInPage = () => {
     return (
-        <div className="sign-in-page">
+        <BoxContainer className="sign-in-container">
             <h3>SIGN-IN PAGE</h3>
-        </div>
+        </BoxContainer>
     );
 }
 
