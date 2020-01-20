@@ -5,7 +5,7 @@ import BoxContainer from '../../components/box-container/box-container';
 const SignInPage = () => {
     return (
         <BoxContainer className="sign-in-container">
-            <h3>SIGN-IN PAGE</h3>
+            <h3 className="sign-header">SIGN-IN PAGE</h3>
         </BoxContainer>
     );
 }
