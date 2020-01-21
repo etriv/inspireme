@@ -55,7 +55,7 @@ class Register extends React.Component {
                     <FormInput name="userName" type="text"
                         value={this.state.userName} required
                         handleChange={this.handleChange}
-                        label="User name" />
+                        label="User Name" />
                     <FormInput name="password" type="password"
                         value={this.state.password} required
                         handleChange={this.handleChange}
@@ -63,7 +63,7 @@ class Register extends React.Component {
                     <FormInput name="confirmPassword" type="password"
                         value={this.state.confirmPassword} required
                         handleChange={this.handleChange}
-                        label="Confirm password" />
+                        label="Confirm Password" />
 
                     <CustomButton className="submit-btn" type="submit"
                         bgColor={mainColors.c1}                     // Only HEX color
