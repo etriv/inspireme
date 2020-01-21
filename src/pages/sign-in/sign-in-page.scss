@@ -2,8 +2,16 @@
     // border: 1px dotted black;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-around;
+    align-items: flex-start;
     align-content: center;
     padding: 1.5rem;
+}
+
+.sign-in-stlye {
+    width: 40%;
+}
+
+.register-stlye {
+    width: 40%;
 }

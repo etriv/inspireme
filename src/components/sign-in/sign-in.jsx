@@ -26,9 +26,11 @@ class SignIn extends React.Component {
     }
 
     render() {
+        const containerClassNames = 'sign-in-area'
+            + (this.props.className ? ' ' + this.props.className : '');
         return (
-            <div className="sign-in-area">
-                <h3>I already have an account</h3>
+            <div className={containerClassNames}>
+                <h3>Sign in to an existing account</h3>
                 <p>Sign in with your user name and password.</p>
                 <form className="sign-in-form" onSubmit={this.handleSubmit}>
                     <FormInput name="userName" type="text"
@@ -41,7 +43,7 @@ class SignIn extends React.Component {
                         label="Password" />
 
                     <CustomButton className="submit-btn" type="submit"
-                    bgColor={mainColors.c4}                     // Only HEX color
+                    bgColor={mainColors.c1}                     // Only HEX color
                     foreColor='white'
                     onClick={this.handleSubmit} >SIGN IN</CustomButton>
                 </form>
