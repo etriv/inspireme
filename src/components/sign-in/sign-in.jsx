@@ -1,8 +1,8 @@
 import React from 'react';
 import './sign-in.scss';
 import FormInput from '../form-input/form-input';
-//import styled from 'styled-components';
-//import {main_colors5 as main_colors, shadeHexColor} from '../../modules/main-colors';
+import CustomButton from '../custom-button/custom-button';
+import {main_colors5 as mainColors} from '../../modules/main-colors';
 
 class SignIn extends React.Component {
     constructor(props) {
@@ -16,7 +16,7 @@ class SignIn extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
 
-        this.setState({name: '', password: ''});
+        this.setState({userName: '', password: ''});
     }
 
     handleChange = (event) => {
@@ -27,10 +27,10 @@ class SignIn extends React.Component {
 
     render() {
         return (
-            <div className="sign-in">
+            <div className="sign-in-area">
                 <h3>I already have an account</h3>
-                <p>Sign in with your user name and password</p>
-                <form onSubmit={this.handleSubmit}>
+                <p>Sign in with your user name and password.</p>
+                <form className="sign-in-form" onSubmit={this.handleSubmit}>
                     <FormInput name="userName" type="text"
                         value={this.state.userName} required
                         handleChange={this.handleChange}
@@ -40,7 +40,10 @@ class SignIn extends React.Component {
                         handleChange={this.handleChange}
                         label="Password" />
 
-                    <input type="submit" value="Submit Form" />
+                    <CustomButton className="submit-btn" type="submit"
+                    bgColor={mainColors.c4}                     // Only HEX color
+                    foreColor='white'
+                    onClick={this.handleSubmit} >SIGN IN</CustomButton>
                 </form>
             </div>
         );

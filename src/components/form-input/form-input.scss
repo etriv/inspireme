@@ -4,12 +4,13 @@ $main-color: black;
 @mixin shrinkLabel {
   top: -1rem;
   font-size: 0.8rem;
+  font-weight: bold;
   color: $main-color;
 }
 
 .input-group {
   position: relative;
-  margin: 2rem 0;
+  margin: 1.5rem 0rem;
   font-family: 'Open Sans', sans-serif;
 
   .form-input {
@@ -23,7 +24,6 @@ $main-color: black;
     border: none;
     border-radius: 0;
     border-bottom: 1px solid $sub-color;
-    margin: 25px 0;
 
     &:focus {
       outline: none;

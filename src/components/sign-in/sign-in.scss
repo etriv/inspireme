@@ -1,5 +1,8 @@
-.sign-in {
-    text-align: left;
+.sign-in-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 
     h3 {
         color: black;
@@ -14,5 +17,15 @@
         font-family: 'Open Sans', sans-serif;
         font-size: 1rem;
         margin: 1rem 0rem;
+    }
+
+    .sign-in-form {
+        width: 100%;
+        margin: 0rem 0rem 0rem 0rem;
+        text-align: center;
+    }
+
+    .submit-btn {
+        margin: 0.5rem auto;
     }
 }

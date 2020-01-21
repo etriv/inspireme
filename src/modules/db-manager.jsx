@@ -1,5 +1,5 @@
 async function getInspirationsFromDB(tags = '', type = '', sort_by = '') {
-    console.log('Getting inspirations from DB ()...', 'tags:', tags, 'type:', type);
+    // console.log('Getting inspirations from DB ()...', 'tags:', tags, 'type:', type);
     let fetchUrl = 'http://localhost:3001/inspirations/';
     if (tags !== '' || type !== '') {
         fetchUrl += '?';

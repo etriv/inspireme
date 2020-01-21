@@ -23,10 +23,11 @@ class HomePage extends React.Component {
 
     updateInspirations() {
         // TODO: Use the type that is saved in the state. Connect it's value with the Gallery's (using event)
-        console.log('Updateing inspirations...', 'tags:', this.state.tags, 'type:', this.state.ins_type);
+        console.log('Updating inspirations...', 'tags:', this.state.tags, 'type:', this.state.ins_type);
         const type = this.state.ins_type !== 'all' ? this.state.ins_type : '';
         dbFuncs.getInspirationsFromDB(this.state.tags, type)
             .then(data => this.setState({ inspirations: data }, () => {
+                console.log('Fetched inspirations:', this.state.inspirations);
                 this.state.inspirations.length > 0 ?
                     this.setState({display_gallery: true})
                     : this.setState({display_gallery: true}); // this.setState({display_gallery: false});
@@ -37,6 +38,7 @@ class HomePage extends React.Component {
     handleSearchSubmit(search_box = '') {
         const new_tags = search_box.split(' ').join('').toLowerCase();
         this.setState({ tags: new_tags }, () => {
+            // console.log('Updated new tags after submit. Going to fetch...');
             this.updateInspirations(new_tags, this.state.ins_type);
         });
     }
@@ -54,7 +56,7 @@ class HomePage extends React.Component {
     }
 
     render() {
-        console.log('Homepage inspirations: ', this.state.inspirations);
+        // console.log('Homepage rendering: ', this.state.inspirations);
         return (
             <div className="home-page">
                 <SearchArea

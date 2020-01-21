@@ -2,10 +2,11 @@ import React from 'react';
 import './search-area.scss';
 import styled from 'styled-components';
 import BoxContainer from '../box-container/box-container';
-import {main_colors5 as main_colors, shadeHexColor} from '../../modules/main-colors';
+import CustomButton from '../custom-button/custom-button';
+import {main_colors5 as main_Colors} from '../../modules/main-colors';
 
 const InspireText = styled.p`
-    color: ${main_colors.c3};
+    color: ${main_Colors.c3};
     font-family: 'Lora', sans;
     font-weight: 500;
     font-size: 5rem;
@@ -13,7 +14,7 @@ const InspireText = styled.p`
     text-align: center;
     // letter-spacing: 4px;
     word-spacing: 4px;
-    text-shadow: 2px 2px 1px ${main_colors.c4};
+    text-shadow: 2px 2px 1px ${main_Colors.c4};
 
     @media only screen and (max-width: 1200px) {
         font-size: 4rem;
@@ -21,21 +22,6 @@ const InspireText = styled.p`
 
     @media only screen and (max-width: 650px) {
         font-size: 2.5rem;
-    }
-`;
-
-const btn_color = main_colors.c4;
-const ClickableButton = styled.button`
-    color: ${'white'};
-    background-color: ${btn_color};
-    transition: background-color 0.3s;
-    :hover {
-        background-color: ${shadeHexColor(btn_color, 0.1)};
-        cursor: pointer;
-    }
-    :active {
-        background-color: ${shadeHexColor(btn_color, 0.2)};
-        transition: filter 0s;
     }
 `;
 
@@ -73,9 +59,11 @@ class SearchArea extends React.Component {
                     placeholder="✎..."
                     onChange={this.onSearchBoxChange}
                     onKeyUp={this.handleKeyUp} />
-                <ClickableButton className="button"
+                <CustomButton className="button"
+                    bgColor={main_Colors.c4}
+                    foreColor='white'
                     onClick={this.props.inspireOnClick.bind(this, this.state.search_field)}>
-                    INSPIRE</ClickableButton>
+                    INSPIRE</CustomButton>
             </BoxContainer>
         );
     }
