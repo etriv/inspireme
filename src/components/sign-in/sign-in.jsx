@@ -1,5 +1,6 @@
 import React from 'react';
 import './sign-in.scss';
+import FormInput from '../form-input/form-input';
 //import styled from 'styled-components';
 //import {main_colors5 as main_colors, shadeHexColor} from '../../modules/main-colors';
 
@@ -7,7 +8,7 @@ class SignIn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user_name: '',
+            userName: '',
             password: ''
         }
     }
@@ -30,14 +31,14 @@ class SignIn extends React.Component {
                 <h3>I already have an account</h3>
                 <p>Sign in with your user name and password</p>
                 <form onSubmit={this.handleSubmit}>
-                    <input name="user_name" type="text"
-                        value={this.state.name} required
-                        onChange={this.handleChange} />
-                    <label>User name</label>
-                    <input name="password" type="password"
+                    <FormInput name="userName" type="text"
+                        value={this.state.userName} required
+                        handleChange={this.handleChange}
+                        label="User name" />
+                    <FormInput name="password" type="password"
                         value={this.state.password} required
-                        onChange={this.handleChange} />
-                    <label>Password</label>
+                        handleChange={this.handleChange}
+                        label="Password" />
 
                     <input type="submit" value="Submit Form" />
                 </form>
