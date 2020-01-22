@@ -27,12 +27,13 @@ class SignIn extends React.Component {
         // }
 
         try {
-            // Creating a new user in DB and returning his new id and name.
+            // Checking if user's credentials match.
             // TODO: Uppon success, direct user to the HomePage and update Navigation.
             // TODO: Uppon failure, present a specific error on screen.
             checkUserSignInFromDB(userName, password)
                 .then(signedInUser => {
                     console.log('Successfuly signed-in:', signedInUser);
+                    this.setState({userName: '', password: ''});
                 })
                 .catch(error => {
                     console.log("Sign-in failed:", error);
@@ -40,9 +41,7 @@ class SignIn extends React.Component {
             
             // TODO: Update app's signed in user state (affects Navigation).
             //this.props.loadUser(user)
-            //this.props.onRouteChange('home');
-
-            this.setState({userName: '', password: ''});
+            //this.props.onRouteChange('home'); 
         }
         catch (error) {
             console.error(error);

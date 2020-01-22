@@ -1,7 +1,28 @@
 const serverUrl = 'http://localhost:3001'
 
 async function checkUserSignInFromDB(name, password) {
-
+    console.log('Checking user sign-in data in DB...', name);
+    let fetchUrl = serverUrl + '/signin';
+    return fetch(fetchUrl, {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            name: name,
+            password: password
+        })
+    })
+    .then(response => response.json())
+    .then(user => {
+        if (user.id) {
+            return user;
+        }
+        else {
+            throw new Error(user);
+        }
+    })
+    .catch(error => {
+        throw new Error("Couldn't sign-in user: " + name + ". Info: " + error.message);
+    });
 }
 
 async function registerUserToDB(name, password) {
