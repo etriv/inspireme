@@ -1,6 +1,37 @@
+const serverUrl = 'http://localhost:3001'
+
+async function checkUserSignInFromDB(name, password) {
+
+}
+
+async function registerUserToDB(name, password) {
+    console.log('Registering new user to DB...', name);
+    let fetchUrl = serverUrl + '/register';
+    return fetch(fetchUrl, {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            name: name,
+            password: password
+        })
+    })
+    .then(response => response.json())
+    .then(user => {
+        if (user.id) {
+            return user;
+        }
+        else {
+            throw new Error(user);
+        }
+    })
+    .catch(error => {
+        throw new Error("Couldn't register user: " + name + ". Info: " + error.message);
+    });
+}
+
 async function getInspirationsFromDB(tags = '', type = '', sort_by = '') {
     // console.log('Getting inspirations from DB ()...', 'tags:', tags, 'type:', type);
-    let fetchUrl = 'http://localhost:3001/inspirations/';
+    let fetchUrl = serverUrl + '/inspirations/';
     if (tags !== '' || type !== '') {
         fetchUrl += '?';
         fetchUrl += tags !== '' ? '&tags=' + tags : '';
@@ -8,7 +39,7 @@ async function getInspirationsFromDB(tags = '', type = '', sort_by = '') {
         fetchUrl += type !== '' ? '&sort=' + sort_by : '';
     }
     console.log('Fetching:', fetchUrl);
-    let data = await fetch(fetchUrl)
+    return fetch(fetchUrl)
         .then(response => {
             if (response.status === 200)
                 return response.json();
@@ -18,8 +49,7 @@ async function getInspirationsFromDB(tags = '', type = '', sort_by = '') {
         .catch((e) => {
             console.log('Error while fetching inspirations:', e);
             return [];
-        })
-    return data;
+        });
 }
 
-export { getInspirationsFromDB };
+export { getInspirationsFromDB, registerUserToDB , checkUserSignInFromDB};

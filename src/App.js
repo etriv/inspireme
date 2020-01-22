@@ -7,6 +7,14 @@ import AboutPage from './pages/about/about-page';
 import Navigation from './components/navigation/navigation';
 
 class App extends Component {
+  state = {
+    isSignedIn: false,
+    user: {
+      id: '',
+      name: ''
+    }
+  }
+
   render() {
     return (
       <div className="App">

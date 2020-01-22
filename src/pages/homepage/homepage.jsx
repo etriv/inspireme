@@ -22,7 +22,6 @@ class HomePage extends React.Component {
     }
 
     updateInspirations() {
-        // TODO: Use the type that is saved in the state. Connect it's value with the Gallery's (using event)
         console.log('Updating inspirations...', 'tags:', this.state.tags, 'type:', this.state.ins_type);
         const type = this.state.ins_type !== 'all' ? this.state.ins_type : '';
         dbFuncs.getInspirationsFromDB(this.state.tags, type)
@@ -32,6 +31,7 @@ class HomePage extends React.Component {
                     this.setState({display_gallery: true})
                     : this.setState({display_gallery: true}); // this.setState({display_gallery: false});
                     // TODO: When there is nothing to show, hide gallery - only with better filtering algorithem
+                    // Present a proper message (with a cute image) of 'No matching results' / 'No inspiration here...'
             }));
     }
 

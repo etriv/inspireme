@@ -3,6 +3,7 @@ import './register.scss';
 import FormInput from '../form-input/form-input';
 import CustomButton from '../custom-button/custom-button';
 import { main_colors5 as mainColors } from '../../modules/main-colors';
+import { registerUserToDB } from '../../modules/db-manager';
 
 class Register extends React.Component {
     constructor(props) {
@@ -17,23 +18,29 @@ class Register extends React.Component {
     handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { password, confirmPassword } = this.state;
-
+        const { password, confirmPassword, userName } = this.state;
+        
+        // TODO: More input checks (check official React ways)
         if (password !== confirmPassword) {
             alert("Passwords don't match!");
             return;
         }
 
         try {
-            // Create new user in the DB and get back his user_id to the app.
-            // This will be done with a function from props (App) that will
-            // also update the currentUserId / currentUserName.
-            // this.props.registerNewUserAndPassword(userName, password);
-            //      this.props.loginUserAndPassword(userName, password);
+            // Creating a new user in DB and returning his new id and name.
+            // TODO: Uppon success, direct user to the login panel.
+            // TODO: Uppon failure, present a specific error on screen.
+            registerUserToDB(userName, password)
+                .then(regUser => {
+                    console.log('Successfuly registered:', regUser);
+                })
+                .catch(error => {
+                    console.log("Register failed:", error);
+                });
 
             this.setState({ userName: '', password: '', confirmPassword: '' });
         }
-        catch(error) {
+        catch (error) {
             console.error(error);
         }
     }

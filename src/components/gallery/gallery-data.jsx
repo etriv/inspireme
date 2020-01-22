@@ -1,4 +1,4 @@
-// TODO: Use youTube's api to get the thumbnail of a resourse when submitted
+// Use youTube's api to get the thumbnail of a resourse when submitted
 // * Sometimes there might no be a "maxres" (HD) image
 
 const galleryData = [

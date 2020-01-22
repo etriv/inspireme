@@ -58,5 +58,5 @@ class GalleryFilters extends React.Component {
         );
     }
 }
-// TODO: Think of how to make component more generic. And do it.
+
 export default GalleryFilters;
