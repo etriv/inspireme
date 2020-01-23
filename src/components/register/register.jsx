@@ -28,7 +28,7 @@ class Register extends React.Component {
 
         try {
             // Creating a new user in DB and returning his new id and name.
-            // TODO: Uppon success, direct user to the login panel.
+            // TODO: Uppon success, redirect user to the signin panel.
             // TODO: Uppon failure, present a specific error on screen.
             registerUserToDB(userName, password)
                 .then(regUser => {

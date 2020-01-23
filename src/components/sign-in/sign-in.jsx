@@ -31,9 +31,11 @@ class SignIn extends React.Component {
             // TODO: Uppon success, direct user to the HomePage and update Navigation.
             // TODO: Uppon failure, present a specific error on screen.
             checkUserSignInFromDB(userName, password)
-                .then(signedInUser => {
-                    console.log('Successfuly signed-in:', signedInUser);
+                .then(user => {
+                    console.log('Successfuly signed-in:', user);
                     this.setState({userName: '', password: ''});
+                    console.log(this.props);
+                    this.props.onSuccessfulSignIn(user.id, user.name);
                 })
                 .catch(error => {
                     console.log("Sign-in failed:", error);

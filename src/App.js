@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.scss';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import HomePage from './pages/homepage/homepage';
 import SignInPage from './pages/sign-in/sign-in-page';
 import AboutPage from './pages/about/about-page';
@@ -15,13 +15,29 @@ class App extends Component {
     }
   }
 
+  handleSignIn = (userId, userName) => {
+    this.setState(prevState => ({
+      isSignedIn: true,
+      user: {
+        ...prevState.user,
+        id: userId,
+        name: userName
+      }
+    }), () => {
+      this.props.history.push('/');
+    });
+  }
+
   render() {
+    console.log('Rendering App with user:', this.state.user);
     return (
       <div className="App">
         <Navigation />
         <Switch>
           <Route exact path='/' component={HomePage} />
-          <Route path='/sign-in' component={SignInPage} />
+          <Route path='/sign-in'>
+            <SignInPage onSuccessfulSignIn={this.handleSignIn} />
+          </Route>
           <Route path='/about' component={AboutPage} />
         </Switch>
       </div>
@@ -29,4 +45,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
