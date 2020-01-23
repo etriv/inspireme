@@ -35,7 +35,6 @@ class SignIn extends React.Component {
                 .then(user => {
                     console.log('Successfuly signed-in:', user);
                     this.setState({userName: '', password: ''});
-                    console.log(this.props);
                     this.props.onSuccessfulSignIn(user.id, user.name);
                 })
                 .catch(error => {

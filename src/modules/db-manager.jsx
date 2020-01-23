@@ -1,7 +1,7 @@
 const serverUrl = 'http://localhost:3001'
 
 async function checkUserSignInFromDB(name, password) {
-    console.log('Checking user sign-in data in DB...', name);
+    // console.log('Checking user sign-in data in DB...', name);
     let fetchUrl = serverUrl + '/signin';
     return fetch(fetchUrl, {
         method: 'post',
@@ -26,7 +26,7 @@ async function checkUserSignInFromDB(name, password) {
 }
 
 async function registerUserToDB(name, password) {
-    console.log('Registering new user to DB...', name);
+    // console.log('Registering new user to DB...', name);
     let fetchUrl = serverUrl + '/register';
     return fetch(fetchUrl, {
         method: 'post',
