@@ -1,11 +1,11 @@
-.sign-in-page {
+.register-page {
     // border: 1px dotted black;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    align-items: flex-start;    // flex-start to align top
+    align-items: flex-end;    // flex-start to align top
     align-content: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
     padding: 1.5rem;
 
     .form-boxy {
@@ -16,11 +16,12 @@
     }
     
     .cat-boxy {
-        min-width: 400px;
-        max-width: 500px;
+        min-width: 350px;
+        max-width: 350px;
         margin-bottom: 1rem;
         width: 40%;
         margin: 1rem;
     }
 }
+
 

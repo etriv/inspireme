@@ -8,8 +8,8 @@
         color: black;
         font-family: 'Lora', sans;
         font-size: 2rem;
-        font-weight: 500;
-        margin: 0.5rem 0rem;
+        font-weight: 600;
+        margin: 0.5rem auto;
         // word-spacing: 4px;
         // letter-spacing: 4px;
     }
@@ -27,5 +27,16 @@
 
     .submit-btn {
         margin: 0.5rem auto;
+    }
+
+    .toggle-text {
+        margin: 0.2rem auto;
+        font-size: 0.9rem;
+    }
+
+    .link-text {
+        text-decoration: none;
+        color: blue;
+        cursor: pointer;
     }
 }

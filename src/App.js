@@ -3,6 +3,7 @@ import './App.scss';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import HomePage from './pages/homepage/homepage';
 import SignInPage from './pages/sign-in/sign-in-page';
+import RegisterPage from './pages/register-page/register-page';
 import AboutPage from './pages/about/about-page';
 import Navigation from './components/navigation/navigation';
 
@@ -37,6 +38,9 @@ class App extends Component {
           <Route exact path='/' component={HomePage} />
           <Route path='/sign-in'>
             <SignInPage onSuccessfulSignIn={this.handleSignIn} />
+          </Route>
+          <Route path='/register'>
+            <RegisterPage />
           </Route>
           <Route path='/about' component={AboutPage} />
         </Switch>

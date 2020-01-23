@@ -4,6 +4,7 @@ import FormInput from '../form-input/form-input';
 import CustomButton from '../custom-button/custom-button';
 import {main_colors5 as mainColors} from '../../modules/main-colors';
 import { checkUserSignInFromDB } from '../../modules/db-manager';
+import { Link } from 'react-router-dom';
 
 class SignIn extends React.Component {
     constructor(props) {
@@ -61,7 +62,7 @@ class SignIn extends React.Component {
             + (this.props.className ? ' ' + this.props.className : '');
         return (
             <div className={containerClassNames}>
-                <h3>Sign in to an existing account</h3>
+                <h3>Sign in</h3>
                 <p>Sign in with your user name and password.</p>
                 <form className="sign-in-form" onSubmit={this.handleSubmit}>
                     <FormInput name="userName" type="text"
@@ -77,6 +78,12 @@ class SignIn extends React.Component {
                     bgColor={mainColors.c1}                     // Only HEX color
                     foreColor='white'
                     onClick={this.handleSubmit} >SIGN IN</CustomButton>
+                    <p className="toggle-text">Don't have an account?&nbsp;
+                        <Link to='/register'
+                            className="link-text">
+                            Register
+                        </Link>
+                    </p>
                 </form>
             </div>
         );

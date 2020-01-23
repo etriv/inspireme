@@ -1,6 +1,6 @@
 import React from 'react';
 import './about-page.scss';
-import cat from '../../images/cat-color2.png';
+import cat from '../../images/cat-about.png';
 
 const AboutPage = () => {
     return (

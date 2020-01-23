@@ -1,16 +1,20 @@
 import React from 'react';
 import './sign-in-page.scss';
 import SignIn from '../../components/sign-in/sign-in';
-import Register from '../../components/register/register';
+import cat from '../../images/kitty.png';
 // import BoxContainer from '../../components/box-container/box-container';
 
-const SignInPage = (props) => {
-    return (
-        <div className="sign-in-page">
-            <SignIn className="sign-in-stlye" onSuccessfulSignIn={props.onSuccessfulSignIn }></SignIn>
-            <Register className="register-stlye"></Register>
-        </div>
-    );
+class SignInPage extends React.Component {
+    render() {
+        return (
+            <div className="sign-in-page">
+                <SignIn className="form-boxy"
+                    onSuccessfulSignIn={this.props.onSuccessfulSignIn}
+                    toggleDisplay={this.toggleDisplay} />
+                <img src={cat} alt="Cats" className="cat-boxy" />
+            </div>
+        );
+    }
 }
 
 export default SignInPage;
