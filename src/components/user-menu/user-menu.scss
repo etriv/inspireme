@@ -1,0 +1,51 @@
+.user-menu {
+    //border: 1px dotted red;
+    margin-left: 1rem;
+    text-align: center;
+    padding: 0px;
+    font-family: 'Open Sans', sans-serif;
+
+    .default-link {
+        display: block;
+        font-size: 1rem;
+        width: 7rem;
+        height: 2.5rem;
+        border-radius: 20px;
+        text-decoration: none;
+        color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        //padding: 10px 20px;
+    }
+
+    .default-link-signed {
+        @extend .default-link;
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+        // border: 1px dashed black;
+    }
+
+}
+
+.pop-menu {
+    border: 2px dashed #facf5a;
+    position: absolute;
+    background-color: white;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    width: 7rem;
+    height: 14rem;
+    margin-top: 0.5rem;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.12), 1px 2px 2px rgba(0,0,0,0.24);
+}
+
+.arrow-up {
+    border: 1px solid purple;
+    padding: 0px;
+    position: absolute;
+    color: gray;
+    margin: 0rem;
+    //margin-top: 6rem;
+}

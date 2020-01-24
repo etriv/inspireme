@@ -33,7 +33,7 @@ class App extends Component {
     console.log('Rendering App with user:', this.state.user);
     return (
       <div className="App">
-        <Navigation />
+        <Navigation signedInUser={this.state.user} />
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route path='/sign-in'>
