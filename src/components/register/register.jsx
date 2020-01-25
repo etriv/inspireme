@@ -20,7 +20,7 @@ class Register extends React.Component {
         event.preventDefault();
 
         const { password, confirmPassword, userName } = this.state;
-        
+
         // TODO: More input checks (check official React ways)
         if (password !== confirmPassword) {
             alert("Passwords don't match!");
@@ -34,6 +34,7 @@ class Register extends React.Component {
             registerUserToDB(userName, password)
                 .then(regUser => {
                     console.log('Successfuly registered:', regUser);
+                    this.props.handleSuccess();
                 })
                 .catch(error => {
                     console.log("Register failed:", error);
@@ -77,12 +78,12 @@ class Register extends React.Component {
                         bgColor={mainColors.c1}                     // Only HEX color
                         foreColor='white'
                         onClick={this.handleSubmit}>REGISTER</CustomButton>
-                        <p className="toggle-text">Already have an account?&nbsp;
+                    <p className="toggle-text">Already have an account?&nbsp;
                             <Link to='/sign-in'
-                                className="link-text">
-                                Sign-in
+                            className="link-text">
+                            Sign-in
                             </Link>
-                        </p>
+                    </p>
                 </form>
             </div>
         )

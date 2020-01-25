@@ -84,16 +84,18 @@
             border-top: 0px dotted #ddd;
         }
     }
-}
-@keyframes fadein {
-    0% { opacity: 0; margin-top: 0.8rem;}
-    100% { opacity: 1; margin-top: 0.5rem;}
+    
+    @keyframes fadein {
+        0% { opacity: 0; margin-top: 0.8rem;}
+        100% { opacity: 1; margin-top: 0.5rem;}
+    }
+    
+    @-webkit-keyframes fadein {
+        0% { opacity: 0; margin-top: 0.8rem;}
+        100% { opacity: 1; margin-top: 0.5rem;}
+    }
 }
 
-@-webkit-keyframes fadein {
-    0% { opacity: 0; margin-top: 0.8rem;}
-    100% { opacity: 1; margin-top: 0.5rem;}
-}
 
 .full-opacity {
     opacity: 1;

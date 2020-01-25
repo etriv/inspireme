@@ -1,6 +1,6 @@
 import React from 'react';
 import './sign-out-page.scss';
-import cat from '../../images/cat-cozy2.png';
+import cat from '../../images/cat-hug.png';
 
 const SignOutPage = (props) => {
     props.handleSignOut();

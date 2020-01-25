@@ -13,8 +13,8 @@ class App extends Component {
   state = {
     isSignedIn: false,
     user: {
-      id: '7',
-      name: 'Kelly'
+      id: '',
+      name: ''
     },
     prevUserName: '',
     userMenuItems: [
