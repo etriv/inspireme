@@ -39,6 +39,26 @@
     height: 14rem;
     margin-top: 0.5rem;
     box-shadow: 1px 2px 3px rgba(0,0,0,0.12), 1px 2px 2px rgba(0,0,0,0.24);
+    transition: opacity 1s, top 1s;
+    opacity: 1;
+    animation: fadein 0.2s ease-out forwards;
+}
+@keyframes fadein {
+    0% { opacity: 0; margin-top: 0.8rem;}
+    100% { opacity: 1; margin-top: 0.5rem;}
+}
+
+@-webkit-keyframes fadein {
+    0% { opacity: 0; margin-top: 0.8rem;}
+    100% { opacity: 1; margin-top: 0.5rem;}
+}
+
+.full-opacity {
+    opacity: 1;
+}
+
+.no-opacity {
+    opacity: 0;
 }
 
 .arrow-up {

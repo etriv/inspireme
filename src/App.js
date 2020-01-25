@@ -11,8 +11,8 @@ class App extends Component {
   state = {
     isSignedIn: false,
     user: {
-      id: '',
-      name: ''
+      id: '49',
+      name: 'testy'
     }
   }
 

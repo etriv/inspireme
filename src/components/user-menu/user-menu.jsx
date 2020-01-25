@@ -28,7 +28,8 @@ const MarkedDefault = styled('div')`
 
 class UserMenu extends React.Component {
     state = {
-        showItems: false
+        showItems: false,
+        
     }
 
     toggleShowItems = () => {
@@ -53,12 +54,9 @@ class UserMenu extends React.Component {
                 </MarkedDefault>
             }
             {this.state.showItems ?
-            <>
-                {/* <span className="arrow-up">&#9650;</span> */}
                 <div className="pop-menu">
 
                 </div>
-            </>
             : null
             }
             </div>
@@ -67,3 +65,6 @@ class UserMenu extends React.Component {
 }
 
 export default UserMenu;
+
+
+// {/* <span className="arrow-up">&#9650;</span> */}
