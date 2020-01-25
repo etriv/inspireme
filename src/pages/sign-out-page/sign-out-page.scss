@@ -1,0 +1,36 @@
+.sign-out-page {
+    h2 {
+        margin-top: 1.5rem;
+        font-family: 'Lora', serif;
+        font-size: 1.8rem;
+        font-weight: 500;
+
+        @media only screen and (max-width: 1200px) {
+            font-size: 1.6rem;
+        }
+
+        @media only screen and (max-width: 650px) {
+            font-size: 1.5rem;
+        }
+    }
+    
+    .cat {
+        //border: 1px dotted red;
+        max-height: 900px;
+        height: 50vh;
+        margin: 0.5rem auto;
+
+        @media only screen and (max-width: 1200px) {
+            // transform: scale(0.9, 0.9);
+            width: 400px;
+            height: auto;
+        }
+
+        @media only screen and (max-width: 650px) {
+            // transform: scale(0.6, 0.6);
+            width: 300px;
+            height: auto;
+        }
+    }
+}
+

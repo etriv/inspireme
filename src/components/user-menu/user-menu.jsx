@@ -32,7 +32,6 @@ class UserMenu extends React.Component {
     }
 
     toggleShowItems = () => {
-        console.log(this.state.showItems);
         if (!this.state.showItems) {
             this.setState({ showItems: true });
             document.addEventListener('click', this.handleClickWhilePopMenuOpen);
@@ -44,7 +43,6 @@ class UserMenu extends React.Component {
     }
 
     handleClickWhilePopMenuOpen = (event) => {
-        console.log('Inside handle doc click', event.target.id);
         if (event.target.id === 'menu-id' && this.state.showItems === true) {
             return; // Ignore. #menu-id knows how to take care of this scenerio.
         }

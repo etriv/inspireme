@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './App.scss';
-import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
+// import { Redirect } from SignOutPage;
 import HomePage from './pages/homepage/homepage';
 import SignInPage from './pages/sign-in/sign-in-page';
 import RegisterPage from './pages/register-page/register-page';
 import AboutPage from './pages/about/about-page';
 import Navigation from './components/navigation/navigation';
+import SignOutPage from './pages/sign-out-page/sign-out-page';
 
 class App extends Component {
   state = {
@@ -14,6 +16,7 @@ class App extends Component {
       id: '7',
       name: 'Kelly'
     },
+    prevUserName: '',
     userMenuItems: [
       { linkText: 'Liked Insp.', linkPath: '/liked' },
       { linkText: 'Upload', linkPath: '/upload' },
@@ -52,16 +55,19 @@ class App extends Component {
   }
 
   handleSignOut = () => {
-    this.setState(prevState => ({
-      isSignedIn: true,
-      user: {
-        ...prevState.user,
-        id: '',
-        name: ''
-      }
-    }), () => {
-      this.props.history.push('/');
-    });
+    if (this.state.user.id !== '') {
+      this.setState(curState => ({
+        isSignedIn: false,
+        prevUserName: curState.user.name,
+        user: {
+          ...curState.user,
+          id: '',
+          name: ''
+        }
+      }), () => {
+        // this.props.history.push('/');
+      });
+    }
   }
 
   render() {
@@ -79,12 +85,13 @@ class App extends Component {
           </Route>
           <Route path='/about' component={AboutPage} />
           <Route path='/sign-out'>
-            <Redirect
+            <SignOutPage handleSignOut={this.handleSignOut} prevUserName={this.state.prevUserName} />
+            {/* <Redirect
               to={{
                 pathname: "/",
                 state: { newUser: { userId: '', userName: '' } }
               }}
-            />
+            /> */}
           </Route>
         </Switch>
       </div>
