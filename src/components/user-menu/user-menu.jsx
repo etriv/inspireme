@@ -29,36 +29,54 @@ const MarkedDefault = styled('div')`
 class UserMenu extends React.Component {
     state = {
         showItems: false,
-        
     }
 
     toggleShowItems = () => {
-        this.setState({showItems: !this.state.showItems});
+        console.log(this.state.showItems);
+        if (!this.state.showItems) {
+            this.setState({ showItems: true });
+            document.addEventListener('mousedown', this.handleClickWhilePopMenuOpen);
+        }
+        else {
+            document.removeEventListener('mousedown', this.handleClickWhilePopMenuOpen);
+            this.setState({ showItems: false });
+        }
     }
-    
+
+    handleClickWhilePopMenuOpen = (event) => {
+        console.log('Inside handle doc click', event.target.id);
+        if (event.target.id === 'menu-id' && this.state.showItems === true) {
+            return; // Ignore. #menu-id knows how to take care of this scenerio.
+        }
+        if (event.target.id !== 'pop-menu-id') {
+            document.removeEventListener('mousedown', this.handleClickWhilePopMenuOpen);
+            this.setState({ showItems: false });
+        }
+    }
+
     render() {
         return (
             <div className={'user-menu' + this.props.className}>
-            {this.props.signedInUser.name === '' ?
-                <MarkedDefault>                   
-                    <Link className="default-link" to={this.props.defaultPath}>
-                        {this.props.defaultText}
-                    </Link>
-                </MarkedDefault>
-            :
-                <MarkedDefault>
-                    <div className="default-link-signed"
-                    onClick={this.toggleShowItems} >
-                        Menu &#9776;
+                {this.props.signedInUser.name === '' ?
+                    <MarkedDefault>
+                        <Link className="default-link" to={this.props.defaultPath}>
+                            {this.props.defaultText}
+                        </Link>
+                    </MarkedDefault>
+                    :
+                    <MarkedDefault>
+                        <div className="default-link-signed" id="menu-id"
+                            onClick={this.toggleShowItems} >
+                            Menu &#9776;
                     </div>
-                </MarkedDefault>
-            }
-            {this.state.showItems ?
-                <div className="pop-menu">
+                    </MarkedDefault>
+                }
+                {this.state.showItems ?
+                    <div id="pop-menu-id" className="pop-menu">
 
-                </div>
-            : null
-            }
+                    </div>
+                    : null
+                }
             </div>
         );
     }
