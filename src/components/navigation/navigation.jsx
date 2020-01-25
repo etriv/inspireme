@@ -14,11 +14,10 @@ class Navigation extends React.Component {
                         InspireMe
                     </Link>
                 <nav className="menu">
-                    <UserMenu defaultText='Sign in' defaultPath='/sign-in'
+                    <UserMenu defaultText='Sign In' defaultPath='/sign-in'
                         signedInUser={this.props.signedInUser}
-                        className="">
-                        Sign in
-                    </UserMenu>
+                        className=""
+                        userMenuItems={this.props.userMenuItems} />
                     <Link to='/about'
                         className="menu-item"
                         style={{}}>

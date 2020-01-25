@@ -35,10 +35,10 @@ class UserMenu extends React.Component {
         console.log(this.state.showItems);
         if (!this.state.showItems) {
             this.setState({ showItems: true });
-            document.addEventListener('mousedown', this.handleClickWhilePopMenuOpen);
+            document.addEventListener('click', this.handleClickWhilePopMenuOpen);
         }
         else {
-            document.removeEventListener('mousedown', this.handleClickWhilePopMenuOpen);
+            document.removeEventListener('click', this.handleClickWhilePopMenuOpen);
             this.setState({ showItems: false });
         }
     }
@@ -49,7 +49,7 @@ class UserMenu extends React.Component {
             return; // Ignore. #menu-id knows how to take care of this scenerio.
         }
         if (event.target.id !== 'pop-menu-id') {
-            document.removeEventListener('mousedown', this.handleClickWhilePopMenuOpen);
+            document.removeEventListener('click', this.handleClickWhilePopMenuOpen);
             this.setState({ showItems: false });
         }
     }
@@ -73,7 +73,14 @@ class UserMenu extends React.Component {
                 }
                 {this.state.showItems ?
                     <div id="pop-menu-id" className="pop-menu">
-
+                        <div className="pop-menu-top">{this.props.signedInUser.name}</div>
+                        {this.props.userMenuItems.map((item, index) => {
+                            return (
+                                <Link key={index} className="user-menu-item" to={item.linkPath}>
+                                    <div>{item.linkText}</div>
+                                </Link>
+                            )
+                        })}
                     </div>
                     : null
                 }
