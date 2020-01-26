@@ -16,7 +16,7 @@ class RegisterPage extends React.Component {
         this.setState({ successful: true }, () => {
             setTimeout(() => {
                 this.setState({successfulMsg: true})
-            }, 200); // Delay before presenting the success-msg
+            }, 50); // Delay before presenting the success-msg
         });
     }
 
@@ -28,6 +28,7 @@ class RegisterPage extends React.Component {
                 <img src={cat} alt="Cat" className="cat-boxy" />
                 <div className='form-boxy'>
                     <Register className={registerClasses} handleSuccess={this.handleSuccess} />
+                    {/* On successful registration: */}
                     {this.state.successfulMsg ?
                         <div className="success-msg faded-in">
                             <img src={vImg} alt="Success" className="v-img"/>

@@ -41,7 +41,7 @@ class App extends Component {
     }
   }
 
-  handleSignIn = (userId, userName) => {
+  updateSignedInUser = (userId, userName) => {
     this.setState(prevState => ({
       isSignedIn: true,
       user: {
@@ -50,7 +50,7 @@ class App extends Component {
         name: userName
       }
     }), () => {
-      this.props.history.push('/');
+      // this.props.history.push('/');
     });
   }
 
@@ -78,7 +78,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route path='/sign-in'>
-            <SignInPage onSuccessfulSignIn={this.handleSignIn} />
+            <SignInPage updateSignedInUser={this.updateSignedInUser} />
           </Route>
           <Route path='/register'>
             <RegisterPage />

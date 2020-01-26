@@ -11,7 +11,8 @@ class SignIn extends React.Component {
         super(props);
         this.state = {
             userName: '',
-            password: ''
+            password: '',
+            fetching: false
         }
     }
 
@@ -27,6 +28,9 @@ class SignIn extends React.Component {
         //     return;
         // }
 
+        this.setState({ fetching: true });
+        // Can start here a loading animation.
+
         try {
             // Checking if user's credentials match.
             // TODO: Uppon success, direct user to the HomePage and update Navigation.
@@ -34,19 +38,16 @@ class SignIn extends React.Component {
             checkUserSignInFromDB(userName, password)
                 .then(user => {
                     console.log('Successfuly signed-in:', user);
-                    this.setState({userName: '', password: ''});
                     this.props.onSuccessfulSignIn(user.id, user.name);
                 })
                 .catch(error => {
                     console.log("Sign-in failed:", error);
+                    this.setState({ fetching: false });
                 });
-            
-            // TODO: Update app's signed in user state (affects Navigation).
-            //this.props.loadUser(user)
-            //this.props.onRouteChange('home'); 
         }
         catch (error) {
             console.error(error);
+            this.setState({ fetching: false });
         }
     }
 
@@ -76,7 +77,10 @@ class SignIn extends React.Component {
                     <CustomButton className="submit-btn" type="submit"
                     bgColor={mainColors.c1}                     // Only HEX color
                     foreColor='white'
-                    onClick={this.handleSubmit} >SIGN IN</CustomButton>
+                    onClick={this.handleSubmit} 
+                    disabled={this.state.fetching}>
+                        SIGN IN
+                    </CustomButton>
                     <p className="toggle-text">Don't have an account?&nbsp;
                         <Link to='/register'
                             className="link-text">
