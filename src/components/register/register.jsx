@@ -12,7 +12,8 @@ class Register extends React.Component {
         this.state = {
             userName: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+            fetching: false
         }
     }
 
@@ -26,25 +27,29 @@ class Register extends React.Component {
             alert("Passwords don't match!");
             return;
         }
+        setTimeout(() => {
+            try {
+                // Creating a new user in DB and returning his new id and name.
+                // TODO: Uppon success, redirect user to the signin panel.
+                // TODO: Uppon failure, present a specific error on screen.
+                // TODO: Add "fetching" animation.
+                registerUserToDB(userName, password)
+                    .then(regUser => {
+                        console.log('Successfuly registered:', regUser);
+                        this.props.handleSuccess();
+                        // this.setState({ userName: '', password: '', confirmPassword: '' });
+                    })
+                    .catch(error => {
+                        console.log("Register failed:", error);
+                    });
+    
+                
+            }
+            catch (error) {
+                console.error(error);
+            }
+        }, 1000);
 
-        try {
-            // Creating a new user in DB and returning his new id and name.
-            // TODO: Uppon success, redirect user to the signin panel.
-            // TODO: Uppon failure, present a specific error on screen.
-            registerUserToDB(userName, password)
-                .then(regUser => {
-                    console.log('Successfuly registered:', regUser);
-                    this.props.handleSuccess();
-                })
-                .catch(error => {
-                    console.log("Register failed:", error);
-                });
-
-            this.setState({ userName: '', password: '', confirmPassword: '' });
-        }
-        catch (error) {
-            console.error(error);
-        }
     }
 
     handleChange = (event) => {
