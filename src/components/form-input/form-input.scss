@@ -10,8 +10,24 @@ $main-color: black;
 
 .input-group {
   position: relative;
-  margin: 1.5rem 0rem;
+  //margin: 2rem auto;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
   font-family: 'Open Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  .error {
+    color: red;
+    font-weight: 600;
+    font-size: 0.9rem;
+    //margin-right: 1rem;
+    align-self: flex-end;
+    height: 0.1rem;
+    margin-top: 1px;
+  }
 
   .form-input {
     background: none;
