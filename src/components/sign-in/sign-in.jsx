@@ -2,7 +2,7 @@ import React from 'react';
 import './sign-in.scss';
 import FormInput from '../form-input/form-input';
 import CustomButton from '../custom-button/custom-button';
-import {main_colors5 as mainColors} from '../../modules/main-colors';
+import { main_colors5 as mainColors } from '../../modules/main-colors';
 import { checkUserSignInFromDB } from '../../modules/db-manager';
 import { Link } from 'react-router-dom';
 import { onlyLetters } from '../../modules/helpers';
@@ -15,13 +15,14 @@ class SignIn extends React.Component {
             password: '',
             fetching: false,
             errUserName: '',
-            errPassword: ''
+            errPassword: '',
+            serverError: ''
         }
     }
 
     checkInput = (userName, password) => {
         let goodCheck = true;
-        
+
         // User Name checks
         if (userName.length < 2 || userName.length > 12) {
             this.setState({ errUserName: 'Should be between 2 and 12 charcters' });
@@ -48,6 +49,9 @@ class SignIn extends React.Component {
 
         const { password, userName } = this.state;
 
+        // Init server message
+        this.setState({ serverError: '' });
+
         // If there's a problem with the input, don't fetch from server
         if (!this.checkInput(userName, password)) { return; }
 
@@ -65,7 +69,7 @@ class SignIn extends React.Component {
                 })
                 .catch(error => {
                     console.log("Sign-in failed:", error);
-                    this.setState({ fetching: false });
+                    this.setState({ serverError: error.message, fetching: false });
                 });
         }
         catch (error) {
@@ -75,9 +79,9 @@ class SignIn extends React.Component {
     }
 
     handleChange = (event) => {
-        const {name, value} = event.target;
+        const { name, value } = event.target;
 
-        this.setState({[name]: value});
+        this.setState({ [name]: value });
     }
 
     render() {
@@ -99,11 +103,17 @@ class SignIn extends React.Component {
                         label="Password"
                         errorMsg={this.state.errPassword} />
 
+                    <div className="server-error-container">
+                        {this.state.serverError !== '' ?
+                            <div className="server-error">{this.state.serverError}</div>
+                            : null}
+                    </div>
+
                     <CustomButton className="submit-btn" type="submit"
-                    bgColor={mainColors.c1}                     // Only HEX color
-                    foreColor='white'
-                    onClick={this.handleSubmit} 
-                    disabled={this.state.fetching}>
+                        bgColor={mainColors.c1}                     // Only HEX color
+                        foreColor='white'
+                        onClick={this.handleSubmit}
+                        disabled={this.state.fetching}>
                         SIGN IN
                     </CustomButton>
                     <p className="toggle-text">Don't have an account?&nbsp;

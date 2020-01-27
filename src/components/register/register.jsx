@@ -17,7 +17,8 @@ class Register extends React.Component {
             fetching: false,
             errUserName: '',
             errPassword: '',
-            errConfirmPassword: ''
+            errConfirmPassword: '',
+            serverError: ''
         }
     }
 
@@ -57,6 +58,9 @@ class Register extends React.Component {
 
         const { password, confirmPassword, userName } = this.state;
 
+        // Init server message
+        this.setState({ serverError: '' });
+
         // If there's a problem with the input, don't fetch from server
         if (!this.checkInput(userName, password, confirmPassword)) { return; }
 
@@ -75,7 +79,7 @@ class Register extends React.Component {
                 })
                 .catch(error => {
                     console.log("Register failed:", error);
-                    this.setState({ fetching: false });
+                    this.setState({ serverError: error.message, fetching: false });
                 });
         }
         catch (error) {
@@ -114,6 +118,12 @@ class Register extends React.Component {
                         handleChange={this.handleChange}
                         label="Confirm Password"
                         errorMsg={this.state.errConfirmPassword} />
+
+                    <div className="server-error-container">
+                        {this.state.serverError !== '' ?
+                            <div className="server-error">{this.state.serverError}</div>
+                            : null}
+                    </div>
 
                     <CustomButton className="submit-btn" type="submit"
                         bgColor={mainColors.c1}                     // Only HEX color

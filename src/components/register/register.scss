@@ -27,7 +27,23 @@
     }
 
     .submit-btn {
-        margin: 1rem auto 0.5rem auto;
+        margin: 0.5rem auto 0.5rem auto;
+    }
+
+    .server-error-container {
+        margin-top: -0.5rem;
+        height: 1.6rem;
+        // border: 1px dotted blue;
+    }
+
+    .server-error {
+        font-family: 'Open Sans', sans-serif;
+        color: red;
+        // background-color: red;
+        font-size: 1rem;
+        font-weight: 600;
+        // height: 1px;
+        border: 1px dotted red;
     }
 
     .toggle-text {

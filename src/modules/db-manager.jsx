@@ -21,7 +21,7 @@ async function checkUserSignInFromDB(name, password) {
         }
     })
     .catch(error => {
-        throw new Error("Couldn't sign-in user: " + name + ". Info: " + error.message);
+        throw new Error(error.message);
     });
 }
 
@@ -46,7 +46,7 @@ async function registerUserToDB(name, password) {
         }
     })
     .catch(error => {
-        throw new Error("Couldn't register user: " + name + ". Info: " + error.message);
+        throw new Error(error.message);
     });
 }
 
