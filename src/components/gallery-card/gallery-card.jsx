@@ -25,29 +25,51 @@ const border_top = {
 }
 
 // ########## COMPONENT ########## //
-const GalleryCard = (props) => {
+class GalleryCard extends React.Component {
     // console.log('Card props:', props);
-    return (
-        <div className="card">
-            <div className="card-content">
-                <a href={props.source} className="card-image" target="_blank" rel="noopener noreferrer"
-                    style={{
-                        backgroundImage: `url(${props.image})`
-                    }}
-                    alt=""> </a>
-                <div className="card-desc" style={border_top}>
-                    <div className="title-info-container">
-                        <p className="title">{props.title}</p>
-                        <CardInfo>By: <u>{props.user_name}</u> on {props.added.split('T')[0]}</CardInfo>
+    state = {
+        liked: false
+    }
+
+    handleLikeClick = () => {
+        this.setState({ liked: !this.state.liked });
+    }
+
+    render() {
+        return (
+            <div className="card">
+                <div className="card-content">
+                    <a href={this.props.source} className="card-image" target="_blank" rel="noopener noreferrer"
+                        style={{
+                            backgroundImage: `url(${this.props.image})`
+                        }}
+                        alt=""> </a>
+                    <div className="card-desc" style={border_top}>
+                        <div className="title-info-container">
+                            <p className="title">{this.props.title}</p>
+                            <CardInfo>By: <u>{this.props.user_name}</u> on {this.props.added.split('T')[0]}</CardInfo>
+                        </div>
+                        <CardFooter>
+                            {!this.state.liked ?
+                                <span className="like-btn"
+                                    onClick={this.handleLikeClick}
+                                    role="img" aria-label="star">⭐</span>
+                                :
+                                <span className="like-btn"
+                                    onClick={this.handleLikeClick}
+                                    role="img" aria-label="bright-star">🌟</span>
+                            }
+                            <span className="like-counter"
+                            style={this.state.liked ? {color: 'black', fontWeight: 600} : null}>
+                                {this.props.likes}
+                            </span>
+                        </CardFooter>
                     </div>
-                    <CardFooter>
-                        <span role="img" aria-label="star">⭐</span>({props.likes})
-                    </CardFooter>
+
                 </div>
-            
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 export default GalleryCard;
