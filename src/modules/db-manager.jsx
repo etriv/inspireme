@@ -3,7 +3,7 @@ const serverUrl = 'http://localhost:3001'
 // Updates the DB according to the like that was done
 // Returns bool regrading the success of the proccess
 async function likeInspirationInDB(userId, inspirationId, like = true) {
-    console.log('Liking inspiration...', userId, inspirationId, like);
+    // console.log('Liking inspiration...', userId, inspirationId, like);
     let fetchUrl = serverUrl;
     if (like)
         fetchUrl += '/like';
@@ -19,7 +19,8 @@ async function likeInspirationInDB(userId, inspirationId, like = true) {
         })
     })
     .then(response => {
-        console.log(response.status);
+        // console.log(response.status);
+        return true;
     })
     .catch(error => {
         throw new Error(error.message);

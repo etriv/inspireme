@@ -18,11 +18,11 @@ class GalleryFilters extends React.Component {
     }
 
     onFilterClick(event) {
-        console.log('Current filter: ', event.target.id);
-        console.log(event.target.style);
+        // console.log('Current filter: ', event.target.id);
+        // console.log(event.target.style);
         this.setState({ current_filter: event.target.id});
 
-        // Change visuals to match the selected option
+        // Change visuals (classes) to match the selected option
         document.getElementById(this.state.current_filter)
             .classList.remove('on');
         event.target.classList.add('on');

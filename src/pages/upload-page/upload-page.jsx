@@ -12,3 +12,15 @@ class UploadPage extends React.Component {
 }
 
 export default UploadPage;
+/*
+Fields:
+- Source
+- Title
+- Tags
+- Type (auto, derive from source)
+- Image (auto fetch, with option to overide)
+Additional auto-gen params:
+- userId (have it)
+
+*** Cute uploading cat...
+*/
