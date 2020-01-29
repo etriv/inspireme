@@ -7,6 +7,9 @@ import RegisterPage from './pages/register-page/register-page';
 import AboutPage from './pages/about/about-page';
 import Navigation from './components/navigation/navigation';
 import SignOutPage from './pages/sign-out-page/sign-out-page';
+import LikedPage from './pages/liked-page/liked-page';
+import UploadPage from './pages/upload-page/upload-page';
+import UploadsPage from './pages/uploads-page/uploads-page';
 
 class App extends Component {
   state = {
@@ -71,6 +74,15 @@ class App extends Component {
           <Route path='/about' component={AboutPage} />
           <Route path='/sign-out'>
             <SignOutPage handleSignOut={this.handleSignOut} prevUserName={this.state.prevUserName} />
+          </Route>
+          <Route path='/liked'>
+            <LikedPage />
+          </Route>
+          <Route path='/upload'>
+            <UploadPage />
+          </Route>
+          <Route path='/uploads'>
+            <UploadsPage />
           </Route>
         </Switch>
       </div>
