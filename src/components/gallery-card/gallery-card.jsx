@@ -27,7 +27,8 @@ class GalleryCard extends React.Component {
 
     render() {
         var border_top = {
-            borderTop: `4px solid ${this.props.liked_by_me ? main_colors.c3 : main_colors.c2}`
+            borderTop: `3px solid ${this.props.liked_by_me ? main_colors.c3 : main_colors.c2}`,
+            transition: 'border-color 0.2s'
         }
 
         return (
