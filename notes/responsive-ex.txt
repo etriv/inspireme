@@ -1,0 +1,29 @@
+@mixin small-screen-only {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin tiny-screen-only {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin medium-screen-only {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin big-screen-only {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+----------
+
+@include medium-screen-only {
+    max-width: $MediumScreenContainerWidth;
+  }

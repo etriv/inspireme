@@ -20,22 +20,16 @@ const CardInfo = styled.div`
     margin: 0rem;
 `;
 
-const border_top = {
-    borderTop: `3px solid ${main_colors.c2}`
-}
+
 
 // ########## COMPONENT ########## //
 class GalleryCard extends React.Component {
-    // console.log('Card props:', props);
-    state = {
-        liked: false
-    }
-
-    handleLikeClick = () => {
-        this.setState({ liked: !this.state.liked });
-    }
 
     render() {
+        var border_top = {
+            borderTop: `4px solid ${this.props.liked_by_me ? main_colors.c3 : main_colors.c2}`
+        }
+
         return (
             <div className="card">
                 <div className="card-content">
@@ -47,20 +41,21 @@ class GalleryCard extends React.Component {
                     <div className="card-desc" style={border_top}>
                         <div className="title-info-container">
                             <p className="title">{this.props.title}</p>
-                            <CardInfo>By: <u>{this.props.user_name}</u> on {this.props.added.split('T')[0]}</CardInfo>
+                            <CardInfo>By: <u>{this.props.uploader_name}</u> on {this.props.added.split('T')[0]}</CardInfo>
                         </div>
                         <CardFooter>
-                            {!this.state.liked ?
+                            {!this.props.liked_by_me ?
                                 <span className="like-btn"
-                                    onClick={this.handleLikeClick}
+                                    onClick={this.props.isSignedIn ? () => this.props.handleLikeClick(this.props.id, true) : null}
+                                    style={!this.props.isSignedIn ? {cursor: 'default'} : null}
                                     role="img" aria-label="star">⭐</span>
                                 :
-                                <span className="like-btn"
-                                    onClick={this.handleLikeClick}
+                                <span className="like-btn pressed"
+                                    onClick={this.props.isSignedIn ? () => this.props.handleLikeClick(this.props.id, false) : null}
                                     role="img" aria-label="bright-star">🌟</span>
                             }
                             <span className="like-counter"
-                            style={this.state.liked ? {color: 'black', fontWeight: 600} : null}>
+                            style={this.props.liked_by_me ? {color: 'black', fontWeight: 600} : null}>
                                 {this.props.likes}
                             </span>
                         </CardFooter>

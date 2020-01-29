@@ -19,19 +19,22 @@ class HomePage extends React.Component {
         this.handleInspirationsTypeChange = this.handleInspirationsTypeChange.bind(this);
         this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
         this.handleSearchBoxChange = this.handleSearchBoxChange.bind(this);
+        this.handleLikedInspiration = this.handleLikedInspiration.bind(this);
     }
 
+    // Updates gallery inspirations using tags and type of inspirations.
+    // TODO: should also user userId to flag already liked inspirations.
     updateInspirations() {
         console.log('Updating inspirations...', 'tags:', this.state.tags, 'type:', this.state.ins_type);
         const type = this.state.ins_type !== 'all' ? this.state.ins_type : '';
-        dbFuncs.getInspirationsFromDB(this.state.tags, type)
+        dbFuncs.getInspirationsFromDB(this.state.tags, type, '', this.props.signedInUser.id)
             .then(data => this.setState({ inspirations: data }, () => {
                 console.log('Fetched inspirations:', this.state.inspirations);
                 this.state.inspirations.length > 0 ?
-                    this.setState({display_gallery: true})
-                    : this.setState({display_gallery: true}); // this.setState({display_gallery: false});
-                    // TODO: When there is nothing to show, hide gallery - only with better filtering algorithem
-                    // Present a proper message (with a cute image) of 'No matching results' / 'No inspiration here...'
+                    this.setState({ display_gallery: true })
+                    : this.setState({ display_gallery: true }); // this.setState({display_gallery: false});
+                // TODO: When there is nothing to show, hide gallery - only with better filtering algorithem
+                // Present a proper message (with a cute image) of 'No matching results' / 'No inspiration here...'
             }));
     }
 
@@ -55,6 +58,27 @@ class HomePage extends React.Component {
         this.setState({ tags: new_tags });
     }
 
+    handleLikedInspiration(inspirationId, like = true) {
+        if (this.props.signedInUser.id === '') return;
+
+        dbFuncs.likeInspirationInDB(this.props.signedInUser.id, inspirationId, like);
+
+        this.likeInspiration(inspirationId, like);
+    }
+
+    likeInspiration(inspirationId, like = true) {
+        this.setState(prevState => ({
+            inspirations: prevState.inspirations.map(
+                el => el.id === inspirationId ? {
+                    ...el,
+                    likes: like ? el.likes + 1 : el.likes - 1,
+                    liked_by_me: like ? 1 : null                // The number is arbitrary
+                }
+                    : el
+            )
+        }));
+    }
+
     render() {
         // console.log('Homepage rendering: ', this.state.inspirations);
         return (
@@ -65,7 +89,9 @@ class HomePage extends React.Component {
                 {this.state.display_gallery ?
                     <Gallery
                         items={this.state.inspirations}
-                        onFilterChange={this.handleInspirationsTypeChange} />
+                        onFilterChange={this.handleInspirationsTypeChange}
+                        handleLikedInspiration={this.handleLikedInspiration}
+                        signedInUser={this.props.signedInUser} />
                     : <div />}
             </div>
         );
