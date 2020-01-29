@@ -1,10 +1,10 @@
 import React from 'react';
-import './homepage.scss';
+import './get-inspirations.scss';
 import * as dbFuncs from '../../modules/db-manager';
 import SearchArea from '../../components/search-area/search-area';
 import Gallery from '../../components/gallery/gallery';
 
-class HomePage extends React.Component {
+class GetInspirations extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -80,7 +80,7 @@ class HomePage extends React.Component {
     }
 
     render() {
-        // console.log('Homepage rendering: ', this.state.inspirations);
+        // console.log('GetInspirations rendering: ', this.state.inspirations);
         return (
             <div className="home-page">
                 <SearchArea
@@ -98,4 +98,4 @@ class HomePage extends React.Component {
     }
 }
 
-export default HomePage;
+export default GetInspirations;

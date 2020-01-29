@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.scss';
 import { Switch, Route, withRouter } from 'react-router-dom';
-import HomePage from './pages/homepage/homepage';
-import SignInPage from './pages/sign-in/sign-in-page';
+import GetInspirations from './pages/get-inspirations/get-inspirations';
+import SignInPage from './pages/sign-in-page/sign-in-page';
 import RegisterPage from './pages/register-page/register-page';
 import AboutPage from './pages/about/about-page';
 import Navigation from './components/navigation/navigation';
@@ -63,7 +63,7 @@ class App extends Component {
         <Navigation signedInUser={this.state.user} userMenuItems={this.state.userMenuItems} />
         <Switch>
           <Route exact path='/'>
-            <HomePage signedInUser={this.state.user} />
+            <GetInspirations signedInUser={this.state.user} />
           </Route>
           <Route path='/sign-in'>
             <SignInPage updateSignedInUser={this.updateSignedInUser} />
@@ -76,7 +76,7 @@ class App extends Component {
             <SignOutPage handleSignOut={this.handleSignOut} prevUserName={this.state.prevUserName} />
           </Route>
           <Route path='/liked'>
-            <LikedPage />
+            <LikedPage signedInUser={this.state.user}/>
           </Route>
           <Route path='/upload'>
             <UploadPage />

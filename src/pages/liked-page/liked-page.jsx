@@ -1,14 +1,13 @@
 import React from 'react';
 import './liked-page.scss';
+import GetInspirations from '../get-inspirations/get-inspirations';
 
 class LikedPage extends React.Component {
-    // Use generic GetInspirationsPage
+    // Use generic GetInspirations
     
     render() {
         return (
-            <div>
-                My Liked Inspirations
-            </div>
+            <GetInspirations {...this.props} />
         )
     }
 }
@@ -16,7 +15,7 @@ class LikedPage extends React.Component {
 export default LikedPage;
 /*
 This page is very similar to HomePage.
-Should improve HopePage (GetInspirationsPage) to be a bit generic:
+Should improve GetInspirationsPage to be a bit generic:
 with options for small search area, and fast inspirations fetching.
 
 */
