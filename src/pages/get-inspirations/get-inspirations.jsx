@@ -61,8 +61,9 @@ class GetInspirations extends React.Component {
     handleLikedInspiration(inspirationId, like = true) {
         if (this.props.signedInUser.id === '') return;
 
-        if (dbFuncs.likeInspirationInDB(this.props.signedInUser.id, inspirationId, like))
-            this.likeInspirationInState(inspirationId, like);
+        dbFuncs.likeInspirationInDB(this.props.signedInUser.id, inspirationId, like);
+
+        this.likeInspirationInState(inspirationId, like);
     }
 
     likeInspirationInState(inspirationId, like = true) {
