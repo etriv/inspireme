@@ -11,12 +11,13 @@ class SignInPage extends React.Component {
         success: false,
         signedInName: ''
     }
-    
+
     onSuccessfulSignIn = (userId, userName) => {
         // Update App with new user.
         this.props.updateSignedInUser(userId, userName);
         // Show success msg.
         this.setState({ success: true, signedInName: userName });
+        // TODO: Only get affect from the apps state change... dont change state here.
         setTimeout(() => {
             // Redirect to '/' after ~1s of showing the success msg.
             this.props.history.push('/');

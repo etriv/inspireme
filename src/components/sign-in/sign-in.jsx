@@ -50,23 +50,29 @@ class SignIn extends React.Component {
         const { password, userName } = this.state;
 
         // Init server message
-        this.setState({ serverError: '' });
+        this.setState({ serverError: '', fetching: true });
 
         // If there's a problem with the input, don't fetch from server.
         // if (!this.checkInput(userName, password)) { return; }
         // TODO: comment-in the input check above when done developing.
 
-        this.setState({ fetching: true });
+        // this.setState({  });
         // Can start here a loading animation.
 
         try {
             // Checking if user's credentials match.
             // TODO: Uppon success, direct user to the HomePage and update Navigation.
             // TODO: Uppon failure, present a specific error on screen.
+            
+            // Alternative way instead of a chain of thens...
+            // let signInResponse = await checkUserSIgnInFromDB
+            // let user = await getUserFromDB(signInResponse)
+            // let preferences = await getUserPrefences(user)
+
             checkUserSignInFromDB(userName, password)
                 .then(user => {
                     console.log('Successfuly signed-in:', user);
-                    this.props.onSuccessfulSignIn(user.id, user.name);
+                    this.props.onSuccessfulSignIn(user.id, user.name); 
                 })
                 .catch(error => {
                     console.log("Sign-in failed:", error);

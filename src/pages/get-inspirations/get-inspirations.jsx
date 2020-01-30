@@ -92,7 +92,7 @@ class GetInspirations extends React.Component {
                         onFilterChange={this.handleInspirationsTypeChange}
                         handleLikedInspiration={this.handleLikedInspiration}
                         signedInUser={this.props.signedInUser} />
-                    : <div />}
+                    : null}
             </div>
         );
     }
