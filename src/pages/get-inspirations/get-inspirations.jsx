@@ -82,7 +82,7 @@ class GetInspirations extends React.Component {
     render() {
         // console.log('GetInspirations rendering: ', this.state.inspirations);
         return (
-            <div className="home-page">
+            <div className="get-inspirations">
                 <SearchArea
                     onSearchBoxChange={this.handleSearchBoxChange}
                     inspireOnClick={this.handleSearchSubmit} />

@@ -14,8 +14,8 @@ class LikedPage extends React.Component {
 
 export default LikedPage;
 /*
-This page is very similar to HomePage.
-Should improve GetInspirationsPage to be a bit generic:
+This page is very similar to GetInspirations page.
+Should improve GetInspirations to be a bit generic:
 with options for small search area, and fast inspirations fetching.
 
 */
