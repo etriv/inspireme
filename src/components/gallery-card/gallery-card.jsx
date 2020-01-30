@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import './gallery-card.scss'
-import { main_colors5 as main_colors } from '../../modules/main-colors';
+import { mainColors5 as mainColors } from '../../modules/main-colors';
 
 // ########## STYLES ########## //
 const CardFooter = styled.div`
@@ -26,8 +26,8 @@ const CardInfo = styled.div`
 class GalleryCard extends React.Component {
 
     render() {
-        var border_top = {
-            borderTop: `3px solid ${this.props.liked_by_me ? main_colors.c3 : main_colors.c2}`,
+        var borderTop = {
+            borderTop: `3px solid ${this.props.likedByMe ? mainColors.c3 : mainColors.c2}`,
             transition: 'border-color 0.2s'
         }
 
@@ -39,13 +39,13 @@ class GalleryCard extends React.Component {
                             backgroundImage: `url(${this.props.image})`
                         }}
                         alt=""> </a>
-                    <div className="card-desc" style={border_top}>
+                    <div className="card-desc" style={borderTop}>
                         <div className="title-info-container">
                             <p className="title">{this.props.title}</p>
-                            <CardInfo>By: <u>{this.props.uploader_name}</u> on {this.props.added.split('T')[0]}</CardInfo>
+                            <CardInfo>By: <u>{this.props.uploaderName}</u> on {this.props.added.split('T')[0]}</CardInfo>
                         </div>
                         <CardFooter>
-                            {!this.props.liked_by_me ?
+                            {!this.props.likedByMe ?
                                 <span className="like-btn"
                                     onClick={this.props.isSignedIn ? () => this.props.handleLikeClick(this.props.id, true) : null}
                                     style={!this.props.isSignedIn ? {cursor: 'default'} : null}
@@ -56,7 +56,7 @@ class GalleryCard extends React.Component {
                                     role="img" aria-label="bright-star">🌟</span>
                             }
                             <span className="like-counter"
-                            style={this.props.liked_by_me ? {color: 'black', fontWeight: 600} : null}>
+                            style={this.props.likedByMe ? {color: 'black', fontWeight: 600} : null}>
                                 {this.props.likes}
                             </span>
                         </CardFooter>

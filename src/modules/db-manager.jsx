@@ -14,8 +14,8 @@ async function likeInspirationInDB(userId, inspirationId, like = true) {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            user_id: userId,
-            insp_id: inspirationId
+            userId: userId,
+            inspId: inspirationId
         })
     })
     .then(response => {
@@ -77,15 +77,15 @@ async function registerUserToDB(name, password) {
         });
 }
 
-async function getInspirationsFromDB(tags = '', type = '', sort_by = '', cur_user_id = '') {
+async function getInspirationsFromDB(tags = '', type = '', sortBy = '', curUserId = '') {
     // console.log('Getting inspirations from DB ()...', 'tags:', tags, 'type:', type);
     let fetchUrl = serverUrl + '/inspirations/';
-    if (tags !== '' || type !== '' || sort_by !== '' || cur_user_id !== '') {
+    if (tags !== '' || type !== '' || sortBy !== '' || curUserId !== '') {
         fetchUrl += '?';
         fetchUrl += (tags !== '') ? '&tags=' + tags : '';
         fetchUrl += (type !== '') ? '&type=' + type : '';
-        fetchUrl += (sort_by !== '') ? '&sort=' + sort_by : '';
-        fetchUrl += (cur_user_id !== '') ? '&cur_user=' + cur_user_id : '';
+        fetchUrl += (sortBy !== '') ? '&sort=' + sortBy : '';
+        fetchUrl += (curUserId !== '') ? '&curUser=' + curUserId : '';
     }
     console.log('Fetching:', fetchUrl);
     return fetch(fetchUrl)

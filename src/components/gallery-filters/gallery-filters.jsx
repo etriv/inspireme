@@ -1,17 +1,15 @@
 import React from 'react';
 import './gallery-filters.scss'
-// import { main_colors5 as main_colors } from '../../modules/main-colors';
 
-const filter_style = {
+const filterStyle = {
     color: 'black',
-    //backgroundColor: main_colors.c2
 }
 
 class GalleryFilters extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            current_filter: 'all',
+            currentFilter: 'all',
         };
 
         this.onFilterClick = this.onFilterClick.bind(this);
@@ -20,10 +18,10 @@ class GalleryFilters extends React.Component {
     onFilterClick(event) {
         // console.log('Current filter: ', event.target.id);
         // console.log(event.target.style);
-        this.setState({ current_filter: event.target.id});
+        this.setState({ currentFilter: event.target.id});
 
         // Change visuals (classes) to match the selected option
-        document.getElementById(this.state.current_filter)
+        document.getElementById(this.state.currentFilter)
             .classList.remove('on');
         event.target.classList.add('on');
 
@@ -36,13 +34,13 @@ class GalleryFilters extends React.Component {
             <div className="filters-container">
                 <div className="filters-pad"></div>
                 <div className="filters">
-                    <span id="all" className="filter on" style={filter_style}
+                    <span id="all" className="filter on" style={filterStyle}
                         onClick={this.onFilterClick}>All</span>
-                    <span id="video" className="filter" style={filter_style}
+                    <span id="video" className="filter" style={filterStyle}
                         onClick={this.onFilterClick}>Videos</span>
-                    <span id="image" className="filter" style={filter_style}
+                    <span id="image" className="filter" style={filterStyle}
                         onClick={this.onFilterClick}>Images</span>
-                    <span id="page" className="filter last" style={filter_style}
+                    <span id="page" className="filter last" style={filterStyle}
                         onClick={this.onFilterClick}>Pages</span>
                 </div>
                 <div className="sort-elem">

@@ -3,7 +3,6 @@ import './navigation.scss';
 // import styled from 'styled-components';
 import UserMenu from '../user-menu/user-menu';
 import { Link } from 'react-router-dom';
-// import { main_colors5 as main_colors, shadeHexColor } from '../../modules/main-colors';
 
 class Navigation extends React.Component {
     render() {

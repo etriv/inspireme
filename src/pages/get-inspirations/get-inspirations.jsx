@@ -10,9 +10,9 @@ class GetInspirations extends React.Component {
         this.state = {
             inspirations: [],
             tags: '',
-            ins_type: 'all',
-            sort_by: 'rating_desc',
-            display_gallery: false
+            insType: 'all',
+            sortBy: 'rating_desc',
+            displayGallery: false
         };
 
         this.updateInspirations = this.updateInspirations.bind(this);
@@ -25,37 +25,37 @@ class GetInspirations extends React.Component {
     // Updates gallery inspirations using tags and type of inspirations.
     // TODO: should also user userId to flag already liked inspirations.
     updateInspirations() {
-        console.log('Updating inspirations...', 'tags:', this.state.tags, 'type:', this.state.ins_type);
-        const type = this.state.ins_type !== 'all' ? this.state.ins_type : '';
+        console.log('Updating inspirations...', 'tags:', this.state.tags, 'type:', this.state.insType);
+        const type = this.state.insType !== 'all' ? this.state.insType : '';
         dbFuncs.getInspirationsFromDB(this.state.tags, type, '', this.props.signedInUser.id)
             .then(data => this.setState({ inspirations: data }, () => {
                 console.log('Fetched inspirations:', this.state.inspirations);
                 this.state.inspirations.length > 0 ?
-                    this.setState({ display_gallery: true })
-                    : this.setState({ display_gallery: true }); // this.setState({display_gallery: false});
+                    this.setState({ displayGallery: true })
+                    : this.setState({ displayGallery: true }); // this.setState({displayGallery: false});
                 // TODO: When there is nothing to show, hide gallery - only with better filtering algorithem
                 // Present a proper message (with a cute image) of 'No matching results' / 'No inspiration here...'
             }));
     }
 
-    handleSearchSubmit(search_box = '') {
-        const new_tags = search_box.split(' ').join('').toLowerCase();
-        this.setState({ tags: new_tags }, () => {
+    handleSearchSubmit(searchBox = '') {
+        const newTags = searchBox.split(' ').join('').toLowerCase();
+        this.setState({ tags: newTags }, () => {
             // console.log('Updated new tags after submit. Going to fetch...');
-            this.updateInspirations(new_tags, this.state.ins_type);
+            this.updateInspirations(newTags, this.state.insType);
         });
     }
 
-    handleInspirationsTypeChange(new_type = '') {
-        new_type = (new_type === 'all') ? '' : new_type;
-        this.setState({ ins_type: new_type }, () => {
-            this.updateInspirations(this.state.search_area, new_type);
+    handleInspirationsTypeChange(newType = '') {
+        newType = (newType === 'all') ? '' : newType;
+        this.setState({ insType: newType }, () => {
+            this.updateInspirations(this.state.tags, newType);
         });
     }
 
-    handleSearchBoxChange(new_tags = '') {
-        new_tags = new_tags.split(' ').join('').toLowerCase();
-        this.setState({ tags: new_tags });
+    handleSearchBoxChange(newTags = '') {
+        newTags = newTags.split(' ').join('').toLowerCase();
+        this.setState({ tags: newTags });
     }
 
     handleLikedInspiration(inspirationId, like = true) {
@@ -72,7 +72,7 @@ class GetInspirations extends React.Component {
                 el => el.id === inspirationId ? {
                     ...el,
                     likes: like ? el.likes + 1 : el.likes - 1,
-                    liked_by_me: like ? 1 : null                // The number is arbitrary
+                    likedByMe: like ? 1 : null                // The number is arbitrary
                 }
                     : el
             )
@@ -86,7 +86,7 @@ class GetInspirations extends React.Component {
                 <SearchArea
                     onSearchBoxChange={this.handleSearchBoxChange}
                     inspireOnClick={this.handleSearchSubmit} />
-                {this.state.display_gallery ?
+                {this.state.displayGallery ?
                     <Gallery
                         items={this.state.inspirations}
                         onFilterChange={this.handleInspirationsTypeChange}

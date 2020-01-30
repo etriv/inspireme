@@ -2,7 +2,7 @@ import React from 'react';
 import './register.scss';
 import FormInput from '../form-input/form-input';
 import CustomButton from '../custom-button/custom-button';
-import { main_colors5 as mainColors } from '../../modules/main-colors';
+import { mainColors5 as mainColors } from '../../modules/main-colors';
 import { registerUserToDB } from '../../modules/db-manager';
 import { Link } from 'react-router-dom';
 import { onlyLetters } from '../../modules/helpers';

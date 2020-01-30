@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import {main_colors5 as main_colors} from '../../modules/main-colors';
-import bg_image from '../../images/watercolour3.jpg';
+import {mainColors5 as mainColors} from '../../modules/main-colors';
+import bgImage from '../../images/watercolour3.jpg';
 
 const BoxContainer = styled.div`
-    background-image: url(${bg_image});
+    background-image: url(${bgImage});
     background-size: cover;
     background-position: center center;
-    background-color: ${main_colors.c2};
+    background-color: ${mainColors.c2};
     background-repeat: no-repeat;
     height: 100%;
     border-radius: 30px;

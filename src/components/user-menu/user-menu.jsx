@@ -2,9 +2,9 @@ import React from 'react';
 import './user-menu.scss';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { main_colors5 as main_colors, shadeHexColor } from '../../modules/main-colors';
+import { mainColors5 as mainColors, shadeHexColor } from '../../modules/main-colors';
 
-const marked_color = main_colors.c3;
+const markedColor = mainColors.c3;
 const MarkedDefault = styled('div')`  
     border: 0px solid black;
     text-decoration: none;    
@@ -12,16 +12,16 @@ const MarkedDefault = styled('div')`
     text-align: center;
     text-decoration: none;
     white-space: nowrap;
-    background-color: ${marked_color};
+    background-color: ${markedColor};
     border-radius: 20px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     transition: background-color 0.3s;
 	:hover {
-        background-color: ${shadeHexColor(marked_color, 0.1)};
+        background-color: ${shadeHexColor(markedColor, 0.1)};
 		cursor: pointer;
     }
     :active {
-        background-color: ${shadeHexColor(marked_color, 0.25)};
+        background-color: ${shadeHexColor(markedColor, 0.25)};
         transition: background-color 0s;
       }
 `;

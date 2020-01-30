@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './gallery.scss'
 import GalleryFilters from '../gallery-filters/gallery-filters'
 import GalleryCard from '../gallery-card/gallery-card';
-// import FadeIn from "../fade-in/fade-in";
 
 class Gallery extends Component {
     render() {
