@@ -20,7 +20,17 @@ const CardInfo = styled.div`
     margin: 0rem;
 `;
 
-
+const LikeButton = ({inspId, liked, isSignedIn, onClick}) => {
+    return !liked ?
+        <span className="like-btn"
+            onClick={isSignedIn ? () => onClick(inspId, true) : null}
+            style={!isSignedIn ? { cursor: 'default' } : null}
+            role="img" aria-label="star">⭐</span>
+        :
+        <span className="like-btn pressed"
+            onClick={isSignedIn ? () => onClick(inspId, false) : null}
+            role="img" aria-label="bright-star">🌟</span>
+}
 
 // ########## COMPONENT ########## //
 class GalleryCard extends React.Component {
@@ -45,18 +55,12 @@ class GalleryCard extends React.Component {
                             <CardInfo>By: <u>{this.props.uploaderName}</u> on {this.props.added.split('T')[0]}</CardInfo>
                         </div>
                         <CardFooter>
-                            {!this.props.likedByMe ?
-                                <span className="like-btn"
-                                    onClick={this.props.isSignedIn ? () => this.props.handleLikeClick(this.props.id, true) : null}
-                                    style={!this.props.isSignedIn ? {cursor: 'default'} : null}
-                                    role="img" aria-label="star">⭐</span>
-                                :
-                                <span className="like-btn pressed"
-                                    onClick={this.props.isSignedIn ? () => this.props.handleLikeClick(this.props.id, false) : null}
-                                    role="img" aria-label="bright-star">🌟</span>
-                            }
+                            <LikeButton inspId={this.props.id}
+                                liked={this.props.likedByMe}
+                                isSignedIn={this.props.isSignedIn}
+                                onClick={this.props.handleLikeClick} />
                             <span className="like-counter"
-                            style={this.props.likedByMe ? {color: 'black', fontWeight: 600} : null}>
+                                style={this.props.likedByMe ? { color: 'black', fontWeight: 600 } : null}>
                                 {this.props.likes}
                             </span>
                         </CardFooter>
