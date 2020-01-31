@@ -7,26 +7,25 @@ import vImg from '../../images/paw.png';
 // import BoxContainer from '../../components/box-container/box-container';
 
 class SignInPage extends React.Component {
-    state = {
-        success: false,
-        signedInName: ''
-    }
 
     onSuccessfulSignIn = (userId, userName) => {
         // Update App with new user.
         this.props.updateSignedInUser(userId, userName);
-        // Show success msg.
-        this.setState({ success: true, signedInName: userName });
-        // TODO: Only get affect from the apps state change... dont change state here.
-        setTimeout(() => {
-            // Redirect to '/' after ~1s of showing the success msg.
-            this.props.history.push('/');
-        }, 1500); 
+    }
+
+    componentDidUpdate() {
+        if (this.props.signedInUser.id !== '') {
+            setTimeout(() => {
+                // Redirect to '/' after ~1s of showing the success msg.
+                this.props.history.push('/');
+            }, 1500); 
+        }
     }
     
     render() {
+        const success = this.props.signedInUser.id !== '';
         const signInClasses = ''
-        + (this.state.success ? ' faded-out' : '');
+        + (success ? ' faded-out' : '');
         return (
             <div className="sign-in-page">
                 <div className="form-boxy">
@@ -34,10 +33,10 @@ class SignInPage extends React.Component {
                         onSuccessfulSignIn={this.onSuccessfulSignIn}
                         toggleDisplay={this.toggleDisplay} />
                     {/* If successful sign-in, show msg: */}
-                    {this.state.success ? 
+                    {success ? 
                         <div className="success-msg faded-in">
                             <img src={vImg} alt="Success" className="v-img"/>
-                            <p>Welcome {this.state.signedInName}!</p>
+                            <p>Welcome {this.props.signedInUser.name}!</p>
                             {/* <p className="redirect-text">Redirecting...</p> */}
                         </div>
                     : null}

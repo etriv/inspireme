@@ -10,6 +10,7 @@ import SignOutPage from './pages/sign-out-page/sign-out-page';
 import LikedPage from './pages/liked-page/liked-page';
 import UploadPage from './pages/upload-page/upload-page';
 import UploadsPage from './pages/uploads-page/uploads-page';
+import { userMenuItems } from './modules/menu-config';
 
 class App extends Component {
   state = {
@@ -18,13 +19,7 @@ class App extends Component {
       id: '',
       name: ''
     },
-    prevUserName: '',
-    userMenuItems: [
-      { linkText: 'Liked Insp.', linkPath: '/liked' },
-      { linkText: 'Upload', linkPath: '/upload' },
-      // { linkText: 'My Uploads', linkPath: '/uploads' },
-      { linkText: 'Sign Out', linkPath: '/sign-out' }
-    ]
+    prevUserName: ''              // Saved for sign-out
   }
 
   updateSignedInUser = (userId, userName) => {
@@ -60,13 +55,13 @@ class App extends Component {
     console.log('Rendering App with user:', this.state.user);
     return (
       <div className="App">
-        <Navigation signedInUser={this.state.user} userMenuItems={this.state.userMenuItems} />
+        <Navigation signedInUser={this.state.user} userMenuItems={userMenuItems} />
         <Switch>
           <Route exact path='/'>
             <GetInspirations signedInUser={this.state.user} />
           </Route>
           <Route path='/sign-in'>
-            <SignInPage updateSignedInUser={this.updateSignedInUser} />
+            <SignInPage updateSignedInUser={this.updateSignedInUser} signedInUser={this.state.user} />
           </Route>
           <Route path='/register'>
             <RegisterPage />
