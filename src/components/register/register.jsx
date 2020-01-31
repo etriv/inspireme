@@ -107,17 +107,20 @@ class Register extends React.Component {
                         value={this.state.userName} required
                         onChange={this.handleChange}
                         label="User Name"
-                        errorMsg={this.state.errUserName} />
+                        errorMsg={this.state.errUserName}
+                        autoComplete="off" />
                     <FormInput name="password" type="password"
                         value={this.state.password} required
                         onChange={this.handleChange}
                         label="Password"
-                        errorMsg={this.state.errPassword} />
+                        errorMsg={this.state.errPassword}
+                        autoComplete="off" />
                     <FormInput name="confirmPassword" type="password"
                         value={this.state.confirmPassword} required
                         onChange={this.handleChange}
                         label="Confirm Password"
-                        errorMsg={this.state.errConfirmPassword} />
+                        errorMsg={this.state.errConfirmPassword}
+                        autoComplete="off" />
 
                     <div className="server-error-container">
                         {this.state.serverError !== '' ?

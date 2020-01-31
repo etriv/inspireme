@@ -1,8 +1,8 @@
 import React from 'react';
 import './form-input.scss';
 
-const FormInput = ({label, value, errorMsg, ...otherProps}) => (
-    <div className="input-group">
+const FormInput = ({label, value, errorMsg, className, ...otherProps}) => (
+    <div className={`input-group ${className}`}>
         <input className="form-input" value={value} {...otherProps} />
         {
             label ?
