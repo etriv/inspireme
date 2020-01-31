@@ -101,12 +101,12 @@ class SignIn extends React.Component {
                 <form className="sign-in-form" onSubmit={this.handleSubmit}>
                     <FormInput name="userName" type="text"
                         value={this.state.userName} required
-                        handleChange={this.handleChange}
+                        onChange={this.handleChange}
                         label="User Name"
                         errorMsg={this.state.errUserName} />
                     <FormInput name="password" type="password"
                         value={this.state.password} required
-                        handleChange={this.handleChange}
+                        onChange={this.handleChange}
                         label="Password"
                         errorMsg={this.state.errPassword} />
 

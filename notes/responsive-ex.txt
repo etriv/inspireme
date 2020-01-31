@@ -1,3 +1,4 @@
+// Have this code in a globals file. All of this define the screens breakpoints.
 @mixin small-screen-only {
   @media (max-width: 768px) {
     @content;
@@ -23,7 +24,7 @@
 }
 
 ----------
-
+// Specify within how to style in mediu screens:
 @include medium-screen-only {
     max-width: $MediumScreenContainerWidth;
   }

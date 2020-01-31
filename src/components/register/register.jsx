@@ -105,17 +105,17 @@ class Register extends React.Component {
                 <form className="register-form" onSubmit={this.handleSubmit}>
                     <FormInput name="userName" type="text"
                         value={this.state.userName} required
-                        handleChange={this.handleChange}
+                        onChange={this.handleChange}
                         label="User Name"
                         errorMsg={this.state.errUserName} />
                     <FormInput name="password" type="password"
                         value={this.state.password} required
-                        handleChange={this.handleChange}
+                        onChange={this.handleChange}
                         label="Password"
                         errorMsg={this.state.errPassword} />
                     <FormInput name="confirmPassword" type="password"
                         value={this.state.confirmPassword} required
-                        handleChange={this.handleChange}
+                        onChange={this.handleChange}
                         label="Confirm Password"
                         errorMsg={this.state.errConfirmPassword} />
 

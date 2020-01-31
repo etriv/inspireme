@@ -1,11 +1,17 @@
 import React from 'react';
 import './upload-page.scss';
+import Upload from '../../components/upload/upload';
 
 class UploadPage extends React.Component {
     render() {
         return (
             <div>
-                Upload Panel
+                <div>
+                    <Upload />
+                </div>
+                <div>
+                    
+                </div>
             </div>
         )
     }
