@@ -17,7 +17,7 @@ class GetInspirations extends React.Component {
 
         this.updateInspirations = this.updateInspirations.bind(this);
         this.handleInspirationsTypeChange = this.handleInspirationsTypeChange.bind(this);
-        this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+        this.onSearchSubmit = this.onSearchSubmit.bind(this);
         this.handleSearchBoxChange = this.handleSearchBoxChange.bind(this);
         this.handleLikedInspiration = this.handleLikedInspiration.bind(this);
     }
@@ -38,7 +38,7 @@ class GetInspirations extends React.Component {
             }));
     }
 
-    handleSearchSubmit(searchBox = '') {
+    onSearchSubmit(searchBox = '') {
         const newTags = searchBox.split(' ').join('').toLowerCase();
         this.setState({ tags: newTags }, () => {
             // console.log('Updated new tags after submit. Going to fetch...');
@@ -85,7 +85,7 @@ class GetInspirations extends React.Component {
             <div className="get-inspirations">
                 <SearchArea
                     onSearchBoxChange={this.handleSearchBoxChange}
-                    inspireOnClick={this.handleSearchSubmit} />
+                    onSearchClick={this.onSearchSubmit} />
                 {this.state.displayGallery ?
                     <Gallery
                         items={this.state.inspirations}

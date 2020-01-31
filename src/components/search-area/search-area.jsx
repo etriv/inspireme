@@ -47,7 +47,7 @@ class SearchArea extends React.Component {
     handleKeyUp(event) {
         // If ENTER is being pressed, initiate fetching of inspirations
         if (event.keyCode === 13) {
-            this.props.inspireOnClick(this.state.searchField);
+            this.props.onSearchClick(this.state.searchField);
         }
     }
 
@@ -62,7 +62,7 @@ class SearchArea extends React.Component {
                 <CustomButton className="button"
                     bgColor={mainColors.c4}
                     foreColor='white'
-                    onClick={this.props.inspireOnClick.bind(this, this.state.searchField)}>
+                    onClick={this.props.onSearchClick.bind(this, this.state.searchField)}>
                     INSPIRE</CustomButton>
             </BoxContainer>
         );
