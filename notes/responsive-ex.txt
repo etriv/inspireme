@@ -28,3 +28,25 @@
 @include medium-screen-only {
     max-width: $MediumScreenContainerWidth;
   }
+
+==========
+
+//Trying to actually fetch the found thumbnail (check if exists)
+// Will work best with official APIs like vimeo
+/*
+if (tempThumb !== lamp) {
+    await fetch(tempThumb, {
+        method: 'get'
+    })
+        .then(response => {
+            if (response.status === 404) {
+                tempThumb = lamp;
+                console.log('No fetchy! 404 thing! with:', tempThumb);
+                console.log(response);
+            }
+        })
+        .catch(error => {
+            tempThumb = lamp;
+        });
+}
+*/

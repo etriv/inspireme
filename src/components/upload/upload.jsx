@@ -19,32 +19,40 @@ export default function Upload(props) {
     const [fetching, setFetching] = useState(false);
     const [thumbnailURL, setThumbnailURL] = useState('');
 
-    function getThumbnail() {
-        // TODO: Try fetching the thumbnail before setting it to make sure no 404
-        // If 404, use default image
+    function updateThumbnailBySource() {
+        getThumbnailFromURL(source.value)
+        .then(tempThumb => setThumbnailURL(tempThumb))
+        .catch(() => setThumbnailURL(lamp));
+    }
 
-        if (isImageURL(source.value)) {
-            setThumbnailURL(source.value);
-            return;
+    async function getThumbnailFromURL(url) {
+        // TODO: Make minimal check to text injections.
+        // TODO: Update data base.
+
+        let tempThumb = lamp;
+
+        // Checking if the given sourceUrl is of a known image type or a video provider
+        if (isImageURL(url)) {
+            tempThumb = url;
+        }
+        else {
+            const video = parseVideoURL(url);
+            if (video.type !== '') {
+                if (video.type === 'youtube')
+                    tempThumb = getYouTubeThumbnail(video.id);
+                else if (video.type === 'vimeo') {
+                    await getVimeoThumbnail(video.id)
+                        .then(vimeoThumb => {
+                            tempThumb = vimeoThumb;
+                        })
+                        .catch(error => {
+                            // Leave tempThumb as is.
+                        });
+                }
+            }
         }
 
-        const video = parseVideoURL(source.value);
-
-        if (video.type === '') {
-            setThumbnailURL(lamp);
-        }
-        else if (video.type === 'youtube') {
-            setThumbnailURL(getYouTubeThumbnail(video.id));
-        }
-        else if (video.type === 'vimeo') {
-            getVimeoThumbnail(video.id)
-            .then(url => {
-                setThumbnailURL(url);
-            })
-            .catch(error => {
-                setThumbnailURL(lamp);
-            });
-        }
+        return tempThumb;
     }
 
     const containerClassNames = 'upload-area'
@@ -56,26 +64,26 @@ export default function Upload(props) {
             <p>Share with the world something inspiring.</p>
             <form className="upload-form">
                 <FormInput name="title" type="text" required
-                        value={title.value} 
-                        onChange={title.onChange}
-                        label="Title"
-                        errorMsg={errTitle}
-                        autoComplete="off" />
+                    value={title.value}
+                    onChange={title.onChange}
+                    label="Title"
+                    errorMsg={errTitle}
+                    autoComplete="off" />
                 <FormInput name="source" type="text" required
-                    value={source.value} 
+                    value={source.value}
                     onChange={source.onChange}
                     label="Source"
                     errorMsg={errSource}
                     autoComplete="off"
-                    onBlur={() => getThumbnail()} />
+                    onBlur={() => updateThumbnailBySource()} />
                 <FormInput name="tags" type="text" required
-                    value={tags.value} 
+                    value={tags.value}
                     onChange={tags.onChange}
                     label="Tags (separated by commas)"
-                    errorMsg={errTags} 
+                    errorMsg={errTags}
                     autoComplete="off" />
-                
-                <div className="image-area" style={{backgroundImage: `url(${thumbnailURL})`}} />
+
+                <div className="image-area" style={{ backgroundImage: `url(${thumbnailURL})` }} />
 
                 <div className="server-error-container">
                     {serverError !== '' ?

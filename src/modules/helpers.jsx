@@ -14,22 +14,23 @@ function parseVideoURL(url) {
     // - Also supports relative URLs:
     //   - //player.vimeo.com/video/25451551
 
-    console.log('Parsing url:', url)
     let res = url.match(/(http:|https:|)\/\/(player.|www.|m.)?(vimeo\.com|youtu(be\.com|\.be|be\.googleapis\.com))\/(video\/|embed\/|watch\?v=|v\/)?([A-Za-z0-9._%-]*)(&\S+)?/);
 
     let type = '';
+    let id = '';
     if (res) {
         if (res[3].indexOf('youtu') > -1) {
             type = 'youtube';
+            id = res[6];
         } else if (res[3].indexOf('vimeo') > -1) {
             type = 'vimeo';
+            id = res[6];
         }
     }
 
-    console.log('Returning type:', type);
     return {
         type: type,
-        id: RegExp.$6
+        id: id
     };
 }
 
