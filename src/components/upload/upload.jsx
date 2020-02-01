@@ -3,6 +3,8 @@ import './upload.scss';
 import FormInput from '../form-input/form-input';
 import CustomButton from '../custom-button/custom-button';
 import { mainColors5 as mainColors } from '../../modules/main-colors';
+import { parseVideoURL, getVimeoThumbnail, getYouTubeThumbnail, isImageURL } from '../../modules/helpers';
+import lamp from '../../images/lamp4.png';
 // import { checkUserSignInFromDB } from '../../modules/db-manager';
 // import { Link } from 'react-router-dom';
 
@@ -15,6 +17,35 @@ export default function Upload(props) {
     const [errTags, setErrTags] = useState('');
     const [serverError, setServerError] = useState('');
     const [fetching, setFetching] = useState(false);
+    const [thumbnailURL, setThumbnailURL] = useState('');
+
+    function getThumbnail() {
+        // TODO: Try fetching the thumbnail before setting it to make sure no 404
+        // If 404, use default image
+
+        if (isImageURL(source.value)) {
+            setThumbnailURL(source.value);
+            return;
+        }
+
+        const video = parseVideoURL(source.value);
+
+        if (video.type === '') {
+            setThumbnailURL(lamp);
+        }
+        else if (video.type === 'youtube') {
+            setThumbnailURL(getYouTubeThumbnail(video.id));
+        }
+        else if (video.type === 'vimeo') {
+            getVimeoThumbnail(video.id)
+            .then(url => {
+                setThumbnailURL(url);
+            })
+            .catch(error => {
+                setThumbnailURL(lamp);
+            });
+        }
+    }
 
     const containerClassNames = 'upload-area'
         + (props.className ? ' ' + props.className : '');
@@ -35,7 +66,8 @@ export default function Upload(props) {
                     onChange={source.onChange}
                     label="Source"
                     errorMsg={errSource}
-                    autoComplete="off" />
+                    autoComplete="off"
+                    onBlur={() => getThumbnail()} />
                 <FormInput name="tags" type="text" required
                     value={tags.value} 
                     onChange={tags.onChange}
@@ -43,7 +75,7 @@ export default function Upload(props) {
                     errorMsg={errTags} 
                     autoComplete="off" />
                 
-                <div className="image-area" />
+                <div className="image-area" style={{backgroundImage: `url(${thumbnailURL})`}} />
 
                 <div className="server-error-container">
                     {serverError !== '' ?
