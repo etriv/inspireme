@@ -2,9 +2,8 @@ import React from 'react';
 import './register-page.scss';
 import Register from '../../components/register/register';
 import cat from '../../images/bobtail.png';
-import vImg from '../../images/check2.png';
+import vImg from '../../images/paw.png';
 import { Link } from 'react-router-dom';
-// import BoxContainer from '../../components/box-container/box-container';
 
 class RegisterPage extends React.Component {
     state = {

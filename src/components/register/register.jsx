@@ -5,7 +5,7 @@ import CustomButton from '../custom-button/custom-button';
 import { mainColors5 as mainColors } from '../../modules/main-colors';
 import { registerUserToDB } from '../../modules/db-manager';
 import { Link } from 'react-router-dom';
-import { onlyLetters } from '../../modules/helpers';
+import { onlyAlphaNum } from '../../modules/helpers';
 
 class Register extends React.Component {
     constructor(props) {
@@ -30,7 +30,7 @@ class Register extends React.Component {
             this.setState({ errUserName: 'Should be between 2 and 12 charcters' });
             goodCheck = false;
         }
-        else if (!onlyLetters(userName)) {
+        else if (!onlyAlphaNum(userName)) {
             this.setState({ errUserName: 'Should contain only letters and numbers' });
             goodCheck = false;
         }

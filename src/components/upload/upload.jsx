@@ -3,15 +3,16 @@ import './upload.scss';
 import FormInput from '../form-input/form-input';
 import CustomButton from '../custom-button/custom-button';
 import { mainColors5 as mainColors } from '../../modules/main-colors';
-import { parseVideoURL, getVimeoThumbnail, getYouTubeThumbnail, isImageURL } from '../../modules/helpers';
+import { parseVideoURL, getVimeoThumbnail, getYouTubeThumbnail, isImageURL, onlyAlphaNum, isURL } from '../../modules/helpers';
 import lamp from '../../images/lamp4.png';
-// import { checkUserSignInFromDB } from '../../modules/db-manager';
+import { uploadInspirationToDB } from '../../modules/db-manager';
 // import { Link } from 'react-router-dom';
 
 export default function Upload(props) {
     const source = useFormInput('');
     const title = useFormInput('');
     const tags = useFormInput('');
+    const [mediaType, setMediaType] = useState('');
     const [errSource, setErrSource] = useState('');
     const [errTitle, setErrTitle] = useState('');
     const [errTags, setErrTags] = useState('');
@@ -20,26 +21,34 @@ export default function Upload(props) {
     const [thumbnailURL, setThumbnailURL] = useState('');
 
     function updateThumbnailBySource() {
-        getThumbnailFromURL(source.value)
-        .then(tempThumb => setThumbnailURL(tempThumb))
-        .catch(() => setThumbnailURL(lamp));
+        setErrSource('');
+
+        if (isURL(source.value)) {
+            getThumbnailFromURL(source.value)
+                .then(tempThumb => setThumbnailURL(tempThumb))
+                .catch(() => setThumbnailURL(lamp));
+        }
+        else {
+            setErrSource('Should be a valid URL');
+        }
     }
 
     async function getThumbnailFromURL(url) {
-        // TODO: Make minimal check to text injections.
-        // TODO: Update data base.
-
         let tempThumb = lamp;
+        setMediaType('page');
 
         // Checking if the given sourceUrl is of a known image type or a video provider
         if (isImageURL(url)) {
             tempThumb = url;
+            setMediaType('image');
         }
         else {
             const video = parseVideoURL(url);
             if (video.type !== '') {
-                if (video.type === 'youtube')
+                setMediaType('video');
+                if (video.type === 'youtube') {
                     tempThumb = getYouTubeThumbnail(video.id);
+                }
                 else if (video.type === 'vimeo') {
                     await getVimeoThumbnail(video.id)
                         .then(vimeoThumb => {
@@ -53,6 +62,89 @@ export default function Upload(props) {
         }
 
         return tempThumb;
+    }
+
+    function checkInput(formTitle, formSourceURL, formTags) {
+        let goodCheck = true;
+
+        console.log('Input checking');
+        // Title checks
+        if (formTitle.length < 1 || formTitle.length > 30) {
+            setErrTitle('Should be between 1 and 30 charcters');
+            goodCheck = false;
+        }
+        else if (!onlyAlphaNum(formTitle, [' ', '!', '.', ','])) {
+            setErrTitle('Should contain only letters and numbers');
+            goodCheck = false;
+        }
+        else { setErrTitle(''); }
+
+        // Tags Checks
+        if (formTags.length < 1 || formTags.length > 30) {
+            setErrTags('Should be between 1 and 30 charcters');
+            goodCheck = false;
+        }
+        else if (!onlyAlphaNum(formTags, [',', ' '])) {
+            setErrTags('Should contain only letters, numbers and commas');
+            goodCheck = false;
+        }
+        else { setErrTags(''); }
+
+        // Source check
+        if (formSourceURL.length < 1) {
+            setErrSource('Should not be empty');
+            goodCheck = false;
+        }
+        else if (!isURL(formSourceURL)) {
+            setErrSource('Should be a valid URL');
+            goodCheck = false;
+        }
+        else { setErrSource(''); }
+
+        return goodCheck;
+    }
+
+    function resetFormFields() {
+        source.setValue('');
+        title.setValue('');
+        tags.setValue('');
+        setThumbnailURL('');
+        setMediaType('');
+        setFetching(false);
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+
+        // Init server message
+        setServerError('');
+
+        // If there's a problem with the input, don't fetch from server:
+        if (!checkInput(title.value, source.value, tags.value)) { return; }
+
+        setFetching(true);
+
+        const parsedTags = tags.value.split(' ').join('').toLowerCase();
+
+        try {
+            uploadInspirationToDB(title.value, source.value, parsedTags, thumbnailURL, mediaType, props.signedInUser.id)
+                .then(entry => {
+                    console.log('Successfuly uploaded inspiration:', entry);
+                    props.handleSuccessfulUpload();
+                    setTimeout(() => {
+                        resetFormFields();
+                    }, 500);
+                })
+                .catch(error => {
+                    console.error("Upload failed:", error);
+                    setServerError(error.message);
+                    setFetching(false);
+                });
+        }
+        catch (error) {
+            console.error(error);
+            setFetching(false);
+        }
     }
 
     const containerClassNames = 'upload-area'
@@ -94,7 +186,7 @@ export default function Upload(props) {
                 <CustomButton className="submit-btn" type="submit"
                     bgColor={mainColors.c1}                     // Only HEX color
                     foreColor='white'
-                    onClick={() => alert('Uploading...')}
+                    onClick={(event) => handleSubmit(event)}
                     disabled={fetching}>
                     UPLOAD
                 </CustomButton>
@@ -112,7 +204,8 @@ function useFormInput(initialValue) {
 
     return {
         value: value,
-        onChange: handleChange
+        onChange: handleChange,
+        setValue: setValue
     };
 }
 

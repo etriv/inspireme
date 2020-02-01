@@ -5,7 +5,7 @@ import CustomButton from '../custom-button/custom-button';
 import { mainColors5 as mainColors } from '../../modules/main-colors';
 import { checkUserSignInFromDB } from '../../modules/db-manager';
 import { Link } from 'react-router-dom';
-import { onlyLetters } from '../../modules/helpers';
+import { onlyAlphaNum } from '../../modules/helpers';
 
 class SignIn extends React.Component {
     constructor(props) {
@@ -28,7 +28,7 @@ class SignIn extends React.Component {
             this.setState({ errUserName: 'Should be between 2 and 12 charcters' });
             goodCheck = false;
         }
-        else if (!onlyLetters(userName)) {
+        else if (!onlyAlphaNum(userName)) {
             this.setState({ errUserName: 'Should contain only letters and numbers' });
             goodCheck = false;
         }
@@ -49,26 +49,14 @@ class SignIn extends React.Component {
 
         const { password, userName } = this.state;
 
-        // Init server message
-        this.setState({ serverError: '', fetching: true });
-
-        // If there's a problem with the input, don't fetch from server.
+        // If there's a problem with the input, don't fetch from server:
         // if (!this.checkInput(userName, password)) { return; }
         // TODO: comment-in the input check above when done developing.
 
-        // this.setState({  });
-        // Can start here a loading animation.
+        // Init server message
+        this.setState({ serverError: '', fetching: true });
 
         try {
-            // Checking if user's credentials match.
-            // TODO: Uppon success, direct user to the HomePage and update Navigation.
-            // TODO: Uppon failure, present a specific error on screen.
-            
-            // Alternative way instead of a chain of thens...
-            // let signInResponse = await checkUserSIgnInFromDB
-            // let user = await getUserFromDB(signInResponse)
-            // let preferences = await getUserPrefences(user)
-
             checkUserSignInFromDB(userName, password)
                 .then(user => {
                     console.log('Successfuly signed-in:', user);

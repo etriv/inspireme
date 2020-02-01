@@ -77,6 +77,35 @@ async function registerUserToDB(name, password) {
         });
 }
 
+//{ title, source, image, userId, tags, type }
+async function uploadInspirationToDB(title, source, tags, image, type, userId) {
+    // console.log('Uploading new inspiration...', title, userId);
+    let fetchUrl = serverUrl + '/inspirations';
+    return fetch(fetchUrl, {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            title,
+            source,
+            tags,
+            image,
+            type,
+            userId
+        })
+    })
+        .then(response => {
+            if (response.status === 200) {
+                return 'Upload succeeded';
+            }
+            else {
+                throw new Error('Upload failed');
+            }
+        })
+        .catch(error => {
+            throw new Error(error.message);
+        });
+}
+
 async function getInspirationsFromDB(tags = '', type = '', sortBy = '', curUserId = '') {
     // console.log('Getting inspirations from DB ()...', 'tags:', tags, 'type:', type);
     let fetchUrl = serverUrl + '/inspirations/';
@@ -101,4 +130,4 @@ async function getInspirationsFromDB(tags = '', type = '', sortBy = '', curUserI
         });
 }
 
-export { getInspirationsFromDB, registerUserToDB, checkUserSignInFromDB, likeInspirationInDB };
+export { getInspirationsFromDB, registerUserToDB, checkUserSignInFromDB, likeInspirationInDB, uploadInspirationToDB };

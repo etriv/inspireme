@@ -1,5 +1,7 @@
-function onlyLetters(str) {
-    return str.match("^[A-Za-z0-9]+$");
+import isURL from 'validator/lib/isURL';
+
+function onlyAlphaNum(str, allowedChars = []) {
+    return str.match("^[A-Za-z0-9" + allowedChars.join('') + "]+$");
 }
 
 function parseVideoURL(url) {
@@ -62,4 +64,4 @@ function isImageURL(url) {
     return endings.some(end => url.endsWith(end));
 }
 
-export { onlyLetters, parseVideoURL, getVimeoThumbnail, getYouTubeThumbnail, isImageURL }
+export { onlyAlphaNum, parseVideoURL, getVimeoThumbnail, getYouTubeThumbnail, isImageURL, isURL }

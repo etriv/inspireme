@@ -74,7 +74,7 @@ class App extends Component {
             <LikedPage signedInUser={this.state.user}/>
           </Route>
           <Route path='/upload'>
-            <UploadPage />
+            <UploadPage signedInUser={this.state.user} />
           </Route>
           <Route path='/uploads'>
             <UploadsPage />
