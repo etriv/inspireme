@@ -106,14 +106,14 @@ async function uploadInspirationToDB(title, source, tags, image, type, userId) {
         });
 }
 
-async function getInspirationsFromDB(tags = '', type = '', sortBy = '', curUserId = '') {
-    // console.log('Getting inspirations from DB ()...', 'tags:', tags, 'type:', type);
+async function getInspirationsFromDB(tags = '', type = '', orderBy = '', curUserId = '') {
+    console.log('Getting inspirations from DB ()...', tags, type, orderBy, curUserId);
     let fetchUrl = serverUrl + '/inspirations/';
-    if (tags !== '' || type !== '' || sortBy !== '' || curUserId !== '') {
+    if (tags !== '' || type !== '' || orderBy !== '' || curUserId !== '') {
         fetchUrl += '?';
         fetchUrl += (tags !== '') ? '&tags=' + tags : '';
         fetchUrl += (type !== '') ? '&type=' + type : '';
-        fetchUrl += (sortBy !== '') ? '&sort=' + sortBy : '';
+        fetchUrl += (orderBy !== '') ? '&order=' + orderBy : '';
         fetchUrl += (curUserId !== '') ? '&curUser=' + curUserId : '';
     }
     console.log('Fetching:', fetchUrl);

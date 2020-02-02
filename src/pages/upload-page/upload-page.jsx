@@ -16,6 +16,7 @@ const UploadPage = (props) => {
         setSuccess(false);
     }
 
+    // TODO: useEffect / useRef
     const uploadClasses = ''
         + (success ? ' faded-out' : '');
 
@@ -36,7 +37,7 @@ const UploadPage = (props) => {
                         <img src={vImg} alt="Success" className="v-img" />
                         <p>Succefuly uploaded inspiration!</p>
                         <span className="link-text" onClick={resetForm}>
-                                Upload more
+                            Upload more
                         </span>
                     </div>
                     : null}

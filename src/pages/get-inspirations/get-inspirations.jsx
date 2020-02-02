@@ -11,23 +11,15 @@ class GetInspirations extends React.Component {
             inspirations: [],
             tags: '',
             insType: 'all',
-            sortBy: 'rating_desc',
+            orderBy: 'likes_desc',
             displayGallery: false
         };
-
-        this.updateInspirations = this.updateInspirations.bind(this);
-        this.handleInspirationsTypeChange = this.handleInspirationsTypeChange.bind(this);
-        this.onSearchSubmit = this.onSearchSubmit.bind(this);
-        this.handleSearchBoxChange = this.handleSearchBoxChange.bind(this);
-        this.handleLikedInspiration = this.handleLikedInspiration.bind(this);
     }
 
-    // Updates gallery inspirations using tags and type of inspirations.
-    // TODO: should also user userId to flag already liked inspirations.
-    updateInspirations() {
+    updateInspirations= () => {
         console.log('Updating inspirations...', 'tags:', this.state.tags, 'type:', this.state.insType);
         const type = this.state.insType !== 'all' ? this.state.insType : '';
-        dbFuncs.getInspirationsFromDB(this.state.tags, type, '', this.props.signedInUser.id)
+        dbFuncs.getInspirationsFromDB(this.state.tags, type, this.state.orderBy, this.props.signedInUser.id)
             .then(data => this.setState({ inspirations: data }, () => {
                 console.log('Fetched inspirations:', this.state.inspirations);
                 this.state.inspirations.length > 0 ?
@@ -38,27 +30,32 @@ class GetInspirations extends React.Component {
             }));
     }
 
-    onSearchSubmit(searchBox = '') {
+    onSearchSubmit = (searchBox = '') => {
         const newTags = searchBox.split(' ').join('').toLowerCase();
         this.setState({ tags: newTags }, () => {
-            // console.log('Updated new tags after submit. Going to fetch...');
-            this.updateInspirations(newTags, this.state.insType);
+            this.updateInspirations();
         });
     }
 
-    handleInspirationsTypeChange(newType = '') {
+    handleInspirationsTypeChange = (newType = '') => {
         newType = (newType === 'all') ? '' : newType;
         this.setState({ insType: newType }, () => {
-            this.updateInspirations(this.state.tags, newType);
+            this.updateInspirations();
         });
     }
 
-    handleSearchBoxChange(newTags = '') {
+    handleSearchBoxChange = (newTags = '') => {
         newTags = newTags.split(' ').join('').toLowerCase();
         this.setState({ tags: newTags });
     }
 
-    handleLikedInspiration(inspirationId, like = true) {
+    handleSortChange = (newOrderBy) => {
+        this.setState({ orderBy: newOrderBy }, () => {
+            this.updateInspirations();
+        });
+    }
+
+    handleLikedInspiration = (inspirationId, like = true) => {
         if (this.props.signedInUser.id === '') return;
 
         dbFuncs.likeInspirationInDB(this.props.signedInUser.id, inspirationId, like);
@@ -66,13 +63,13 @@ class GetInspirations extends React.Component {
         this.likeInspirationInState(inspirationId, like);
     }
 
-    likeInspirationInState(inspirationId, like = true) {
+    likeInspirationInState = (inspirationId, like = true) => {
         this.setState(prevState => ({
             inspirations: prevState.inspirations.map(
                 el => el.id === inspirationId ? {
                     ...el,
                     likes: like ? el.likes + 1 : el.likes - 1,
-                    likedByMe: like ? 1 : null                // The number is arbitrary
+                    likedByMe: like ? 1 : null                // The number 1 is arbitrary
                 }
                     : el
             )
@@ -89,9 +86,10 @@ class GetInspirations extends React.Component {
                 {this.state.displayGallery ?
                     <Gallery
                         items={this.state.inspirations}
+                        signedInUser={this.props.signedInUser}
                         onFilterChange={this.handleInspirationsTypeChange}
                         handleLikedInspiration={this.handleLikedInspiration}
-                        signedInUser={this.props.signedInUser} />
+                        onSortChange={this.handleSortChange} />
                     : null}
             </div>
         );

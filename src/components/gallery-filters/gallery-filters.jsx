@@ -45,11 +45,11 @@ class GalleryFilters extends React.Component {
                 </div>
                 <div className="sort-elem">
                     <span className="sort">Sort:&nbsp;</span>
-                    <select>
-                        <option value="rating-high">Rating (highest)</option>
-                        <option value="rating-low">Rating (lowest)</option>
-                        <option value="date-new">Date (newest)</option>
-                        <option value="date-old">Date (oldest)</option>
+                    <select onChange={(e) => this.props.onSortChange(e.target.value)}>
+                        <option value="likes_desc">Rating (highest)</option>
+                        <option value="likes_asc">Rating (lowest)</option>
+                        <option value="added_desc">Date (newest)</option>
+                        <option value="added_asc">Date (oldest)</option>
                     </select>
                 </div>
             </div>

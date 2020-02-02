@@ -11,7 +11,9 @@ class Gallery extends Component {
         return (
             <div className="gallery-container">
                 <div className='filters-style'>
-                    <GalleryFilters onFilterChange={this.props.onFilterChange} />
+                    <GalleryFilters
+                        onFilterChange={this.props.onFilterChange}
+                        onSortChange={this.props.onSortChange} />
                 </div>
                 <div className="cards-container">
                 {
