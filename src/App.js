@@ -14,10 +14,10 @@ import { userMenuItems } from './modules/menu-config';
 
 class App extends Component {
   state = {
-    isSignedIn: false,
+    isSignedIn: sessionStorage.getItem('userId') && sessionStorage.getItem('userName') ? true : false,
     user: {
-      id: '',
-      name: ''
+      id: sessionStorage.getItem('userId') || '',
+      name: sessionStorage.getItem('userName') || ''
     },
     prevUserName: ''              // Saved for sign-out
   }
@@ -31,12 +31,16 @@ class App extends Component {
         name: userName
       }
     }), () => {
-      // this.props.history.push('/');
+      sessionStorage.setItem('userId', userId);
+      sessionStorage.setItem('userName', userName);
     });
   }
 
   handleSignOut = () => {
     if (this.state.user.id !== '') {
+      sessionStorage.removeItem('userId');
+      sessionStorage.removeItem('userName');
+
       this.setState(curState => ({
         isSignedIn: false,
         prevUserName: curState.user.name,
@@ -45,14 +49,12 @@ class App extends Component {
           id: '',
           name: ''
         }
-      }), () => {
-        // this.props.history.push('/');
-      });
+      }));
     }
   }
 
   render() {
-    console.log('Rendering App with user:', this.state.user);
+    console.log('Rendering App with user:', this.state.user, this.state.isSignedIn);
     return (
       <div className="App">
         <Navigation signedInUser={this.state.user} userMenuItems={userMenuItems} />
