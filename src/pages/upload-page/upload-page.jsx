@@ -7,24 +7,19 @@ import { Redirect } from 'react-router-dom';
 
 const UploadPage = (props) => {
     const [success, setSuccess] = useState(false);
+    const [uploadClasses, setUploadClasses] = useState('');
 
     function handleSuccessfulUpload() {
         setSuccess(true);
+        setUploadClasses('faded-out');
     }
 
     function resetForm() {
         setSuccess(false);
+        setUploadClasses('');
     }
 
-    // TODO: useEffect / useRef
-    const uploadClasses = ''
-        + (success ? ' faded-out' : '');
-
-    if (props.signedInUser.id === '') {
-        return <Redirect to="/sign-in" />;
-    }
-
-    return (
+    return (props.signedInUser.id !== '' ?
         <div className="upload-page">
             <div className="form-boxy">
                 <Upload
@@ -44,6 +39,7 @@ const UploadPage = (props) => {
             </div>
             <img src={cat} alt="Cats" className="cat-boxy" />
         </div>
+        : <Redirect to="/sign-in" />
     );
 }
 
