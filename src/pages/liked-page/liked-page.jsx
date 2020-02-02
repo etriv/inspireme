@@ -7,7 +7,7 @@ class LikedPage extends React.Component {
     
     render() {
         return (
-            <GetInspirations {...this.props} />
+            <GetInspirations {...this.props} showOnlyLiked={true} />
         )
     }
 }

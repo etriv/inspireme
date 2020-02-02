@@ -12,6 +12,7 @@ class GetInspirations extends React.Component {
             tags: '',
             insType: 'all',
             orderBy: 'likes_desc',
+            showOnlyLiked: false,
             displayGallery: false
         };
     }
@@ -19,7 +20,7 @@ class GetInspirations extends React.Component {
     updateInspirations= () => {
         console.log('Updating inspirations...', 'tags:', this.state.tags, 'type:', this.state.insType);
         const type = this.state.insType !== 'all' ? this.state.insType : '';
-        dbFuncs.getInspirationsFromDB(this.state.tags, type, this.state.orderBy, this.props.signedInUser.id)
+        dbFuncs.getInspirationsFromDB(this.state.tags, type, this.state.orderBy, this.props.signedInUser.id, this.props.showOnlyLiked)
             .then(data => this.setState({ inspirations: data }, () => {
                 console.log('Fetched inspirations:', this.state.inspirations);
                 this.state.inspirations.length > 0 ?
@@ -74,6 +75,12 @@ class GetInspirations extends React.Component {
                     : el
             )
         }));
+    }
+
+    componentDidMount() {
+        if (this.props.showOnlyLiked && this.props.signedInUser.id !== '') {
+            this.updateInspirations();
+        }
     }
 
     render() {

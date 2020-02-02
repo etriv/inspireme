@@ -106,7 +106,7 @@ async function uploadInspirationToDB(title, source, tags, image, type, userId) {
         });
 }
 
-async function getInspirationsFromDB(tags = '', type = '', orderBy = '', curUserId = '') {
+async function getInspirationsFromDB(tags = '', type = '', orderBy = '', curUserId = '', showOnlyLiked = false) {
     console.log('Getting inspirations from DB ()...', tags, type, orderBy, curUserId);
     let fetchUrl = serverUrl + '/inspirations/';
     if (tags !== '' || type !== '' || orderBy !== '' || curUserId !== '') {
@@ -115,6 +115,7 @@ async function getInspirationsFromDB(tags = '', type = '', orderBy = '', curUser
         fetchUrl += (type !== '') ? '&type=' + type : '';
         fetchUrl += (orderBy !== '') ? '&order=' + orderBy : '';
         fetchUrl += (curUserId !== '') ? '&curUser=' + curUserId : '';
+        fetchUrl += (showOnlyLiked) ? '&onlyLiked=' + showOnlyLiked : '';
     }
     console.log('Fetching:', fetchUrl);
     return fetch(fetchUrl)
