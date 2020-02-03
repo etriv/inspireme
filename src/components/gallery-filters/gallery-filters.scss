@@ -1,3 +1,5 @@
+@import "../../modules/globals";
+
 .filters-container {
     // border: 1px dotted red;
     width: 96%;
@@ -28,7 +30,7 @@
     height: 2.5rem;
 }
 
-$border-color: #49beb7;
+$border-color: $color2;
 .filter {
     // border: 1px solid black;
     flex: 1 1 25%;
@@ -78,5 +80,5 @@ $border-color: #49beb7;
 .on {
     // font-weight: bold;
     // font-size: 1.1rem;
-    border-bottom: 3px solid #49beb7;
+    border-bottom: 3px solid $color2;
 }

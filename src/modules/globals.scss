@@ -1,0 +1,30 @@
+// https://colorhunt.co/palette/144326
+$color1: #085f63;
+$color2: #49beb7;
+$color3: #facf5a;
+$color4: #ff5959;
+
+@mixin tiny-screen {
+    @media (max-width: 480px) {
+        @content;
+    }
+}
+
+@mixin small-screen {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin medium-screen {
+    @media (max-width: 1250px) {
+        @content;
+    }
+}
+
+@mixin big-screen {
+    @media (min-width: 1250px) {
+        @content;
+    }
+}
+

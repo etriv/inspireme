@@ -3,6 +3,7 @@ import './user-menu.scss';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { mainColors5 as mainColors, shadeHexColor } from '../../modules/main-colors';
+import '../../modules/globals.scss';
 
 const markedColor = mainColors.c3;
 const MarkedDefault = styled('div')`  
