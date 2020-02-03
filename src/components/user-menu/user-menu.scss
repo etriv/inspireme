@@ -8,6 +8,10 @@
     font-family: 'Open Sans', sans-serif;
     z-index: 2;
 
+    @include small-screen {
+        margin-left: 0rem;
+      }
+
     .default-link {
         display: block;
         font-size: 1rem;
@@ -20,6 +24,10 @@
         justify-content: center;
         align-items: center;
         //padding: 10px 20px;
+
+        @include small-screen {
+            width: 6rem;
+          }
     }
 
     .default-link-signed {

@@ -8,10 +8,10 @@ class Navigation extends React.Component {
     render() {
         return (
             <div className="header">
-                    <Link to='/' className="logo">
-                        <span role="img" aria-label="bulb">💡&nbsp;</span>
-                        InspireMe
-                    </Link>
+                <Link to='/' className="logo">
+                    <span role="img" aria-label="bulb">💡&nbsp;</span>
+                    InspireMe
+                </Link>
                 <nav className="menu">
                     <UserMenu defaultText='Sign In' defaultPath='/sign-in'
                         signedInUser={this.props.signedInUser}
@@ -22,7 +22,6 @@ class Navigation extends React.Component {
                         style={{}}>
                         About
                     </Link>
-                    <span className="menu-item icon" href="">☰</span>
                 </nav>
             </div>
         );
