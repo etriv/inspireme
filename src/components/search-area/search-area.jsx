@@ -16,12 +16,12 @@ const InspireText = styled.p`
     word-spacing: 4px;
     text-shadow: 2px 2px 1px ${mainColors.c4};
 
-    @media only screen and (max-width: 1200px) {
+    @media only screen and (max-width: 768px) {
         font-size: 4rem;
     }
 
-    @media only screen and (max-width: 650px) {
-        font-size: 2.5rem;
+    @media only screen and (max-width: 480px) {
+        font-size: 2.8rem;
     }
 `;
 
