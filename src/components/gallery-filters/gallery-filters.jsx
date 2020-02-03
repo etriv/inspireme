@@ -44,8 +44,8 @@ class GalleryFilters extends React.Component {
                         onClick={this.onFilterClick}>Pages</span>
                 </div>
                 <div className="sort-elem">
-                    <span className="sort">Sort:&nbsp;</span>
-                    <select onChange={(e) => this.props.onSortChange(e.target.value)}>
+                    <div className="sort"><span>Sort:&nbsp;</span></div>
+                    <select defaultValue="likes_desc" onChange={(e) => this.props.onSortChange(e.target.value)}>
                         <option value="likes_desc">Rating (highest)</option>
                         <option value="likes_asc">Rating (lowest)</option>
                         <option value="added_desc">Date (newest)</option>

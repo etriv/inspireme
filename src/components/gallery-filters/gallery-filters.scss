@@ -9,76 +9,128 @@
     justify-content: space-between;
     align-items: center;
     align-content: center;
+    z-index: -1;
     //margin-top: 0.5rem;
     //margin: 0.5rem 0rem;
+
+    .filters-pad {
+        // border: 1px solid black;
+        flex: 1 1 33%;
+    }
+    
+    .filters {
+        //border: 1px solid black;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        flex: 2 1 34%;
+        height: 2.5rem;
+
+        $border-color: $color2;
+        .filter {
+            // border: 1px solid black;
+            flex: 1 1 25%;
+            min-width: 4.8rem;
+            // width: 5rem;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            //color: black;
+            // background-color: lighten($border-color, 40%);
+            padding: 0.5rem;
+            border-left: 1px dashed $border-color;
+            border-bottom: 3px solid white;
+            //width: 100%;
+            // margin: 0.5rem 0rem;
+            cursor: pointer;
+            transition: border-bottom 0.2s, font-size 0.1s;
+
+            @include small-screen {
+                font-size: 1rem;
+                min-width: 4.5rem;
+                padding: 0.4rem;
+            }
+
+            @include tiny-screen {
+                font-size: 0.8rem;
+                min-width: 3.5rem;
+                padding: 0.2rem;
+            }
+        }
+        
+        .filter.last {
+            border-right: 1px dashed $border-color;
+        }
+
+        .on {
+            // font-weight: bold;
+            // font-size: 1.1rem;
+            border-bottom: 3px solid $color2;
+        }
+    }
+    
+    .sort-elem {
+        // border: 1px solid red;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        align-content: center;
+        flex: 1 1 33%;
+        overflow: hidden;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        font-weight: bold;
+        padding-bottom: 3px;
+        //padding: 0.5rem;
+        // white-space: nowrap;
+        // width: 25%;
+
+        .sort {
+            margin-left: 2rem;
+
+            @include small-screen {
+                font-size: 0.9rem;
+            }
+            @media (max-width: 750px) {
+                font-size: 0.9rem;
+            }
+            @media (max-width: 600px) {
+                font-size: 0.9rem;
+            }
+            @include tiny-screen {
+                font-size: 0.8rem;
+            }
+            @media (max-width: 500px) {
+                display: none;
+            }
+        }
+
+        select {
+            background-color: white;
+            color: black;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+            // padding: 2px;
+            // width: 250px;
+            //border: 1px solid gray;
+            //appearance: button;
+            outline: none;
+
+            @include small-screen {
+                width: 7rem;
+            }
+            @media (max-width: 700px) {
+                width: 4.3rem;
+            }
+            @media (max-width: 600px) {
+                width: 20px;
+            }
+          }
+
+    }
 }
 
-.filters-pad {
-    //border: 1px solid black;
-    flex: 1 1 33%;
-    width: 20rem;
-}
-
-.filters {
-    //border: 1px solid black;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    flex: 2 1 34%;
-    height: 2.5rem;
-}
-
-$border-color: $color2;
-.filter {
-    // border: 1px solid black;
-    flex: 1 1 25%;
-    min-width: 5rem;
-    // width: 5rem;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    //color: black;
-    // background-color: lighten($border-color, 40%);
-    padding: 0.5rem;
-    border-left: 1px dashed $border-color;
-    border-bottom: 3px solid white;
-    //width: 100%;
-    // margin: 0.5rem 0rem;
-    cursor: pointer;
-    transition: border-bottom 0.2s, font-size 0.1s;
-}
-
-.filter.last {
-    border-right: 1px dashed $border-color;
-}
-
-.sort-elem {
-    // border: 1px solid red;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    align-content: center;
-    flex: 1 1 33%;
-    overflow: hidden;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    font-weight: bold;
-    padding-bottom: 3px;
-    //padding: 0.5rem;
-    // white-space: nowrap;
-    // width: 25%;
-}
-
-.sort {
-    margin-left: 2rem;
-}
-
-.on {
-    // font-weight: bold;
-    // font-size: 1.1rem;
-    border-bottom: 3px solid $color2;
-}

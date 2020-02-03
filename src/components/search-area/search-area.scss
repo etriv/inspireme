@@ -9,6 +9,7 @@
     align-content: center;
     padding: 1.5rem;
     min-width: 300px;
+    z-index: 1;
 
     @include small-screen {
         padding: 1rem;
