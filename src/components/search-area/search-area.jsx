@@ -31,12 +31,9 @@ class SearchArea extends React.Component {
         this.state = {
             searchField: ''
         };
-        
-        this.onSearchBoxChange = this.onSearchBoxChange.bind(this);
-        this.handleKeyUp = this.handleKeyUp.bind(this);
     }
 
-    onSearchBoxChange(event) {
+    onSearchBoxChange = (event) => {
         this.setState({ searchField: event.target.value }, () => {
             // Feature: getting inspirations related to the text in the search field
             // upon changing the TYPE of the presented inspirations.
@@ -44,26 +41,43 @@ class SearchArea extends React.Component {
         });
     }
 
-    handleKeyUp(event) {
+    handleKeyUp = (event) => {
         // If ENTER is being pressed, initiate fetching of inspirations
         if (event.keyCode === 13) {
             this.props.onSearchClick(this.state.searchField);
         }
     }
 
+
+
     render() {
+        let mainText = '';
+        let btnText = '';
+        let containerClassNames = 'search-area-container';
+        let btnClassNames = 'button';
+        if (this.props.likedMode) {
+            mainText = '';
+            btnText = 'EXPLORE';
+            containerClassNames += ' row-mode';
+            btnClassNames += ' only-margin-left';
+        }
+        else {
+            mainText = 'Get inspired';
+            btnText = 'INSPIRE';
+        }
+
         return (
-            <BoxContainer className="search-area-container">
-                <InspireText>Get inspired</InspireText>
+            <BoxContainer className={containerClassNames}>
+                <InspireText>{mainText}</InspireText>
                 <input name="search-text" className="search-box" type="text"
                     placeholder="✎..."
                     onChange={this.onSearchBoxChange}
                     onKeyUp={this.handleKeyUp} />
-                <CustomButton className="button"
+                <CustomButton className={btnClassNames}
                     bgColor={mainColors.c4}
                     foreColor='white'
                     onClick={this.props.onSearchClick.bind(this, this.state.searchField)}>
-                    INSPIRE</CustomButton>
+                    {btnText}</CustomButton>
             </BoxContainer>
         );
     }

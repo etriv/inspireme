@@ -88,6 +88,7 @@ class GetInspirations extends React.Component {
         return (
             <div className="get-inspirations">
                 <SearchArea
+                    likedMode={this.props.showOnlyLiked}
                     onSearchBoxChange={this.handleSearchBoxChange}
                     onSearchClick={this.onSearchSubmit} />
                 {this.state.displayGallery ?
