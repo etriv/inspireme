@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import './gallery-card.scss'
+import ContentLoader from 'react-content-loader'
 import { mainColors5 as mainColors } from '../../modules/main-colors';
 
 // ########## STYLES ########## //
@@ -20,6 +21,17 @@ const CardInfo = styled.div`
     margin: 0rem;
 `;
 
+const ImgLoader = ({className}) => (
+    <ContentLoader viewBox="0 0 100 100"
+        className={className}
+        preserveAspectRatio="none"
+        backgroundColor={mainColors.c2}
+        foregroundColor={mainColors.c1}
+        speed={2} >  
+      <rect x="0" y="0" width="100%" height="100%" />
+    </ContentLoader>
+  )
+
 const LikeButton = ({inspId, liked, isSignedIn, onClick}) => {
     return !liked ?
         <span className="like-btn"
@@ -34,6 +46,25 @@ const LikeButton = ({inspId, liked, isSignedIn, onClick}) => {
 
 // ########## COMPONENT ########## //
 class GalleryCard extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            imgLoading: true
+        }
+
+        this.preloadImage(this.props.image);
+    }
+    
+    onImageLoaded = (img) => {
+        // console.log("The image has been loaded: " + this.props.title);
+        this.setState({ imgLoading: false });
+    }
+
+    preloadImage = (src) => {
+        var img = new Image();
+        img.onload = () => {this.onImageLoaded(this)};
+        img.src = src;
+    }
 
     render() {
         var borderTop = {
@@ -44,11 +75,15 @@ class GalleryCard extends React.Component {
         return (
             <div className="card">
                 <div className="card-content">
+                    { this.state.imgLoading ? 
+                    <ImgLoader className="card-image" />
+                    :
                     <a href={this.props.source} className="card-image" target="_blank" rel="noopener noreferrer"
                         style={{
                             backgroundImage: `url(${this.props.image})`
                         }}
                         alt=""> </a>
+                    }
                     <div className="card-desc" style={borderTop}>
                         <div className="title-info-container">
                             <p className="title">{this.props.title}</p>
