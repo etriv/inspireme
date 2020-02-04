@@ -1,3 +1,5 @@
+@import "../../modules/globals";
+
 .register-page {
     // border: 1px dotted black;
     display: flex;
@@ -54,6 +56,9 @@
         margin-bottom: 1rem;
         width: 40%;
         margin: 1rem;
+        @include tiny-screen {
+            min-width: 300px;
+          }
     }
 
     .faded-in {
