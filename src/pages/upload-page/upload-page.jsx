@@ -30,7 +30,7 @@ const UploadPage = (props) => {
                 {success ?
                     <div className="success-msg faded-in">
                         <img src={vImg} alt="Success" className="v-img" />
-                        <p>Succefuly uploaded inspiration!</p>
+                        <p>Succefully uploaded inspiration!</p>
                         <span className="link-text" onClick={resetForm}>
                             Upload more
                         </span>
