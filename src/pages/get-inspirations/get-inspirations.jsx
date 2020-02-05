@@ -1,6 +1,6 @@
 import React from 'react';
 import './get-inspirations.scss';
-import * as dbFuncs from '../../modules/db-manager';
+import * as dbFuncs from '../../modules/server-manager';
 import SearchArea from '../../components/search-area/search-area';
 import Gallery from '../../components/gallery/gallery';
 

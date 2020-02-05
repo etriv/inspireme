@@ -131,4 +131,25 @@ async function getInspirationsFromDB(tags = '', type = '', orderBy = '', curUser
         });
 }
 
-export { getInspirationsFromDB, registerUserToDB, checkUserSignInFromDB, likeInspirationInDB, uploadInspirationToDB };
+async function checkContentType(url) {
+    // localhost:3001/check/content-type
+    let fetchUrl = serverUrl + '/check/content-type';
+    return fetch(fetchUrl, {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            url: url
+        })
+    })
+        .then(response => response.json())
+        .then(res => {
+            return res;
+        })
+        .catch(error => {
+            throw new Error(error.message);
+        });
+}
+
+export { getInspirationsFromDB, registerUserToDB,
+    checkUserSignInFromDB, likeInspirationInDB,
+    uploadInspirationToDB, checkContentType };

@@ -3,9 +3,9 @@ import './upload.scss';
 import FormInput from '../form-input/form-input';
 import CustomButton from '../custom-button/custom-button';
 import { mainColors5 as mainColors } from '../../modules/main-colors';
-import { parseVideoURL, getVimeoThumbnail, getYouTubeThumbnail, isImageURL, onlyAlphaNum, isURL } from '../../modules/helpers';
+import { parseVideoURL, getVimeoThumbnail, getYouTubeThumbnail, onlyAlphaNum, isURL } from '../../modules/helpers';
 import lamp from '../../images/lamp4.png';
-import { uploadInspirationToDB } from '../../modules/db-manager';
+import { uploadInspirationToDB, checkContentType } from '../../modules/server-manager';
 // import { Link } from 'react-router-dom';
 
 export default function Upload(props) {
@@ -25,8 +25,12 @@ export default function Upload(props) {
 
         if (isURL(source.value)) {
             getThumbnailFromURL(source.value)
-                .then(tempThumb => setThumbnailURL(tempThumb))
-                .catch(() => setThumbnailURL(lamp));
+                .then(tempThumb => {
+                    return setThumbnailURL(tempThumb)
+                })
+                .catch(() => {
+                    setThumbnailURL(lamp)
+                });
         }
         else {
             setErrSource('Should be a valid URL');
@@ -36,9 +40,12 @@ export default function Upload(props) {
     async function getThumbnailFromURL(url) {
         let tempThumb = lamp;
         setMediaType('page');
+        const resourceCheck = await checkContentType(url);
 
-        // Checking if the given sourceUrl is of a known image type or a video provider
-        if (isImageURL(url)) {
+        // If url returned 404, the resource doesn't exist
+        if (resourceCheck.status === 404) { return lamp; }
+
+        if (resourceCheck.contentType.includes('image')) {
             tempThumb = url;
             setMediaType('image');
         }
@@ -48,6 +55,8 @@ export default function Upload(props) {
                 setMediaType('video');
                 if (video.type === 'youtube') {
                     tempThumb = getYouTubeThumbnail(video.id);
+                    const youtubeCheck = await checkContentType(tempThumb);
+                    tempThumb = (youtubeCheck.status === 200) ? tempThumb : lamp;
                 }
                 else if (video.type === 'vimeo') {
                     await getVimeoThumbnail(video.id)
@@ -67,7 +76,6 @@ export default function Upload(props) {
     function checkInput(formTitle, formSourceURL, formTags) {
         let goodCheck = true;
 
-        console.log('Input checking');
         // Title checks
         if (formTitle.length < 1 || formTitle.length > 30) {
             setErrTitle('Should be between 1 and 30 charcters');

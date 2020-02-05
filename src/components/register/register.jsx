@@ -3,7 +3,7 @@ import './register.scss';
 import FormInput from '../form-input/form-input';
 import CustomButton from '../custom-button/custom-button';
 import { mainColors5 as mainColors } from '../../modules/main-colors';
-import { registerUserToDB } from '../../modules/db-manager';
+import { registerUserToDB } from '../../modules/server-manager';
 import { Link } from 'react-router-dom';
 import { onlyAlphaNum } from '../../modules/helpers';
 
