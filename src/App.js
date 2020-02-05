@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.scss';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import GetInspirations from './pages/get-inspirations/get-inspirations';
 import SignInPage from './pages/sign-in-page/sign-in-page';
 import RegisterPage from './pages/register-page/register-page';
@@ -87,4 +87,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+export default App;
