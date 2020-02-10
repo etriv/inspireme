@@ -1,4 +1,5 @@
-const serverUrl = 'http://localhost:3001'
+// const serverUrl = 'http://localhost:3001'
+const serverUrl = 'https://inspire-me2.herokuapp.com'
 
 // Updates the DB according to the like that was done
 // Returns bool regrading the success of the proccess
