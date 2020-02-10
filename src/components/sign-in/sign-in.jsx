@@ -39,6 +39,10 @@ class SignIn extends React.Component {
             this.setState({ errPassword: 'Should be between 6 and 20 charcters' });
             goodCheck = false;
         }
+        else if (!onlyAlphaNum(password)) {
+            this.setState({ errPassword: 'Should contain only letters and numbers' });
+            goodCheck = false;
+        }
         else { this.setState({ errPassword: '' }); }
 
         return goodCheck;
@@ -49,12 +53,14 @@ class SignIn extends React.Component {
 
         const { password, userName } = this.state;
 
+        this.setState({ serverError: ''});
+
         // If there's a problem with the input, don't fetch from server:
-        // if (!this.checkInput(userName, password)) { return; }
+        if (!this.checkInput(userName, password)) { return; }
         // TODO: comment-in the input check above when done developing.
 
         // Init server message
-        this.setState({ serverError: '', fetching: true });
+        this.setState({ fetching: true });
 
         try {
             checkUserSignInFromDB(userName, password)

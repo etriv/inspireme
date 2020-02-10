@@ -41,6 +41,10 @@ class Register extends React.Component {
             this.setState({ errPassword: 'Should be between 6 and 20 charcters' });
             goodCheck = false;
         }
+        else if (!onlyAlphaNum(password)) {
+            this.setState({ errPassword: 'Should contain only letters and numbers' });
+            goodCheck = false;
+        }
         else { this.setState({ errPassword: '' }); }
 
         // Password Confirm check
