@@ -1,0 +1,8 @@
+heroku login
+
+heroku git:remote -a inspireme2
+
+git remote -v
+
+git push heroku master
+
