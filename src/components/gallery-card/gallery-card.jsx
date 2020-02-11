@@ -26,8 +26,10 @@ const ImgLoader = ({ className }) => (
     <ContentLoader viewBox="0 0 100 100"
         className={className}
         preserveAspectRatio="none"
-        backgroundColor={mainColors.c2}
-        foregroundColor={mainColors.c1}
+        // backgroundColor={mainColors.c2}
+        // foregroundColor={mainColors.c1}
+        backgroundColor={'#f2f2f2'}
+        foregroundColor={'#cccccc'}
         speed={2} >
         <rect x="0" y="0" width="100%" height="100%" />
     </ContentLoader>
