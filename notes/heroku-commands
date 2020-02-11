@@ -6,3 +6,4 @@ git remote -v
 
 git push heroku master
 
+git logs --tail
