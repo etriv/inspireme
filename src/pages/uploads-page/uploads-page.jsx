@@ -1,11 +1,12 @@
 import React from 'react';
 import './uploads-page.scss';
+import cat from '../../images/hanging-cat.png';
 
 class UploadsPage extends React.Component {
     render() {
         return (
-            <div>
-                My Uploads
+            <div className='uploads-page'>
+                <img src={cat} alt="Cat" className="cat"/>
             </div>
         )
     }

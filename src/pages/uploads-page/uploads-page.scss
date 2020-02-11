@@ -1,0 +1,16 @@
+.uploads-page {
+    .cat {
+        //border: 1px dotted red;
+        max-height: 900px;
+        width: 300px;
+        margin: 2rem auto;
+
+        @media only screen and (max-width: 1200px) {
+            width: 250px;
+        }
+
+        @media only screen and (max-width: 650px) {
+            width: 200px;
+        }
+    }
+}
