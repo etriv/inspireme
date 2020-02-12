@@ -11,7 +11,7 @@ class GetInspirations extends React.Component {
         this.state = {
             inspirations: [],
             tags: '',
-            insType: 'all',
+            insType: '',
             orderBy: 'likes_desc',
             showOnlyLiked: false,
             displayGallery: false,
@@ -19,10 +19,15 @@ class GetInspirations extends React.Component {
         };
     }
 
+    updateDisplayedInspirations = () => {
+        // Apply filters on currently held inspirations, instead of fetching again from server
+        // (Possible to use array.filter())
+    }
+
     updateInspirations = () => {
         console.log('Updating inspirations...', 'tags:', this.state.tags, 'type:', this.state.insType);
         this.setState({ fetching: true });
-        const type = this.state.insType !== 'all' ? this.state.insType : '';
+        const type = this.state.insType;
         dbFuncs.getInspirationsFromDB(this.state.tags, type, this.state.orderBy, this.props.signedInUser.id, this.props.showOnlyLiked)
             .then(data => this.setState({ inspirations: data, fetching: false }, () => {
                 console.log('Fetched inspirations:', this.state.inspirations);
@@ -44,7 +49,7 @@ class GetInspirations extends React.Component {
     handleInspirationsTypeChange = (newType = '') => {
         newType = (newType === 'all') ? '' : newType;
         this.setState({ insType: newType }, () => {
-            this.updateInspirations();
+            // this.updateInspirations(); // No need for another fetch, we'll just filter localy
         });
     }
 
@@ -88,6 +93,11 @@ class GetInspirations extends React.Component {
 
     render() {
         // console.log('GetInspirations rendering: ', this.state.inspirations);
+        let inspirations = this.state.inspirations;
+        if (this.state.insType !== '') {
+            inspirations = inspirations.filter(insp => insp.type === this.state.insType);
+        }
+
         return (
             <div className="get-inspirations">
                 <SearchArea
@@ -96,7 +106,7 @@ class GetInspirations extends React.Component {
                     onSearchClick={this.onSearchSubmit} />
                 {this.state.displayGallery ?
                     <Gallery
-                        items={this.state.inspirations}
+                        items={inspirations}
                         signedInUser={this.props.signedInUser}
                         onFilterChange={this.handleInspirationsTypeChange}
                         handleLikedInspiration={this.handleLikedInspiration}
