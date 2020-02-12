@@ -77,8 +77,8 @@ export default function Upload(props) {
         let goodCheck = true;
 
         // Title checks
-        if (formTitle.length < 1 || formTitle.length > 30) {
-            setErrTitle('Should be between 1 and 30 charcters');
+        if (formTitle.length < 1 || formTitle.length > 40) {
+            setErrTitle('Should be between 1 and 40 charcters');
             goodCheck = false;
         }
         else if (!onlyAlphaNum(formTitle, [' ', '!', '.', ','])) {
@@ -88,8 +88,8 @@ export default function Upload(props) {
         else { setErrTitle(''); }
 
         // Tags Checks
-        if (formTags.length < 1 || formTags.length > 30) {
-            setErrTags('Should be between 1 and 30 charcters');
+        if (formTags.length < 1 || formTags.length > 40) {
+            setErrTags('Should be between 1 and 40 charcters');
             goodCheck = false;
         }
         else if (!onlyAlphaNum(formTags, [',', ' '])) {
