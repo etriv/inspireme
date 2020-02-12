@@ -69,11 +69,26 @@ class GalleryCard extends React.Component {
         img.src = src;
     }
 
+    getTypeIcon = (type) => {
+        switch (type) {
+            case 'video':
+                return '📹';
+            case 'image':
+                return '🖼️';
+            case 'page':
+            default:
+                return '📄';
+        }
+    }
+
     render() {
-        var borderTop = {
+        let borderTop = {
             borderTop: `3px solid ${this.props.likedByMe ? mainColors.c3 : mainColors.c2}`,
             transition: 'border-color 0.2s'
         }
+
+        let typeIcon = this.getTypeIcon(this.props.type);
+
 
         return (
             <div className="card">
@@ -89,7 +104,7 @@ class GalleryCard extends React.Component {
                     }
                     <div className="card-desc" style={borderTop}>
                         <div className="title-info-container">
-                            <p className="title">{this.props.title}</p>
+                            <p className="title">{typeIcon} {this.props.title}</p>
                             <CardInfo>By: <u>{this.props.uploaderName}</u> on {this.props.added.split('T')[0]}</CardInfo>
                         </div>
                         <CardFooter>
@@ -98,8 +113,7 @@ class GalleryCard extends React.Component {
                                 isSignedIn={this.props.isSignedIn}
                                 onClick={this.props.handleLikeClick} />
                             <span className="like-counter"
-                                style={this.props.likedByMe ? { color: 'black', fontWeight: 600 } : null}>
-                                {this.props.likes}
+                                style={this.props.likedByMe ? { color: 'black', fontWeight: 600 } : null}>                                {this.props.likes}
                             </span>
                         </CardFooter>
                     </div>
