@@ -54,7 +54,7 @@ class App extends Component {
   }
 
   render() {
-    console.log('Rendering App with user:', this.state.user, this.state.isSignedIn);
+    // console.log('Rendering App with user:', this.state.user, this.state.isSignedIn);
     return (
       <div className="App">
         <Navigation signedInUser={this.state.user} userMenuItems={userMenuItems} />

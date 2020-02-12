@@ -77,12 +77,12 @@ class Register extends React.Component {
             // TODO: Add "fetching" animation.
             registerUserToDB(userName, password)
                 .then(regUser => {
-                    console.log('Successfuly registered:', regUser);
+                    // console.log('Successfuly registered:', regUser);
                     this.props.handleSuccess();
                     // this.setState({ userName: '', password: '', confirmPassword: '' });
                 })
                 .catch(error => {
-                    console.log("Register failed:", error);
+                    // console.log("Register failed:", error);
                     this.setState({ serverError: error.message, fetching: false });
                 });
         }

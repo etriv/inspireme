@@ -108,7 +108,7 @@ async function uploadInspirationToDB(title, source, tags, image, type, userId) {
 }
 
 async function getInspirationsFromDB(tags = '', type = '', orderBy = '', curUserId = '', showOnlyLiked = false) {
-    console.log('Getting inspirations from DB ()...', tags, type, orderBy, curUserId);
+    // console.log('Getting inspirations from DB ()...', tags, type, orderBy, curUserId);
     let fetchUrl = serverUrl + '/inspirations/';
     if (tags !== '' || type !== '' || orderBy !== '' || curUserId !== '') {
         fetchUrl += '?';
@@ -118,16 +118,16 @@ async function getInspirationsFromDB(tags = '', type = '', orderBy = '', curUser
         fetchUrl += (curUserId !== '') ? '&curUser=' + curUserId : '';
         fetchUrl += (showOnlyLiked) ? '&onlyLiked=' + showOnlyLiked : '';
     }
-    console.log('Fetching:', fetchUrl);
+    // console.log('Fetching:', fetchUrl);
     return fetch(fetchUrl)
         .then(response => {
             if (response.status === 200)
                 return response.json();
-            console.log('Response status is not OK');
+            // console.log('Response status is not OK');
             return [];
         })
         .catch((e) => {
-            console.log('Error while fetching inspirations:', e);
+            // console.log('Error while fetching inspirations:', e);
             return [];
         });
 }

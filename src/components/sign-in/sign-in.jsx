@@ -65,11 +65,11 @@ class SignIn extends React.Component {
         try {
             checkUserSignInFromDB(userName, password)
                 .then(user => {
-                    console.log('Successfuly signed-in:', user);
+                    // console.log('Successfuly signed-in:', user);
                     this.props.onSuccessfulSignIn(user.id, user.name); 
                 })
                 .catch(error => {
-                    console.log("Sign-in failed:", error);
+                    // console.log("Sign-in failed:", error);
                     this.setState({ serverError: error.message, fetching: false });
                 });
         }

@@ -81,7 +81,7 @@ export default function Upload(props) {
             setErrTitle('Should be between 1 and 40 charcters');
             goodCheck = false;
         }
-        else if (!onlyAlphaNum(formTitle, [' ', '!', '.', ','])) {
+        else if (!onlyAlphaNum(formTitle, [' ', '!', '.', ',','-'])) {
             setErrTitle('Should contain only letters and numbers');
             goodCheck = false;
         }
@@ -137,7 +137,7 @@ export default function Upload(props) {
         try {
             uploadInspirationToDB(title.value, source.value, parsedTags, thumbnailURL, mediaType, props.signedInUser.id)
                 .then(entry => {
-                    console.log('Successfuly uploaded inspiration:', entry);
+                    // console.log('Successfuly uploaded inspiration:', entry);
                     props.handleSuccessfulUpload();
                     setTimeout(() => {
                         resetFormFields();

@@ -25,12 +25,12 @@ class GetInspirations extends React.Component {
     }
 
     updateInspirations = () => {
-        console.log('Updating inspirations...', 'tags:', this.state.tags, 'type:', this.state.insType);
+        // console.log('Updating inspirations...', 'tags:', this.state.tags, 'type:', this.state.insType);
         this.setState({ fetching: true });
         const type = this.state.insType;
         dbFuncs.getInspirationsFromDB(this.state.tags, type, this.state.orderBy, this.props.signedInUser.id, this.props.showOnlyLiked)
             .then(data => this.setState({ inspirations: data, fetching: false }, () => {
-                console.log('Fetched inspirations:', this.state.inspirations);
+                // console.log('Fetched inspirations:', this.state.inspirations);
                 this.state.inspirations.length > 0 ?
                     this.setState({ displayGallery: true })
                     : this.setState({ displayGallery: true }); // this.setState({displayGallery: false});
