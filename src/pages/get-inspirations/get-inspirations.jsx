@@ -4,6 +4,7 @@ import * as dbFuncs from '../../modules/server-manager';
 import SearchArea from '../../components/search-area/search-area';
 import Gallery from '../../components/gallery/gallery';
 import SquareLoader from "react-spinners/SquareLoader";
+import cat from '../../images/cat-1583459.png';
 
 class GetInspirations extends React.Component {
     constructor(props) {
@@ -15,13 +16,9 @@ class GetInspirations extends React.Component {
             orderBy: 'likes_desc',
             showOnlyLiked: false,
             displayGallery: false,
-            fetching: false
+            fetching: false,
+            noResults: false
         };
-    }
-
-    updateDisplayedInspirations = () => {
-        // Apply filters on currently held inspirations, instead of fetching again from server
-        // (Possible to use array.filter())
     }
 
     updateInspirations = () => {
@@ -29,12 +26,23 @@ class GetInspirations extends React.Component {
         this.setState({ fetching: true });
         const type = this.state.insType;
         dbFuncs.getInspirationsFromDB(this.state.tags, type, this.state.orderBy, this.props.signedInUser.id, this.props.showOnlyLiked)
-            .then(data => this.setState({ inspirations: data, fetching: false }, () => {
-                // console.log('Fetched inspirations:', this.state.inspirations);
-                this.state.inspirations.length > 0 ?
-                    this.setState({ displayGallery: true })
-                    : this.setState({ displayGallery: true }); // this.setState({displayGallery: false});
-            }));
+            .then(data => {
+                if (Array.isArray(data) && data.length > 0) {
+                    this.setState({
+                        inspirations: data,
+                        fetching: false,
+                        displayGallery: true,
+                        noResults: false
+                    })
+                }
+                else {
+                    this.setState({
+                        fetching: false,
+                        displayGallery: false,
+                        noResults: true
+                    })
+                }
+            });
     }
 
     onSearchSubmit = (searchBox = '') => {
@@ -109,6 +117,12 @@ class GetInspirations extends React.Component {
                         onFilterChange={this.handleInspirationsTypeChange}
                         handleLikedInspiration={this.handleLikedInspiration}
                         onSortChange={this.handleSortChange} />
+                    : null}
+                {this.state.noResults ?
+                    <div className="no-results">
+                        <div className="no-results-text">Found no results for your search...</div>
+                        <img src={cat} alt="Cat" className="cat" />
+                    </div>
                     : null}
                 {this.state.fetching ?
                     <div className="cool-loading">

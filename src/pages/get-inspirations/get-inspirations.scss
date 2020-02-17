@@ -13,4 +13,42 @@
         50% { opacity: 0;}
         100% { opacity: 1;}
     }
+
+    .cat {
+        //border: 1px dotted red;
+        width: 600px;
+        margin: 2rem auto;
+
+        @media only screen and (max-width: 1200px) {
+            // transform: scale(0.9, 0.9);
+            width: 400px;
+            height: auto;
+        }
+
+        @media only screen and (max-width: 650px) {
+            // transform: scale(0.6, 0.6);
+            width: 300px;
+            height: auto;
+        }
+    }
+
+    .no-results {
+        font-family: 'Open Sans', sans-serif;
+
+        .no-results-text {
+            margin-top: 1rem;
+            margin-bottom: -1rem;
+            font-size: 1.3rem;
+
+            @media only screen and (max-width: 1200px) {
+                // transform: scale(0.9, 0.9);
+                font-size: 1.2rem;
+            }
+
+            @media only screen and (max-width: 650px) {
+                // transform: scale(0.6, 0.6);
+                font-size: 1rem;
+            }
+        }
+    }
 }
