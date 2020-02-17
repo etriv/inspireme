@@ -57,8 +57,7 @@ class SignIn extends React.Component {
 
         // If there's a problem with the input, don't fetch from server:
         if (!this.checkInput(userName, password)) { return; }
-        // TODO: comment-in the input check above when done developing.
-
+        
         // Init server message
         this.setState({ fetching: true });
 

@@ -34,8 +34,6 @@ class GetInspirations extends React.Component {
                 this.state.inspirations.length > 0 ?
                     this.setState({ displayGallery: true })
                     : this.setState({ displayGallery: true }); // this.setState({displayGallery: false});
-                // TODO: When there is nothing to show, hide gallery - only with better filtering algorithem
-                // Present a proper message (with a cute image) of 'No matching results' / 'No inspiration here...'
             }));
     }
 

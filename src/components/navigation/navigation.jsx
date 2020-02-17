@@ -29,5 +29,3 @@ class Navigation extends React.Component {
 }
 
 export default Navigation;
-
-// TODO-end: Make a nav-button component
