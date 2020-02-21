@@ -17,7 +17,8 @@ class GetInspirations extends React.Component {
             showOnlyLiked: false,
             displayGallery: false,
             fetching: false,
-            noResults: false
+            noResults: false,
+            maxInsp: 15
         };
     }
 
@@ -25,7 +26,7 @@ class GetInspirations extends React.Component {
         // console.log('Updating inspirations...', 'tags:', this.state.tags, 'type:', this.state.insType);
         this.setState({ fetching: true });
         const type = this.state.insType;
-        dbFuncs.getInspirationsFromDB(this.state.tags, type, this.state.orderBy, this.props.signedInUser.id, this.props.showOnlyLiked)
+        dbFuncs.getInspirationsFromDB(this.state.tags, type, this.state.orderBy, this.props.signedInUser.id, this.props.showOnlyLiked, this.state.maxInsp)
             .then(data => {
                 if (Array.isArray(data) && data.length > 0) {
                     this.setState({
@@ -92,9 +93,11 @@ class GetInspirations extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.showOnlyLiked && this.props.signedInUser.id !== '') {
-            this.updateInspirations();
-        }
+        // Commenting out code below because it's better to present inspirations on startup
+        // if (this.props.showOnlyLiked && this.props.signedInUser.id !== '') {
+        //     this.updateInspirations();
+        // }
+        this.updateInspirations();
     }
 
     render() {

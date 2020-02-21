@@ -1,5 +1,5 @@
-// const serverUrl = 'http://localhost:3001'
-const serverUrl = 'https://inspireme2server.herokuapp.com'
+const serverUrl = 'http://localhost:3001'
+// const serverUrl = 'https://inspireme2server.herokuapp.com'
 
 // Updates the DB according to the like that was done
 // Returns bool regrading the success of the proccess
@@ -107,17 +107,18 @@ async function uploadInspirationToDB(title, source, tags, image, type, userId) {
         });
 }
 
-async function getInspirationsFromDB(tags = '', type = '', orderBy = '', curUserId = '', showOnlyLiked = false) {
+async function getInspirationsFromDB(tags = '', type = '', orderBy = '', curUserId = '', showOnlyLiked = false, limit = 24, offset = 0) {
     // console.log('Getting inspirations from DB ()...', tags, type, orderBy, curUserId);
     let fetchUrl = serverUrl + '/inspirations/';
-    if (tags !== '' || type !== '' || orderBy !== '' || curUserId !== '') {
-        fetchUrl += '?';
-        fetchUrl += (tags !== '') ? '&tags=' + tags : '';
-        fetchUrl += (type !== '') ? '&type=' + type : '';
-        fetchUrl += (orderBy !== '') ? '&order=' + orderBy : '';
-        fetchUrl += (curUserId !== '') ? '&curUser=' + curUserId : '';
-        fetchUrl += (showOnlyLiked) ? '&onlyLiked=' + showOnlyLiked : '';
-    }
+    fetchUrl += '?';
+    fetchUrl += (tags !== '') ? '&tags=' + tags : '';
+    fetchUrl += (type !== '') ? '&type=' + type : '';
+    fetchUrl += (orderBy !== '') ? '&order=' + orderBy : '';
+    fetchUrl += (curUserId !== '') ? '&curUser=' + curUserId : '';
+    fetchUrl += (showOnlyLiked) ? '&onlyLiked=' + showOnlyLiked : '';
+    fetchUrl += (limit) ? '&limit=' + limit : '';
+    fetchUrl += (offset) ? '&offset=' + offset : '';
+
     // console.log('Fetching:', fetchUrl);
     return fetch(fetchUrl)
         .then(response => {
