@@ -6,4 +6,10 @@ git remote -v
 
 git push heroku master
 
-git logs --tail
+heroku logs --tail
+
+*** Undoing commits:
+git reset HEAD~
+
+*** Changing back the code:
+git checkout <commit hash> <filename>
