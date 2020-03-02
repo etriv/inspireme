@@ -1,8 +1,14 @@
-const serverUrl = 'http://localhost:3001'
-// const serverUrl = 'https://inspireme2server.herokuapp.com'
+require('dotenv').config();
+
+var serverUrl;
+if (process.env.ENV_NAME === 'local') {
+    serverUrl = 'http://localhost:3001'
+}
+else {
+    serverUrl = 'https://inspireme2server.herokuapp.com'
+}
 
 // Updates the DB according to the like that was done
-// Returns bool regrading the success of the proccess
 async function likeInspirationInDB(userId, inspirationId, like = true) {
     // console.log('Liking inspiration...', userId, inspirationId, like);
     let fetchUrl = serverUrl;
