@@ -1,7 +1,5 @@
-require('dotenv').config();
-
 var serverUrl;
-if (process.env.ENV_NAME === 'local') {
+if (process.env.REACT_APP_ENV_NAME === 'local') {
     serverUrl = 'http://localhost:3001'
 }
 else {
